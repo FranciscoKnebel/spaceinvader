@@ -17,7 +17,7 @@ me.game.world.addChild(
 /*
 
 game.ContinueButton = me.GUI_Object.extend({
-    "onClick" : function () {
+    "onClick" () {
         // Change to the PLAY state when the button is clicked
 
         return true;

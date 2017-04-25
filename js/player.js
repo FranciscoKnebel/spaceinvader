@@ -1,5 +1,5 @@
 game.Player = me.Sprite.extend({
-  init : function () {
+  init() {
       const image = me.loader.getImage("player");
 
       this._super(me.Sprite, "init", [
@@ -12,7 +12,7 @@ game.Player = me.Sprite.extend({
       this.maxX = me.game.viewport.width - this.width;
   },
 
-  update : function (time) {
+  update(time) {
     this._super(me.Sprite, "update", [time]);
     if (me.input.isKeyPressed("left")) {
         this.pos.x -= this.velx * time / 1000;
@@ -24,6 +24,7 @@ game.Player = me.Sprite.extend({
 
     if (me.input.isKeyPressed("shoot")) {
       me.game.world.addChild(me.pool.pull("laser", this.pos.x - game.Laser.width, this.pos.y - game.Laser.height))
+      me.audio.play("fire");
     }
 
 

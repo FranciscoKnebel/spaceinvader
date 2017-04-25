@@ -10,11 +10,14 @@ game.LostScreen = me.ScreenObject.extend({
         this._super(me.Renderable, 'init', [0, 0, me.game.viewport.width, me.game.viewport.height]);
 
         this.titleFont = new me.Font('Serif', 72, '#000', "center");
-        this.titleFont.textBaseline = "bottom";
+        this.level = new me.Font('Serif', 32, '#000', "center");
+        this.points = new me.Font('Serif', 32, '#000', "center");
         this.btnFont = new me.Font('Serif', 32, '#000', "center");
       },
       draw(renderer) {
-        this.titleFont.draw(renderer, "YOU LOSE!", me.game.viewport.width / 2, 200);
+        this.titleFont.draw(renderer, "YOU LOSE!", me.game.viewport.width / 2, 150);
+        this.level.draw(renderer, `Final level: ${game.data.level + 1}`, me.game.viewport.width / 2, 250);
+        this.points.draw(renderer, `Total Points: ${game.data.score}`, me.game.viewport.width / 2, 300);
         this.btnFont.draw(renderer, "PRESS ENTER TO RESTART", me.game.viewport.width / 2, 350);
       },
       update(dt) {
