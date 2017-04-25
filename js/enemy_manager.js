@@ -7,7 +7,7 @@ game.EnemyManager = me.Container.extend({
       this.COLS = 9;
       this.ROWS = 4;
 
-      this.vel = 16;
+      this.vel = 64; //
   },
 
   createEnemies : function () {

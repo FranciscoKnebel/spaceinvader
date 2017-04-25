@@ -1,6 +1,6 @@
-melonJS platformer example, built from boilerplate
+melonJS Space Invaders example, built from boilerplate.
 -------------------------------------------------------------------------------
-Example from http://melonjs.github.io/tutorial-platformer/
+Example from http://melonjs.github.io/tutorial-space-invaders/
 
 
 ## To run distribution

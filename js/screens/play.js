@@ -1,31 +1,25 @@
 game.PlayScreen = me.ScreenObject.extend({
-    /**
-     *  action to perform on state change
-     */
     onResetEvent: function() {
-        // reset the score
-        game.data.score = 0;
+      game.data.score = 0;
+      game.data.level = 0;
 
-        me.game.world.addChild(new me.ColorLayer("background", "#000"), 0);
+      me.game.world.addChild(new me.ColorLayer("background", "#000"), 0);
 
-        this.player = me.pool.pull("player");
-        me.game.world.addChild(this.player, 1);
+      this.player = me.pool.pull("player");
+      me.game.world.addChild(this.player, 1);
 
-        this.enemyManager = new game.EnemyManager();
-        this.enemyManager.createEnemies();
-        me.game.world.addChild(this.enemyManager, 2);
+      this.enemyManager = new game.EnemyManager();
+      this.enemyManager.createEnemies();
+      me.game.world.addChild(this.enemyManager, 2);
 
-        // Commands
-        me.input.bindKey(me.input.KEY.LEFT, "left");
-        me.input.bindKey(me.input.KEY.RIGHT, "right");
-        me.input.bindKey(me.input.KEY.A, "left");
-        me.input.bindKey(me.input.KEY.D, "right");
-        me.input.bindKey(me.input.KEY.SPACE, "shoot", true);
+      // Commands
+      me.input.bindKey(me.input.KEY.LEFT, "left");
+      me.input.bindKey(me.input.KEY.RIGHT, "right");
+      me.input.bindKey(me.input.KEY.A, "left");
+      me.input.bindKey(me.input.KEY.D, "right");
+      me.input.bindKey(me.input.KEY.SPACE, "shoot", true);
     },
 
-    /**
-     *  action to perform when leaving this screen (state change)
-     */
     onDestroyEvent: function() {
       me.input.unbindKey(me.input.KEY.LEFT);
       me.input.unbindKey(me.input.KEY.RIGHT);
@@ -35,8 +29,8 @@ game.PlayScreen = me.ScreenObject.extend({
     },
 
     checkIfLoss : function (y) {
-      if (y >= this.player.pos.y) {
-       this.reset();
+      if (y >= (this.player.pos.y - this.player.height)) {
+        me.state.change(me.state.GAMEOVER);
       }
     },
 });
