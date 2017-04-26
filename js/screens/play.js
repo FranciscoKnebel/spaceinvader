@@ -1,6 +1,14 @@
 game.PlayScreen = me.ScreenObject.extend({
   onResetEvent() {
-    me.game.world.addChild(new me.ColorLayer("background", "#000"), 0);
+    const level = game.data.level;
+    let background = '#000';
+
+    if(game.colors.backgrounds.level.length > level) {
+      background = game.colors.backgrounds.level[level];
+    } else {
+      background = game.colors.backgrounds.level[game.colors.backgrounds.level.length - 1];
+    }
+    me.game.world.addChild(new me.ColorLayer("background", background), 0);
 
     this.player = me.pool.pull("player");
     me.game.world.addChild(this.player, 1);

@@ -2,7 +2,8 @@
 var game = {
   data: {
     score: 0,
-    level: 0
+    level: 0,
+    muted: false,
   },
 
   // Run on page load.

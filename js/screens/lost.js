@@ -1,6 +1,6 @@
 game.LostScreen = me.ScreenObject.extend({
   onResetEvent() {
-    me.game.world.addChild(new me.ColorLayer("background", "#FFF"), 0);
+    me.game.world.addChild(new me.ColorLayer("background", game.colors.backgrounds.lost), 0);
 
     // Play music
     me.audio.play("lost");

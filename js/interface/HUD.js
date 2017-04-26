@@ -56,7 +56,7 @@ game.HUD.ScoreItem = me.Renderable.extend({
 
   draw(context) {
     this.data.enemyQuantity.font.draw(context, this.data.enemyQuantity.value, 5, 5);
-    this.data.enemyVelocity.font.draw(context, Math.abs(this.data.enemyVelocity.value), me.game.viewport.width - 5, 5);
+    this.data.enemyVelocity.font.draw(context, Math.floor(Math.abs(this.data.enemyVelocity.value)), me.game.viewport.width - 5, 5);
 
     this.data.score.font.draw(context, this.data.score.value, me.game.viewport.width / 2, 5);
   },

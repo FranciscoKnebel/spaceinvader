@@ -1,6 +1,14 @@
 game.WonScreen = me.ScreenObject.extend({
   onResetEvent() {
-    me.game.world.addChild(new me.ColorLayer("background", "#CCCC00"), 0);
+    const level = game.data.level;
+    let background = '#63C664';
+
+    if(game.colors.backgrounds.won.length > level) {
+      background = game.colors.backgrounds.won[level];
+    } else {
+      background = game.colors.backgrounds.won[game.colors.backgrounds.won.length - 1];
+    }
+    me.game.world.addChild(new me.ColorLayer("background", background), 0);
 
     // Play music
     me.audio.play("won");
