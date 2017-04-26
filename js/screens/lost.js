@@ -29,7 +29,8 @@ game.LostScreen = me.ScreenObject.extend({
     me.input.bindKey(me.input.KEY.ENTER, "restart", true);
     this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
       if (action === "restart") {
-        game.level = 0;
+        game.data.level = 0;
+        game.data.score = 0;
         me.state.change(me.state.PLAY);
       }
     });

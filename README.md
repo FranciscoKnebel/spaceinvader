@@ -17,9 +17,9 @@ You must also have `grunt-cli` installed globally:
 
     npm install -g grunt-cli
 
-Running the game:
+Developing the game:
 
-	grunt serve
+	grunt dev
 
 And you will have the boilerplate example running on http://localhost:8000
 

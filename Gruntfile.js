@@ -184,5 +184,5 @@ module.exports = function(grunt) {
     'clean:app',
   ]);
   grunt.registerTask('dist', ['default', 'download-electron', 'asar']);
-  grunt.registerTask('serve', ['resources', 'connect', 'watch']);
+  grunt.registerTask('dev', ['resources', 'connect', 'watch']);
 }

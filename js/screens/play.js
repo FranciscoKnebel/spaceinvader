@@ -9,6 +9,9 @@ game.PlayScreen = me.ScreenObject.extend({
     this.enemyManager.createEnemies();
     me.game.world.addChild(this.enemyManager, 2);
 
+    this.HUD = new game.HUD.Container();
+    me.game.world.addChild(this.HUD);
+
     // Commands
     me.input.bindKey(me.input.KEY.LEFT, "left");
     me.input.bindKey(me.input.KEY.RIGHT, "right");
