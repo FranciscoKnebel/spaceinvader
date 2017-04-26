@@ -15,6 +15,14 @@ game.PlayScreen = me.ScreenObject.extend({
     me.input.bindKey(me.input.KEY.A, "left");
     me.input.bindKey(me.input.KEY.D, "right");
     me.input.bindKey(me.input.KEY.SPACE, "shoot", true);
+    me.input.bindPointer(me.input.pointer.LEFT, me.input.KEY.SPACE);
+
+    me.input.bindKey(me.input.KEY.H, "help", true);
+    this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
+      if (action === "help") {
+        me.state.change(me.state.MENU);
+      }
+    });
   },
 
   onDestroyEvent() {
@@ -23,6 +31,8 @@ game.PlayScreen = me.ScreenObject.extend({
     me.input.unbindKey(me.input.KEY.A);
     me.input.unbindKey(me.input.KEY.D);
     me.input.unbindKey(me.input.KEY.SPACE);
+    me.input.unbindPointer(me.input.pointer.LEFT);
+    me.input.unbindKey(me.input.KEY.H);
   },
 
   checkIfLoss(y) {
