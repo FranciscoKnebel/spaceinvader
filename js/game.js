@@ -34,6 +34,7 @@ var game = {
     me.state.set(me.state.MENU, new game.HelpScreen());
 
     // Start the game.
+    me.audio.playTrack('tronicles');
     me.state.change(me.state.MENU);
   }
 };

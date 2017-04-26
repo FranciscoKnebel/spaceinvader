@@ -38,7 +38,5 @@ game.WonScreen = me.ScreenObject.extend({
   onDestroyEvent() {
     me.input.unbindKey(me.input.KEY.ENTER);
     me.event.unsubscribe(this.handler);
-
-    me.audio.stopTrack();
   },
 });

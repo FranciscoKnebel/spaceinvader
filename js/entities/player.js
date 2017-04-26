@@ -27,6 +27,32 @@ game.Player = me.Sprite.extend({
       me.audio.play("fire");
     }
 
+    if (me.input.isKeyPressed("volume-plus")) {
+      const currentVolume = me.audio.getVolume();
+
+      if(currentVolume <= 1.0) {
+        me.audio.setVolume(currentVolume + 0.025);
+      }
+    }
+
+    if (me.input.isKeyPressed("volume-mute")) {
+      if(game.data.muted === true) {
+        me.audio.unmuteAll();
+      } else {
+        me.audio.muteAll();
+      }
+
+      game.data.muted = !game.data.muted;
+    }
+
+    if (me.input.isKeyPressed("volume-minus")) {
+      const currentVolume = me.audio.getVolume();
+
+      if(currentVolume >= 0.0) {
+        me.audio.setVolume(currentVolume - 0.025);
+      }
+    }
+
 
     this.pos.x = this.pos.x.clamp(0, this.maxX);
 

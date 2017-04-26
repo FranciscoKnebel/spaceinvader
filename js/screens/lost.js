@@ -41,5 +41,6 @@ game.LostScreen = me.ScreenObject.extend({
     me.event.unsubscribe(this.handler);
 
     me.audio.stopTrack();
+    me.audio.playTrack('tronicles');
   },
 });

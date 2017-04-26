@@ -20,6 +20,13 @@ game.PlayScreen = me.ScreenObject.extend({
     me.input.bindKey(me.input.KEY.SPACE, "shoot", true);
     me.input.bindPointer(me.input.pointer.LEFT, me.input.KEY.SPACE);
 
+    me.input.bindKey(me.input.KEY.J, "volume-plus");
+    me.input.bindKey(me.input.KEY.K, "volume-mute", true);
+    me.input.bindKey(me.input.KEY.L, "volume-minus");
+    me.input.bindKey(me.input.KEY.NUM1, "volume-plus");
+    me.input.bindKey(me.input.KEY.NUM2, "volume-mute", true);
+    me.input.bindKey(me.input.KEY.NUM3, "volume-minus");
+
     me.input.bindKey(me.input.KEY.H, "help", true);
     this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
       if (action === "help") {
@@ -35,11 +42,15 @@ game.PlayScreen = me.ScreenObject.extend({
     me.input.unbindKey(me.input.KEY.D);
     me.input.unbindKey(me.input.KEY.SPACE);
     me.input.unbindPointer(me.input.pointer.LEFT);
+    me.input.unbindKey(me.input.KEY.PLUS);
+    me.input.unbindKey(me.input.KEY.MINUS);
     me.input.unbindKey(me.input.KEY.H);
   },
 
   checkIfLoss(y) {
     if (y >= (this.player.pos.y - this.player.height)) {
+      me.audio.pauseTrack();
+
       me.state.change(me.state.GAMEOVER);
     }
   },

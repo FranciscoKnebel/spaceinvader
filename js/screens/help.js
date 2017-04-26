@@ -22,7 +22,10 @@ game.HelpScreen = me.ScreenObject.extend({
             this.commandFont.draw(renderer, "Key SPACE & LCLICK", 50, 275);
             this.descriptionFont.draw(renderer, "shoot",  me.game.viewport.width - 50, 275);
 
-            this.btnFont.draw(renderer, "PRESS ENTER TO RESUME", me.game.viewport.width / 2, 400);
+            this.commandFont.draw(renderer, "J/K/L & 1/2/3", 50, 325);
+            this.descriptionFont.draw(renderer, "+/Mute/- Volume",  me.game.viewport.width - 50, 325);
+
+            this.btnFont.draw(renderer, "PRESS ENTER TO PLAY", me.game.viewport.width / 2, 400);
           },
           update(dt) { return true },
           onDestroyEvent() {}

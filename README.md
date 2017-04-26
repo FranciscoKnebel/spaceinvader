@@ -51,3 +51,8 @@ Running the desktop release on Linux:
 
 Note that you may have to edit the file `Gruntfile.js` if you need to better dictate the order your files load in. Note how by default the game.js and resources.js are specified in a specific order.
 -------------------------------------------------------------------------------
+
+### Credits
+
+Music by: Sirius Beat - Tronicles
+Link: http://youtu.be/zIRo7NJ4uLE
