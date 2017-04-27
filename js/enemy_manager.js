@@ -17,7 +17,7 @@ game.EnemyManager = me.Container.extend({
       this.baseSpeed = 20;
     }
 
-    this.vel = this.baseSpeed + (1.25 * game.data.level);
+    this.vel = this.baseSpeed;// + (1.25 * game.data.level);
   },
 
 
@@ -43,26 +43,33 @@ game.EnemyManager = me.Container.extend({
   },
 
   onActivateEvent() {
-    this.timer = me.timer.setInterval(() => {
-      const bounds = this.childBounds;
+    function movement(that) {
+      const bounds = that.childBounds;
 
-      if ((this.vel > 0 && (bounds.right + this.vel) >= me.game.viewport.width) ||
-        (this.vel < 0 && (bounds.left + this.vel) <= 0)) {
+      if ((that.vel > 0 && (bounds.right + that.vel) >= me.game.viewport.width) ||
+        (that.vel < 0 && (bounds.left + that.vel) <= 0)) {
 
-        this.vel *= -1;
-        this.pos.y += this.baseSpeed + (0.25 * game.data.level);
+        game.data.movementTime -= 10;
+        that.vel *= -1;
+        that.pos.y += that.baseSpeed;// + (0.25 * game.data.level);
 
-        if (this.vel > 0) {
-          this.vel += this.baseIncrement + (1.1 * game.data.level);
+        /* if (that.vel > 0) {
+          that.vel += that.baseIncrement + (1.1 * game.data.level);
         } else {
-          this.vel -= this.baseIncrement + (1.1 * game.data.level);
-        }
+          that.vel -= that.baseIncrement + (1.1 * game.data.level);
+        } */
 
         game.playScreen.checkIfLoss(bounds.bottom);
       } else {
-        this.pos.x += this.vel;
+        that.pos.x += that.vel;
       }
-    }, 500);
+
+      that.timer = me.timer.setTimeout(() => { movement(that) }, game.data.movementTime);
+    }
+
+    game.data.movementTime = 500 - (10 * game.data.level);
+
+    this.timer = me.timer.setTimeout(() => { movement(this) }, game.data.movementTime);
   },
 
   onDeactivateEvent() {

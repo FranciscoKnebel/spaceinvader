@@ -29,7 +29,11 @@ game.HUD.ScoreItem = me.Renderable.extend({
       score: {
         value: 0,
         font: new me.Font('Arial', 32, '#FFFF5C', 'center'),
-      }
+      },
+      movementTime: {
+        value: 0,
+        font: new me.Font('Serif', 24, '#285428', "right"),
+      },
     }
   },
 
@@ -41,8 +45,14 @@ game.HUD.ScoreItem = me.Renderable.extend({
       updated = true;
     }
 
+    /*
     if (this.data.enemyVelocity.value !== game.playScreen.enemyManager.vel) {
       this.data.enemyVelocity.value = game.playScreen.enemyManager.vel;
+      updated = true;
+    } */
+
+    if(this.data.movementTime.value !== game.data.movementTime) {
+      this.data.movementTime.value = game.data.movementTime;
       updated = true;
     }
 
@@ -55,8 +65,9 @@ game.HUD.ScoreItem = me.Renderable.extend({
   },
 
   draw(context) {
-    this.data.enemyQuantity.font.draw(context, this.data.enemyQuantity.value, 5, 5);
-    this.data.enemyVelocity.font.draw(context, Math.floor(Math.abs(this.data.enemyVelocity.value)), me.game.viewport.width - 5, 5);
+    this.data.enemyQuantity.font.draw(context, `${this.data.enemyQuantity.value} enemies`, 5, 5);
+    //this.data.enemyVelocity.font.draw(context, Math.floor(Math.abs(this.data.enemyVelocity.value)), me.game.viewport.width - 5, 5);
+    this.data.movementTime.font.draw(context, `${this.data.movementTime.value}ms`, me.game.viewport.width - 5, 5);
 
     this.data.score.font.draw(context, this.data.score.value, me.game.viewport.width / 2, 5);
   },
