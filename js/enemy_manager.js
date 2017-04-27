@@ -1,7 +1,31 @@
+function movement(that) {
+  const bounds = that.childBounds;
+
+  if ((that.vel > 0 && (bounds.right + that.vel) >= me.game.viewport.width) ||
+    (that.vel < 0 && (bounds.left + that.vel) <= 0)) {
+
+    game.data.movementTime -= 10;
+    that.vel *= -1;
+    that.pos.y += that.baseSpeed;// + (0.25 * game.data.level);
+
+    /* if (that.vel > 0) {
+      that.vel += that.baseIncrement + (1.1 * game.data.level);
+    } else {
+      that.vel -= that.baseIncrement + (1.1 * game.data.level);
+    } */
+
+    game.playScreen.checkIfLoss(bounds.bottom);
+  } else {
+    that.pos.x += that.vel;
+  }
+
+  that.timer = me.timer.setTimeout(() => { movement(that); }, game.data.movementTime);
+}
+
 game.EnemyManager = me.Container.extend({
   init() {
     this.COLS = Math.floor((me.game.viewport.width - 32) / 64);
-    this.ROWS = 4;
+    this.ROWS = ((game.data.level + 1) % 10 === 0 ? 2 : 4);
 
     this._super(me.Container, "init", [0, 32,
       this.COLS * 64 - 32,
@@ -11,13 +35,13 @@ game.EnemyManager = me.Container.extend({
     this.baseSpeed = 16;
     this.baseIncrement = 5;
 
-    if((game.data.level + 1) % 10) {
+    if((game.data.level + 1) % 10 === 0) {
       this.baseSpeed = 24;
-    } else if((game.data.level + 1) % 5) {
+    } else if((game.data.level + 1) % 5 === 0) {
       this.baseSpeed = 20;
     }
 
-    this.vel = this.baseSpeed;// + (1.25 * game.data.level);
+    this.vel = this.baseSpeed;
   },
 
 
@@ -43,33 +67,9 @@ game.EnemyManager = me.Container.extend({
   },
 
   onActivateEvent() {
-    function movement(that) {
-      const bounds = that.childBounds;
+    game.data.movementTime = 500 - (Math.pow(1.15 * game.data.level, 2));
 
-      if ((that.vel > 0 && (bounds.right + that.vel) >= me.game.viewport.width) ||
-        (that.vel < 0 && (bounds.left + that.vel) <= 0)) {
-
-        game.data.movementTime -= 10;
-        that.vel *= -1;
-        that.pos.y += that.baseSpeed;// + (0.25 * game.data.level);
-
-        /* if (that.vel > 0) {
-          that.vel += that.baseIncrement + (1.1 * game.data.level);
-        } else {
-          that.vel -= that.baseIncrement + (1.1 * game.data.level);
-        } */
-
-        game.playScreen.checkIfLoss(bounds.bottom);
-      } else {
-        that.pos.x += that.vel;
-      }
-
-      that.timer = me.timer.setTimeout(() => { movement(that) }, game.data.movementTime);
-    }
-
-    game.data.movementTime = 500 - (10 * game.data.level);
-
-    this.timer = me.timer.setTimeout(() => { movement(this) }, game.data.movementTime);
+    this.timer = me.timer.setTimeout(() => { movement(this); }, game.data.movementTime);
   },
 
   onDeactivateEvent() {
