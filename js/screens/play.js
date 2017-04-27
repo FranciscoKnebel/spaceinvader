@@ -58,6 +58,7 @@ game.PlayScreen = me.ScreenObject.extend({
   checkIfLoss(y) {
     if (y >= (this.player.pos.y - this.player.height)) {
       me.audio.pauseTrack();
+      game.data.endTime = marky.stop('startGame');
 
       me.state.change(me.state.GAMEOVER);
     }

@@ -4,6 +4,7 @@ var game = {
     score: 0,
     level: 0,
     muted: false,
+    startTime: new Date(),
   },
 
   // Run on page load.
@@ -36,6 +37,8 @@ var game = {
 
     // Start the game.
     me.audio.playTrack('tronicles');
+    game.data.startTime = new Date();
+    marky.mark('startGame');
     me.state.change(me.state.MENU);
   }
 };

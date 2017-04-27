@@ -26,7 +26,8 @@ game.WonScreen = me.ScreenObject.extend({
         this.titleFont.draw(renderer, "LEVEL CLEARED!", me.game.viewport.width / 2, 150);
         this.level.draw(renderer, `Current level: ${game.data.level + 1}`, me.game.viewport.width / 2, 250);
         this.points.draw(renderer, `Total Points: ${game.data.score}`, me.game.viewport.width / 2, 300);
-        this.btnFont.draw(renderer, "PRESS ENTER TO CONTINUE", me.game.viewport.width / 2, 350);
+        this.points.draw(renderer, `Total Time: ${game.data.endTime.duration / 1000}s`, me.game.viewport.width / 2, 350);
+        this.btnFont.draw(renderer, "PRESS ENTER TO CONTINUE", me.game.viewport.width / 2, 410);
       },
       update(dt) {
         return true;

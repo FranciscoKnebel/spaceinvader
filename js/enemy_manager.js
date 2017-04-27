@@ -34,6 +34,7 @@ game.EnemyManager = me.Container.extend({
 
   update(time) {
     if (this.children.length === 0 && this.createdEnemies) {
+      game.data.endTime = marky.stop('startGame');
       me.state.change(me.state.GAME_END);
     }
 
