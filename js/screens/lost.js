@@ -18,7 +18,7 @@ game.LostScreen = me.ScreenObject.extend({
         this.titleFont.draw(renderer, "YOU LOSE!", me.game.viewport.width / 2, 150);
         this.level.draw(renderer, `Final level: ${game.data.level + 1}`, me.game.viewport.width / 2, 250);
         this.points.draw(renderer, `Total Points: ${game.data.score}`, me.game.viewport.width / 2, 300);
-        this.points.draw(renderer, `Total Time: ${(game.data.endTime.duration / 1000).toFixed(5)}s`, me.game.viewport.width / 2, 350);
+        this.points.draw(renderer, `Total Time: ${(game.data.endTime / 1000).toFixed(3)}s`, me.game.viewport.width / 2, 350);
         this.btnFont.draw(renderer, "PRESS ENTER TO RESTART", me.game.viewport.width / 2, 410);
       },
       update(dt) {
@@ -33,7 +33,8 @@ game.LostScreen = me.ScreenObject.extend({
         game.data.level = 0;
         game.data.score = 0;
 
-        marky.mark('startGame');
+        // marky.mark('startGame');
+        game.data.startTime = new Date();
         me.state.change(me.state.PLAY);
       }
     });

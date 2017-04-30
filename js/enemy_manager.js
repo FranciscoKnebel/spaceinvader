@@ -1,25 +1,25 @@
-function movement(that) {
+function movement(that, init) {
   const bounds = that.childBounds;
 
-  if ((that.vel > 0 && (bounds.right + that.vel) >= me.game.viewport.width) ||
-    (that.vel < 0 && (bounds.left + that.vel) <= 0)) {
-
-    game.data.movementTime -= 10;
+  if (outOfBounds(that, bounds)) {
+    game.data.movementTime -= 0.25;
     that.vel *= -1;
-    that.pos.y += that.baseSpeed;// + (0.25 * game.data.level);
+    that.pos.y += that.baseSpeed.y + (0.25 * game.data.level);
 
-    /* if (that.vel > 0) {
-      that.vel += that.baseIncrement + (1.1 * game.data.level);
-    } else {
-      that.vel -= that.baseIncrement + (1.1 * game.data.level);
-    } */
-
-    game.playScreen.checkIfLoss(bounds.bottom);
+    if(!game.playScreen.checkIfLoss(bounds.bottom)) {
+      that.timer.change(() => { movement(that); }, game.data.movementTime);
+    }
   } else {
+    if(init) {
+      that.timer.start(() => { movement(that); }, game.data.movementTime)
+    }
+
     that.pos.x += that.vel;
   }
+}
 
-  that.timer = me.timer.setTimeout(() => { movement(that); }, game.data.movementTime);
+function outOfBounds(that, bounds) {
+  return (that.vel > 0 && (bounds.right + that.vel) >= me.game.viewport.width) || (that.vel < 0 && (bounds.left + that.vel) <= 0);
 }
 
 game.EnemyManager = me.Container.extend({
@@ -32,18 +32,19 @@ game.EnemyManager = me.Container.extend({
       this.ROWS * 64 - 32
     ]);
 
-    this.baseSpeed = 16;
-    this.baseIncrement = 5;
+    this.baseSpeed = {
+      x: 4,
+      y: 10,
+    };
 
-    if((game.data.level + 1) % 10 === 0) {
-      this.baseSpeed = 24;
-    } else if((game.data.level + 1) % 5 === 0) {
-      this.baseSpeed = 20;
+    if((game.data.level + 1) % 10 === 0) { // multiple of 10
+      this.baseSpeed.x = 4.5;
+    } else if((game.data.level + 1) % 5 === 0) { // multiple of 5
+      this.baseSpeed.x = 4.25;
     }
 
-    this.vel = this.baseSpeed;
+    this.vel = this.baseSpeed.x;
   },
-
 
   createEnemies() {
     for (var i = 0; i < this.COLS; i++) {
@@ -58,7 +59,8 @@ game.EnemyManager = me.Container.extend({
 
   update(time) {
     if (this.children.length === 0 && this.createdEnemies) {
-      game.data.endTime = marky.stop('startGame');
+      game.data.startTime2 = new Date();
+      game.data.endTime = game.data.startTime2 - game.data.startTime;
       me.state.change(me.state.GAME_END);
     }
 
@@ -67,13 +69,31 @@ game.EnemyManager = me.Container.extend({
   },
 
   onActivateEvent() {
-    game.data.movementTime = 500 - (Math.pow(1.15 * game.data.level, 2));
+    game.data.movementTime = 50 - (Math.pow(1.05 * game.data.level, 1.5));
 
-    this.timer = me.timer.setTimeout(() => { movement(this); }, game.data.movementTime);
+    this.timer = {
+      current: null,
+      start(cb, time) {
+        this.current = me.timer.setInterval(cb, time);
+
+        return this.current;
+      },
+      stop() {
+          me.timer.clearInterval(this.current);
+          this.current = null;
+      },
+      change(cb, time) {
+          me.timer.clearInterval(this.current);
+          this.current = me.timer.setInterval(cb, time);
+          return this.current;
+      },
+    };
+
+    movement(this, true);
   },
 
   onDeactivateEvent() {
-    me.timer.clearInterval(this.timer);
+    this.timer.stop();
   },
 
   removeChildNow(child) {

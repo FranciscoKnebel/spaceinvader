@@ -1,16 +1,15 @@
 game.HUD = game.HUD || {};
 
 game.HUD.Container = me.Container.extend({
+  init() {
+    this._super(me.Container, 'init');
 
-    init() {
-        this._super(me.Container, 'init');
+    this.isPersistent = false;
+    this.floating = true;
+    this.name = "HUD";
 
-        this.isPersistent = false;
-        this.floating = true;
-        this.name = "HUD";
-
-        this.addChild(new game.HUD.ScoreItem(5, 5));
-    }
+    this.addChild(new game.HUD.ScoreItem(5, 5));
+  }
 });
 
 game.HUD.ScoreItem = me.Renderable.extend({
