@@ -32,20 +32,30 @@ To build:
 
 This will create a `build` directory containing the files that can be uploaded to a server, or packaged into a mobile app.
 
+#### Packaging a standalone desktop release via scripts
 
-##### Building a standalone desktop release:
+    grunt
+    npm run build-**
+
+Where ** can be `win32` (Windows), `linux` (Linux) and `darwin` (OSX).
+
+#### Packaging all desktop releases
+
+    npm run build-all
+
+#### Building a standalone desktop release
 
     grunt dist
 
-##### Running the desktop release on Windows:
+##### Running the desktop release on Windows
 
     .\bin\electron.exe
 
-##### Running the desktop release on macOS:
+##### Running the desktop release on macOS
 
     open ./bin/Electron.app
 
-##### Running the desktop release on Linux:
+##### Running the desktop release on Linux
 
     ./bin/electron
 
@@ -54,6 +64,6 @@ This will create a `build` directory containing the files that can be uploaded t
 ### Credits
 
 
-Music by: Sirius Beat - Tronicles
+Music by Sirius Beat - Tronicles
 
 Link: http://youtu.be/zIRo7NJ4uLE

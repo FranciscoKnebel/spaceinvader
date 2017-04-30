@@ -3,14 +3,26 @@
   "version": "0.0.2",
   "main": "main.js",
   "scripts": {
-    "build": "grunt dist && npm run build-linux && npm run build-win32 && npm run build-darwin",
+    "build": "grunt && npm run build-linux && npm run build-win32 && npm run build-darwin",
+    "build-all": "grunt && electron-packager build/ SpaceInvader --all --electron-version=1.4.6",
     "build-linux": "electron-packager build/ SpaceInvader --platform=linux --electron-version=1.4.6",
     "build-win32": "electron-packager build/ SpaceInvader --platform=win32 --electron-version=1.4.6",
     "build-darwin": "electron-packager build/ SpaceInvader --platform=darwin --electron-version=1.4.6",
-    "test": ""
+    "lint": "npm run lint-js",
+    "lint-js": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js",
+    "lint-js-fix": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js --fix",
+    "postinstall": "gulp build",
+    "prepush": "npm run lint",
+    "test": "npm run lint"
   },
   "devDependencies": {
+    "electron": "1.4.6",
     "electron-packager": "^8.6.0",
+    "eslint": "^3.8.0",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
     "grunt": "^1.0.1",
     "grunt-asar": "github:bwin/grunt-asar#update-asar",
     "grunt-contrib-clean": "^1.0.0",
@@ -21,7 +33,8 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-download-electron": "^2.1.4",
     "grunt-processhtml": "^0.4.1",
-    "grunt-replace": "^1.0.1"
+    "grunt-replace": "^1.0.1",
+    "husky": "^0.11.9"
   },
   "description": "A MelonJS Space Invaders-like game.",
   "directories": {
