@@ -1,25 +1,50 @@
+function movement(that, init) {
+  const bounds = that.childBounds;
+
+  if (outOfBounds(that, bounds)) {
+    game.data.movementTime -= 0.25;
+    that.vel *= -1;
+    that.pos.y += that.baseSpeed.y + (0.25 * game.data.level);
+
+    if(!game.playScreen.checkIfLoss(bounds.bottom)) {
+      that.timer.change(() => { movement(that); }, game.data.movementTime);
+    }
+  } else {
+    if(init) {
+      that.timer.start(() => { movement(that); }, game.data.movementTime)
+    }
+
+    that.pos.x += that.vel;
+  }
+}
+
+function outOfBounds(that, bounds) {
+  return (that.vel > 0 && (bounds.right + that.vel) >= me.game.viewport.width) || (that.vel < 0 && (bounds.left + that.vel) <= 0);
+}
+
 game.EnemyManager = me.Container.extend({
   init() {
     this.COLS = Math.floor((me.game.viewport.width - 32) / 64);
-    this.ROWS = 4;
+    this.ROWS = ((game.data.level + 1) % 10 === 0 ? 2 : 4);
 
     this._super(me.Container, "init", [0, 32,
       this.COLS * 64 - 32,
       this.ROWS * 64 - 32
     ]);
 
-    this.baseSpeed = 16;
-    this.baseIncrement = 5;
+    this.baseSpeed = {
+      x: 4,
+      y: 10,
+    };
 
-    if((game.data.level + 1) % 10) {
-      this.baseSpeed = 24;
-    } else if((game.data.level + 1) % 5) {
-      this.baseSpeed = 20;
+    if((game.data.level + 1) % 10 === 0) { // multiple of 10
+      this.baseSpeed.x = 4.5;
+    } else if((game.data.level + 1) % 5 === 0) { // multiple of 5
+      this.baseSpeed.x = 4.25;
     }
 
-    this.vel = this.baseSpeed + (1.25 * game.data.level);
+    this.vel = this.baseSpeed.x;
   },
-
 
   createEnemies() {
     for (var i = 0; i < this.COLS; i++) {
@@ -34,7 +59,8 @@ game.EnemyManager = me.Container.extend({
 
   update(time) {
     if (this.children.length === 0 && this.createdEnemies) {
-      game.data.endTime = marky.stop('startGame');
+      game.data.startTime2 = new Date();
+      game.data.endTime = game.data.startTime2 - game.data.startTime;
       me.state.change(me.state.GAME_END);
     }
 
@@ -43,30 +69,31 @@ game.EnemyManager = me.Container.extend({
   },
 
   onActivateEvent() {
-    this.timer = me.timer.setInterval(() => {
-      const bounds = this.childBounds;
+    game.data.movementTime = 50 - (Math.pow(1.05 * game.data.level, 1.5));
 
-      if ((this.vel > 0 && (bounds.right + this.vel) >= me.game.viewport.width) ||
-        (this.vel < 0 && (bounds.left + this.vel) <= 0)) {
+    this.timer = {
+      current: null,
+      start(cb, time) {
+        this.current = me.timer.setInterval(cb, time);
 
-        this.vel *= -1;
-        this.pos.y += this.baseSpeed + (0.25 * game.data.level);
+        return this.current;
+      },
+      stop() {
+          me.timer.clearInterval(this.current);
+          this.current = null;
+      },
+      change(cb, time) {
+          me.timer.clearInterval(this.current);
+          this.current = me.timer.setInterval(cb, time);
+          return this.current;
+      },
+    };
 
-        if (this.vel > 0) {
-          this.vel += this.baseIncrement + (1.1 * game.data.level);
-        } else {
-          this.vel -= this.baseIncrement + (1.1 * game.data.level);
-        }
-
-        game.playScreen.checkIfLoss(bounds.bottom);
-      } else {
-        this.pos.x += this.vel;
-      }
-    }, 500);
+    movement(this, true);
   },
 
   onDeactivateEvent() {
-    me.timer.clearInterval(this.timer);
+    this.timer.stop();
   },
 
   removeChildNow(child) {
