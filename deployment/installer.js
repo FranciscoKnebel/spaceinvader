@@ -44,8 +44,8 @@ case 'darwin':
 	console.error('Installer not defined for platform darwin. Soon!');
 	break;
 default:
+	console.log(argv);
 	console.error('Platform invalid. Please pass a valid --platform argument.');
-	process.exit(2);
 
 	break;
 }

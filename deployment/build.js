@@ -28,7 +28,7 @@ packager(options, (err, appPaths) => {
 
 				if (platform !== 'darwin') {
 					console.log(`Building installer for Platform: "${platform}" and Arch: "${arch}". Please wait...`);
-					exec(`node tasks/installer "${path}" --platform ${platform} --arch ${arch}`, (error, stdout, stderr) => {
+					exec(`node deployment/installer "${path}" --platform ${platform} --arch ${arch}`, (error, stdout, stderr) => {
 						if (error) {
 							console.error(error);
 						}
