@@ -8,6 +8,7 @@
     "build-darwin": "node deployment/build --platform darwin",
     "build-linux": "node deployment/build --platform linux",
     "build-win32": "node deployment/build --platform win32",
+    "deploy-travis": "node deployment/build --platform 'linux,darwin,mas' --arch all && node deployment/deploy-travis 'apps'",
     "lint": "npm run lint-js",
     "lint-js": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js",
     "lint-js-fix": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js --fix",
@@ -38,7 +39,9 @@
     "grunt-processhtml": "^0.4.1",
     "grunt-replace": "^1.0.1",
     "husky": "^0.11.9",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "tar.gz": "^1.0.5",
+    "zip-folder": "^1.0.0"
   },
   "description": "A MelonJS Space Invaders-like game.",
   "directories": {

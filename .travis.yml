@@ -1,6 +1,11 @@
 language: node_js
 node_js:
 - node
+
+before_deploy:
+  - "grunt dist"
+  - "npm run deploy-travis"
+
 deploy:
   provider: releases
   api_key:
