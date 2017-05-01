@@ -22,7 +22,7 @@ Developing the game:
 
 	grunt dev
 
-And you will have the boilerplate example running on http://localhost:8000
+And you will have the game running on http://localhost:8000
 
 ## Building Release Versions
 
@@ -34,7 +34,7 @@ This will create a `build` directory containing the files that can be uploaded t
 
 #### Packaging a standalone desktop release via scripts
 
-    grunt
+    grunt dist
     npm run build-**
 
 Where ** can be `win32` (Windows), `linux` (Linux) and `darwin` (OSX).
