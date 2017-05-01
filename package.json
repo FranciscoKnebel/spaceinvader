@@ -4,14 +4,14 @@
   "main": "main.js",
   "scripts": {
     "build": "grunt dist && npm run build-linux && npm run build-win32 && npm run build-darwin",
-    "build-all": "grunt dist && electron-packager build/ SpaceInvader --all --electron-version=1.4.16",
-    "build-linux": "electron-packager build/ SpaceInvader --platform=linux --electron-version=1.4.16",
-    "build-win32": "electron-packager build/ SpaceInvader --platform=win32 --electron-version=1.4.16",
-    "build-darwin": "electron-packager build/ SpaceInvader --platform=darwin --electron-version=1.4.16",
+    "build-all": "grunt dist && node tasks/build --platform all",
+    "build-darwin": "node tasks/build --platform darwin",
+    "build-linux": "node tasks/build --platform linux",
+    "build-win32": "node tasks/build --platform win32",
     "lint": "npm run lint-js",
     "lint-js": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js",
     "lint-js-fix": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js --fix",
-    "postinstall": "gulp build",
+    "postinstall": "grunt dist",
     "prepush": "npm run lint",
     "test": "npm run lint"
   },
@@ -35,7 +35,8 @@
     "grunt-download-electron": "^2.1.4",
     "grunt-processhtml": "^0.4.1",
     "grunt-replace": "^1.0.1",
-    "husky": "^0.11.9"
+    "husky": "^0.11.9",
+    "minimist": "^1.2.0"
   },
   "description": "A MelonJS Space Invaders-like game.",
   "directories": {
