@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- node
+
+before_deploy:
+  - "grunt dist"
+  - "npm run deploy-travis"
+
+deploy:
+  provider: releases
+  api_key:
+    secure: MlfKyZtLHvTys776AZ3o3btQQTtEUH2ePWSH98OX39TY/q6NBeoSAUkvbDkawB2ramHtLmuMj2dNE0hcSg2Fmo+vrQu1NQ6iUQeZPClzainwlAH3bmeBqDJFKyFK0vxXVWceiLLQo5QgUtfb+xsRbxQHXkFeg4Rllxj6pr001S+qhI08oz9gtRTeBBLyOuinSC5y2lpfLyxbB+Ym13Or5ngDhuASH8jQS+wRjWs1/LOkldVANK3qx4RQVhbEJYkA121FTHsG77hWNpTc7TXu4iFCPRVUq+eyl2rB/+vZDQpcA8sew5NdAbG/ovSm/5nDnZti+7pxBC12ykwA5WPS51GxOOFk36AmvdV/PPHRcFxf1cy6OrrrnmLAkn2EEdHCKvPrJGLGr2B7wihiH/B4nJBBd/KMsg/UkfSmtkXDKR9SywRqKKxg2u56d1pvQlVh1wV56iHwUi5nZnMrEOsGkZjVzEcUuShNg2Z1TD2fuYxREM+8YrtzIbIPonXyj7mk6zsxTEansMjOS1SZpqOnGiNARaMcOx/J4QYSMB0e3Z0cmvvnTcm0K4/ad/2VqAXhNK7u/CQGBiqpjSAnv+hGZHXxgpCQkaygQalrPTWoP9pNIoKWAloOBtHC6uxu3DZPNv6txECbH+Ky3GwPlrRiI2nyQicUP6yGzg8cUh7lczM=
+  file_glob: true
+  file: apps/installers/*
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: FranciscoKnebel/spaceinvader

@@ -1,43 +1,44 @@
-module.exports = function (grunt) {
-    function task() {
-        var path = require("path"),
-            options = this.options({
-                "varname" : "game.resources"
-            });
-            res = [],
-            audio = {};
+module.exports = (grunt) => {
+	function task() {
+		const path = require('path');
 
-        grunt.log.debug("options: " + JSON.stringify(options));
-        grunt.log.debug("files: " + JSON.stringify(this.files));
+		const	options = this.options({
+			varname: 'game.resources',
+		});
+		const res = [];
+		const audio = {};
 
-        this.files.forEach(function (file) {
-            file.src.forEach(function (src) {
-                var name = path.basename(src, path.extname(src));
-                if ((file.type !== "audio") || (!audio.hasOwnProperty(name))) {
-                    if (file.type === "audio") {
-                        audio[name] = true;
-                    }
-                    res.push({
-                        "name"  : name,
-                        "type"  : file.type,
-                        "src"   : (
-                            file.type === "audio" ?
-                            path.dirname(src) + "/" :
-                            src
-                        )
-                    });
-                }
-            });
-        });
+		grunt.log.debug(`options: ${JSON.stringify(options)}`);
+		grunt.log.debug(`files: ${JSON.stringify(this.files)}`);
 
-        grunt.log.debug(JSON.stringify(res));
+		this.files.forEach((file) => {
+			file.src.forEach((src) => {
+				const name = path.basename(src, path.extname(src));
+				if ((file.type !== 'audio') || (!Object.prototype.hasOwnProperty.call(audio, name))) {
+					if (file.type === 'audio') {
+						audio[name] = true;
+					}
+					res.push({
+						name,
+						type: file.type,
+						src: (
+							file.type === 'audio' ?
+							`${path.dirname(src)}/` :
+							src
+            ),
+					});
+				}
+			});
+		});
 
-        grunt.file.write(
-            options.dest,
-            options.varname + " = " + JSON.stringify(res, null, 4) + ";"
-        );
-        grunt.log.ok(options.dest)
-    }
+		grunt.log.debug(JSON.stringify(res));
 
-    grunt.registerMultiTask("resources", "Build melonJS resources.js", task);
+		grunt.file.write(
+			options.dest,
+			`${options.varname} = ${JSON.stringify(res, null, 4)};`
+		);
+		grunt.log.ok(options.dest);
+	}
+
+	grunt.registerMultiTask('resources', 'Build melonJS resources.js', task);
 };

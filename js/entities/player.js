@@ -1,61 +1,62 @@
 game.Player = me.Sprite.extend({
-  init() {
-      const image = me.loader.getImage("player");
+	init() {
+		const image = me.loader.getImage('player');
 
-      this._super(me.Sprite, "init", [
-          me.game.viewport.width / 2 - image.width / 2,
-          me.game.viewport.height - image.height - 20,
-          { image : image }
-      ]);
+		this._super(me.Sprite, 'init', [
+			me.game.viewport.width / 2 - image.width / 2,
+			me.game.viewport.height - image.height - 20,
+			{ image },
+		]);
 
-      this.velx = 450;
-      this.maxX = me.game.viewport.width - this.width;
-  },
+		this.velx = 450;
+		this.maxX = me.game.viewport.width - this.width;
+	},
 
-  update(time) {
-    this._super(me.Sprite, "update", [time]);
-    if (me.input.isKeyPressed("left")) {
-        this.pos.x -= this.velx * time / 1000;
-    }
+	update(time) {
+		this._super(me.Sprite, 'update', [time]);
+		if (me.input.isKeyPressed('left')) {
+			this.pos.x -= this.velx * time / 1000;
+		}
 
-    if (me.input.isKeyPressed("right")) {
-        this.pos.x += this.velx * time / 1000;
-    }
+		if (me.input.isKeyPressed('right')) {
+			this.pos.x += this.velx * time / 1000;
+		}
 
-    if (me.input.isKeyPressed("shoot")) {
-      me.game.world.addChild(me.pool.pull("laser", this.pos.x - game.Laser.width, this.pos.y - game.Laser.height))
-      me.audio.play("fire");
-    }
+		if (me.input.isKeyPressed('shoot')) {
+			me.game.world.addChild(
+				me.pool.pull('laser', this.pos.x - game.Laser.width, this.pos.y - game.Laser.height)
+			);
+			me.audio.play('fire');
+		}
 
-    if (me.input.isKeyPressed("volume-plus")) {
-      const currentVolume = me.audio.getVolume();
+		if (me.input.isKeyPressed('volume-plus')) {
+			const currentVolume = me.audio.getVolume();
 
-      if(currentVolume <= 1.0) {
-        me.audio.setVolume(currentVolume + 0.025);
-      }
-    }
+			if (currentVolume <= 1.0) {
+				me.audio.setVolume(currentVolume + 0.025);
+			}
+		}
 
-    if (me.input.isKeyPressed("volume-mute")) {
-      if(game.data.muted === true) {
-        me.audio.unmuteAll();
-      } else {
-        me.audio.muteAll();
-      }
+		if (me.input.isKeyPressed('volume-mute')) {
+			if (game.data.muted === true) {
+				me.audio.unmuteAll();
+			} else {
+				me.audio.muteAll();
+			}
 
-      game.data.muted = !game.data.muted;
-    }
+			game.data.muted = !game.data.muted;
+		}
 
-    if (me.input.isKeyPressed("volume-minus")) {
-      const currentVolume = me.audio.getVolume();
+		if (me.input.isKeyPressed('volume-minus')) {
+			const currentVolume = me.audio.getVolume();
 
-      if(currentVolume >= 0.0) {
-        me.audio.setVolume(currentVolume - 0.025);
-      }
-    }
+			if (currentVolume >= 0.0) {
+				me.audio.setVolume(currentVolume - 0.025);
+			}
+		}
 
+		this.pos.x = this.pos.x.clamp(0, this.maxX);
 
-    this.pos.x = this.pos.x.clamp(0, this.maxX);
-
-    return true;
-  }
+		return true;
+	},
 });
