@@ -17,6 +17,8 @@
   },
   "devDependencies": {
     "electron": "1.4.16",
+    "electron-installer-debian": "^0.5.1",
+    "electron-installer-windows": "^0.2.0",
     "electron-packager": "^8.6.0",
     "eslint": "^3.8.0",
     "eslint-config-airbnb": "^12.0.0",
