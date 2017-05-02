@@ -26,6 +26,9 @@ install:
 build_script:
   - node --version
   - npm --version
+  - npm run test
+
+before_deploy:
   - grunt dist
   - npm run deploy-appveyor
 
@@ -40,6 +43,6 @@ deploy:
   prerelease: false
   on:
     branch: master                 # release from master branch only
-    appveyor_repo_tag: true        # deploy on tag push only  
+    appveyor_repo_tag: true        # deploy on tag push only
 
 test: off
