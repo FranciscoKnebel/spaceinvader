@@ -10,22 +10,7 @@ function getDirectories(path) {
 
 for (const folder of getDirectories(folderPath)) {
 	if (folder.includes('Space Invader')) {
-		const platform = folder.split('Invader-')[1].split('-')[0];
-		let compressArgs = '';
-
-		switch (platform) {
-		case 'linux':
-		case 'darwin':
-		case 'mas':
-			compressArgs = '--tar';
-			break;
-		case 'win32':
-			compressArgs = '--zip';
-			break;
-		default:
-			compressArgs = '--zip';
-			break;
-		}
+		const compressArgs = '--zip';
 
 		console.log(`Compressing "${folder}."`);
 		exec(`node deployment/compress "apps/${folder}" "apps/installers/${folder}" ${compressArgs}`, (err, stdout, stderr) => {
