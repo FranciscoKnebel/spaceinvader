@@ -1,7 +1,7 @@
 game.Laser = me.Entity.extend({
 	init(x, y) {
 		this._super(me.Entity, 'init', [x, y,
-      { width: game.Laser.width, height: game.Laser.height },
+      { width: game.Laser.width, height: game.Laser.height }
 		]);
 		this.z = 5;
 		this.body.setVelocity(0, 300);
@@ -17,7 +17,7 @@ game.Laser = me.Entity.extend({
 				renderer.setColor('#5EFF7E');
 				renderer.fillRect(0, 0, this.width, this.height);
 				renderer.setColor(color);
-			},
+			}
 		}))();
 		this.alwaysUpdate = true;
 	},
@@ -44,7 +44,7 @@ game.Laser = me.Entity.extend({
 			game.data.score += 10;
 			return true;
 		}
-	},
+	}
 });
 
 game.Laser.width = 5;

@@ -78,5 +78,5 @@ game.PlayScreen = me.ScreenObject.extend({
 		}
 
 		return false;
-	},
+	}
 });

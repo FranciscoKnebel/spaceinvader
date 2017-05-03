@@ -20,7 +20,7 @@ game.WonScreen = me.ScreenObject.extend({
 						0,
 						0,
 						me.game.viewport.width,
-						me.game.viewport.height,
+						me.game.viewport.height
 					]);
 
 					this.titleFont = new me.Font('Serif', 64, '#000', 'center');
@@ -53,7 +53,7 @@ game.WonScreen = me.ScreenObject.extend({
 				update() {
 					return true;
 				},
-				onDestroyEvent() {},
+				onDestroyEvent() {}
 			}))(),
 			2,
 		);
@@ -70,5 +70,5 @@ game.WonScreen = me.ScreenObject.extend({
 	onDestroyEvent() {
 		me.input.unbindKey(me.input.KEY.ENTER);
 		me.event.unsubscribe(this.handler);
-	},
+	}
 });

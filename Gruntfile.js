@@ -9,10 +9,10 @@ module.exports = (grunt) => {
 					'lib/plugins/*.js',
 					'js/game.js',
 					'build/js/resources.js',
-					'js/**/*.js',
+					'js/**/*.js'
 				],
-				dest: 'build/js/app.js',
-			},
+				dest: 'build/js/app.js'
+			}
 		},
 
 		copy: {
@@ -20,37 +20,37 @@ module.exports = (grunt) => {
 				files: [
 					{
 						src: 'index.css',
-						dest: 'build/index.css',
+						dest: 'build/index.css'
 					},
 					{
 						src: 'main.js',
-						dest: 'build/main.js',
+						dest: 'build/main.js'
 					},
 					{
 						src: 'manifest.json',
-						dest: 'build/manifest.json',
+						dest: 'build/manifest.json'
 					},
 					{
 						src: 'package.json',
-						dest: 'build/package.json',
+						dest: 'build/package.json'
 					},
 					{
 						src: 'data/**/*',
 						dest: 'build/',
-						expand: true,
+						expand: true
 					},
 					{
 						src: 'icons/*',
 						dest: 'build/',
-						expand: true,
-					},
-				],
-			},
+						expand: true
+					}
+				]
+			}
 		},
 
 		clean: {
 			app: ['build/js/app.js'],
-			dist: ['build/', 'bin/'],
+			dist: ['build/', 'bin/']
 		},
 
 		processhtml: {
@@ -58,13 +58,13 @@ module.exports = (grunt) => {
 				options: {
 					process: true,
 					data: {
-						title: '<%= pkg.name %>',
-					},
+						title: '<%= pkg.name %>'
+					}
 				},
 				files: {
-					'build/index.html': ['index.html'],
-				},
-			},
+					'build/index.html': ['index.html']
+				}
+			}
 		},
 
 		replace: {
@@ -75,45 +75,45 @@ module.exports = (grunt) => {
 					patterns: [
 						{
 							match: /this\._super\(\s*([\w]+)\s*,\s*["'](\w+)["']\s*(,\s*)?/g,
-							replacement: '$1.prototype.$2.apply(this$3',
-						},
-					],
+							replacement: '$1.prototype.$2.apply(this$3'
+						}
+					]
 				},
 				files: [
 					{
 						src: ['build/js/app.js'],
-						dest: 'build/js/app.js',
-					},
-				],
-			},
+						dest: 'build/js/app.js'
+					}
+				]
+			}
 		},
 
 		uglify: {
 			options: {
 				report: 'min',
-				preserveComments: 'some',
+				preserveComments: 'some'
 			},
 			dist: {
 				files: {
-					'build/js/app.min.js': ['build/js/app.js'],
-				},
-			},
+					'build/js/app.min.js': ['build/js/app.js']
+				}
+			}
 		},
 
 		connect: {
 			server: {
 				options: {
 					port: 8000,
-					keepalive: false,
-				},
-			},
+					keepalive: false
+				}
+			}
 		},
 
 		'download-electron': {
 			version: '1.6.6',
 			outputDir: 'bin',
 			rebuild: false,
-			token: process.env.GITHUB_API_TOKEN || process.env.GHTOKEN,
+			token: process.env.GITHUB_API_TOKEN || process.env.GHTOKEN
 		},
 
 		asar: {
@@ -121,39 +121,39 @@ module.exports = (grunt) => {
 				cwd: 'build',
 				src: ['**/*', '!js/app.js'],
 				expand: true,
-				dest: `bin/${process.platform === 'darwin' ? 'Electron.app/Contents/Resources/' : 'resources/'}app.asar`,
-			},
+				dest: `bin/${process.platform === 'darwin' ? 'Electron.app/Contents/Resources/' : 'resources/'}app.asar`
+			}
 		},
 
 		resources: {
 			dist: {
 				options: {
 					dest: 'build/js/resources.js',
-					varname: 'game.resources',
+					varname: 'game.resources'
 				},
 				files: [
 					{
 						src: ['data/bgm/**/*', 'data/sfx/**/*'],
-						type: 'audio',
+						type: 'audio'
 					},
 					{
 						src: ['data/img/**/*.png'],
-						type: 'image',
+						type: 'image'
 					},
 					{
 						src: ['data/img/**/*.json'],
-						type: 'json',
+						type: 'json'
 					},
 					{
 						src: ['data/map/**/*.tmx', 'data/map/**/*.json'],
-						type: 'tmx',
+						type: 'tmx'
 					},
 					{
 						src: ['data/map/**/*.tsx'],
-						type: 'tsx',
-					},
-				],
-			},
+						type: 'tsx'
+					}
+				]
+			}
 		},
 
 		watch: {
@@ -161,10 +161,10 @@ module.exports = (grunt) => {
 				files: ['data/**/*'],
 				tasks: ['resources'],
 				options: {
-					spawn: false,
-				},
-			},
-		},
+					spawn: false
+				}
+			}
+		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-concat');
@@ -188,7 +188,7 @@ module.exports = (grunt) => {
 		'uglify',
 		'copy',
 		'processhtml',
-		'clean:app',
+		'clean:app'
 	]);
 	grunt.registerTask('dist', ['default', 'download-electron', 'asar']);
 	grunt.registerTask('dev', ['resources', 'connect', 'watch']);

@@ -9,7 +9,7 @@ game.HelpScreen = me.ScreenObject.extend({
 						0,
 						0,
 						me.game.viewport.width,
-						me.game.viewport.height,
+						me.game.viewport.height
 					]);
 					this.titleFont = new me.Font('Serif', 72, '#FFFFFF', 'center');
 					this.commandFont = new me.Font('Serif', 24, '#FFFFFF', 'left');
@@ -36,7 +36,7 @@ game.HelpScreen = me.ScreenObject.extend({
 				update(/* dt */) {
 					return true;
 				},
-				onDestroyEvent() {},
+				onDestroyEvent() {}
 			}))(),
 			2,
 		);
@@ -52,5 +52,5 @@ game.HelpScreen = me.ScreenObject.extend({
 	onDestroyEvent() {
 		me.input.unbindKey(me.input.KEY.ENTER);
 		me.event.unsubscribe(this.handler);
-	},
+	}
 });

@@ -6,8 +6,8 @@ game.Enemy = me.Entity.extend({
 			{
 				image: 'ships',
 				width: 32,
-				height: 32,
-			},
+				height: 32
+			}
 		]);
 
 		this.body.setVelocity(0, 0);
@@ -29,5 +29,5 @@ game.Enemy = me.Entity.extend({
 
 		this.renderable.addAnimation('idle', [frame], 1);
 		this.renderable.setCurrentAnimation('idle');
-	},
+	}
 });
