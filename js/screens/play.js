@@ -34,6 +34,9 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.NUM1, 'volume-plus');
 		me.input.bindKey(me.input.KEY.NUM2, 'volume-mute', true);
 		me.input.bindKey(me.input.KEY.NUM3, 'volume-minus');
+		me.input.registerPointerEvent('wheel', me.game.viewport, (event) => {
+			me.event.publish('wheel', [event]);
+		});
 
 		me.input.bindKey(me.input.KEY.H, 'help', true);
 		this.handler = me.event.subscribe(me.event.KEYDOWN, (action) => {
@@ -53,6 +56,14 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.input.unbindKey(me.input.KEY.PLUS);
 		me.input.unbindKey(me.input.KEY.MINUS);
 		me.input.unbindKey(me.input.KEY.H);
+
+		me.input.unbindKey(me.input.KEY.J);
+		me.input.unbindKey(me.input.KEY.K);
+		me.input.unbindKey(me.input.KEY.L);
+		me.input.unbindKey(me.input.KEY.NUM1);
+		me.input.unbindKey(me.input.KEY.NUM2);
+		me.input.unbindKey(me.input.KEY.NUM3);
+		me.input.releasePointerEvent('wheel', me.game.viewport);
 	},
 
 	checkIfLoss(y) {

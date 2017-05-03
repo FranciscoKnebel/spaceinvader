@@ -21,10 +21,6 @@ game.HUD.ScoreItem = me.Renderable.extend({
 				value: -1,
 				font: new me.Font('Serif', 24, '#FFFFFF', 'left'),
 			},
-			enemyVelocity: {
-				value: -1,
-				font: new me.Font('Serif', 24, '#285428', 'right'),
-			},
 			score: {
 				value: 0,
 				font: new me.Font('Arial', 32, '#FFFF5C', 'center'),
@@ -44,11 +40,6 @@ game.HUD.ScoreItem = me.Renderable.extend({
 			updated = true;
 		}
 
-		if (this.data.enemyVelocity.value !== game.playScreen.enemyManager.vel) {
-			this.data.enemyVelocity.value = game.playScreen.enemyManager.vel;
-			updated = true;
-		}
-
 		if (this.data.movementTime.value !== game.data.movementTime) {
 			this.data.movementTime.value = game.data.movementTime;
 			updated = true;
@@ -64,12 +55,7 @@ game.HUD.ScoreItem = me.Renderable.extend({
 
 	draw(context) {
 		this.data.enemyQuantity.font.draw(context, `${this.data.enemyQuantity.value} enemies`, 5, 5);
-		this.data.enemyVelocity.font.draw(
-			context,
-			Math.floor(Math.abs(this.data.enemyVelocity.value)),
-			me.game.viewport.width - 150,
-			5
-		);
+
 		this.data.movementTime.font.draw(
 			context,
 			`${this.data.movementTime.value.toFixed(1)}ms`,

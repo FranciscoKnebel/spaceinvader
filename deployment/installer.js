@@ -43,9 +43,11 @@ case 'win32':
 case 'darwin':
 	console.error('Installer not defined for platform darwin. Soon!');
 	break;
+case 'mas':
+	console.error('Installer not defined for platform mas. Soon!');
+	break;
 default:
 	console.log(argv);
 	console.error('Platform invalid. Please pass a valid --platform argument.');
-
 	break;
 }

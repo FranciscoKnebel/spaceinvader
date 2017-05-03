@@ -1,6 +1,6 @@
 {
   "name": "spaceinvader",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "main": "main.js",
   "scripts": {
     "build": "grunt dist && npm run build-linux && npm run build-win32 && npm run build-darwin",
@@ -8,6 +8,7 @@
     "build-darwin": "node deployment/build --platform darwin",
     "build-linux": "node deployment/build --platform linux",
     "build-win32": "node deployment/build --platform win32",
+    "deploy-appveyor": "node deployment/build --platform win32 --arch all && node deployment/deploy-appveyor 'apps'",
     "deploy-travis": "node deployment/build --platform 'linux,darwin,mas' --arch all && node deployment/deploy-travis 'apps'",
     "lint": "npm run lint-js",
     "lint-js": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js",
@@ -18,8 +19,6 @@
   },
   "devDependencies": {
     "electron": "1.4.16",
-    "electron-installer-debian": "^0.5.1",
-    "electron-installer-windows": "^0.2.0",
     "electron-packager": "^8.6.0",
     "eslint": "^3.8.0",
     "eslint-config-airbnb": "^12.0.0",
@@ -61,5 +60,9 @@
   "bugs": {
     "url": "https://github.com/FranciscoKnebel/spaceinvader/issues"
   },
-  "homepage": "https://github.com/FranciscoKnebel/spaceinvader#readme"
+  "homepage": "https://github.com/FranciscoKnebel/spaceinvader#readme",
+  "optionalDependencies": {
+    "electron-installer-debian": "^0.5.1",
+    "electron-installer-windows": "^0.2.0"
+  }
 }
