@@ -3,6 +3,8 @@ A MelonJS Space Invaders-like game.
 
 Inspired by the example from http://melonjs.github.io/tutorial-space-invaders/
 
+[![Travis](https://travis-ci.org/FranciscoKnebel/spaceinvader.svg?branch=development)](https://travis-ci.org/FranciscoKnebel/spaceinvader)
+[![AppVeyor](https://ci.appveyor.com/api/projects/status/github/franciscoknebel/spaceinvader?branch=development)](https://ci.appveyor.com/project/FranciscoKnebel/spaceinvader)
 
 ### Development
 

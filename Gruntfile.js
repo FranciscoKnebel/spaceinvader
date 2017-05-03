@@ -17,27 +17,34 @@ module.exports = (grunt) => {
 
 		copy: {
 			dist: {
-				files: [{
-					src: 'index.css',
-					dest: 'build/index.css',
-				}, {
-					src: 'main.js',
-					dest: 'build/main.js',
-				}, {
-					src: 'manifest.json',
-					dest: 'build/manifest.json',
-				}, {
-					src: 'package.json',
-					dest: 'build/package.json',
-				}, {
-					src: 'data/**/*',
-					dest: 'build/',
-					expand: true,
-				}, {
-					src: 'icons/*',
-					dest: 'build/',
-					expand: true,
-				}],
+				files: [
+					{
+						src: 'index.css',
+						dest: 'build/index.css',
+					},
+					{
+						src: 'main.js',
+						dest: 'build/main.js',
+					},
+					{
+						src: 'manifest.json',
+						dest: 'build/manifest.json',
+					},
+					{
+						src: 'package.json',
+						dest: 'build/package.json',
+					},
+					{
+						src: 'data/**/*',
+						dest: 'build/',
+						expand: true,
+					},
+					{
+						src: 'icons/*',
+						dest: 'build/',
+						expand: true,
+					},
+				],
 			},
 		},
 
@@ -88,9 +95,7 @@ module.exports = (grunt) => {
 			},
 			dist: {
 				files: {
-					'build/js/app.min.js': [
-						'build/js/app.js',
-					],
+					'build/js/app.min.js': ['build/js/app.js'],
 				},
 			},
 		},
@@ -108,6 +113,7 @@ module.exports = (grunt) => {
 			version: '1.4.16',
 			outputDir: 'bin',
 			rebuild: false,
+			token: process.env.GITHUB_API_TOKEN || process.env.GHTOKEN,
 		},
 
 		asar: {
@@ -115,10 +121,7 @@ module.exports = (grunt) => {
 				cwd: 'build',
 				src: ['**/*', '!js/app.js'],
 				expand: true,
-				dest: `bin/${
-          process.platform === 'darwin'
-            ? 'Electron.app/Contents/Resources/'
-            : 'resources/'}app.asar`,
+				dest: `bin/${process.platform === 'darwin' ? 'Electron.app/Contents/Resources/' : 'resources/'}app.asar`,
 			},
 		},
 
@@ -128,22 +131,28 @@ module.exports = (grunt) => {
 					dest: 'build/js/resources.js',
 					varname: 'game.resources',
 				},
-				files: [{
-					src: ['data/bgm/**/*', 'data/sfx/**/*'],
-					type: 'audio',
-				}, {
-					src: ['data/img/**/*.png'],
-					type: 'image',
-				}, {
-					src: ['data/img/**/*.json'],
-					type: 'json',
-				}, {
-					src: ['data/map/**/*.tmx', 'data/map/**/*.json'],
-					type: 'tmx',
-				}, {
-					src: ['data/map/**/*.tsx'],
-					type: 'tsx',
-				}],
+				files: [
+					{
+						src: ['data/bgm/**/*', 'data/sfx/**/*'],
+						type: 'audio',
+					},
+					{
+						src: ['data/img/**/*.png'],
+						type: 'image',
+					},
+					{
+						src: ['data/img/**/*.json'],
+						type: 'json',
+					},
+					{
+						src: ['data/map/**/*.tmx', 'data/map/**/*.json'],
+						type: 'tmx',
+					},
+					{
+						src: ['data/map/**/*.tsx'],
+						type: 'tsx',
+					},
+				],
 			},
 		},
 
@@ -156,7 +165,6 @@ module.exports = (grunt) => {
 				},
 			},
 		},
-
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-concat');
@@ -170,7 +178,7 @@ module.exports = (grunt) => {
 	grunt.loadNpmTasks('grunt-download-electron');
 	grunt.loadNpmTasks('grunt-asar');
 
-  // Custom Tasks
+	// Custom Tasks
 	grunt.loadTasks('tasks');
 
 	grunt.registerTask('default', [
