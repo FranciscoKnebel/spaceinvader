@@ -1,4 +1,6 @@
 # Space Invader
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/FranciscoKnebel/spaceinvader.svg)](https://greenkeeper.io/)
 A MelonJS Space Invaders-like game.
 
 Inspired by the example from http://melonjs.github.io/tutorial-space-invaders/
