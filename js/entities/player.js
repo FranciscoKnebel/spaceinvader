@@ -56,22 +56,20 @@ game.Player = me.Sprite.extend({
 			}
 		}
 
-		me.event.subscribe("wheel", function (event) {
+		me.event.subscribe('wheel', (event) => {
 			const currentVolume = me.audio.getVolume();
 			me.input.releasePointerEvent('wheel', me.game.viewport);
 
-			if(event.deltaY < 0) {
+			if (event.deltaY < 0) {
 				if (currentVolume <= 1.0) {
 					me.audio.setVolume(currentVolume + 0.0005);
 				}
-			} else {
-				if (currentVolume >= 0.0005) {
-					me.audio.setVolume(currentVolume - 0.0005);
-				}
+			} else if (currentVolume >= 0.0005) {
+				me.audio.setVolume(currentVolume - 0.0005);
 			}
 
-			me.input.registerPointerEvent('wheel', me.game.viewport, (event) => {
-	      me.event.publish('wheel', [ event ]);
+			me.input.registerPointerEvent('wheel', me.game.viewport, (event2) => {
+				me.event.publish('wheel', [event2]);
 			});
 		});
 

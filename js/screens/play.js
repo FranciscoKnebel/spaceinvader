@@ -34,8 +34,8 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.NUM1, 'volume-plus');
 		me.input.bindKey(me.input.KEY.NUM2, 'volume-mute', true);
 		me.input.bindKey(me.input.KEY.NUM3, 'volume-minus');
-    me.input.registerPointerEvent('wheel', me.game.viewport, (event) => {
-      me.event.publish('wheel', [ event ]);
+		me.input.registerPointerEvent('wheel', me.game.viewport, (event) => {
+			me.event.publish('wheel', [event]);
 		});
 
 		me.input.bindKey(me.input.KEY.H, 'help', true);
