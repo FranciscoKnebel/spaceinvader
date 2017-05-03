@@ -34,19 +34,19 @@ game.WonScreen = me.ScreenObject.extend({
 						renderer,
 						`Current level: ${game.data.level + 1}`,
 						me.game.viewport.width / 2,
-						250,
+						250
 					);
 					this.points.draw(
 						renderer,
 						`Total Points: ${game.data.score}`,
 						me.game.viewport.width / 2,
-						300,
+						300
 					);
 					this.points.draw(
 						renderer,
 						`Total Time: ${(game.data.endTime / 1000).toFixed(3)}s`,
 						me.game.viewport.width / 2,
-						350,
+						350
 					);
 					this.btnFont.draw(renderer, 'PRESS ENTER TO CONTINUE', me.game.viewport.width / 2, 410);
 				},
@@ -55,7 +55,7 @@ game.WonScreen = me.ScreenObject.extend({
 				},
 				onDestroyEvent() {}
 			}))(),
-			2,
+			2
 		);
 
 		me.input.bindKey(me.input.KEY.ENTER, 'continue', true);

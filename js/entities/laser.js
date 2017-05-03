@@ -1,8 +1,6 @@
 game.Laser = me.Entity.extend({
 	init(x, y) {
-		this._super(me.Entity, 'init', [x, y,
-      { width: game.Laser.width, height: game.Laser.height }
-		]);
+		this._super(me.Entity, 'init', [x, y, { width: game.Laser.width, height: game.Laser.height }]);
 		this.z = 5;
 		this.body.setVelocity(0, 300);
 		this.body.collisionType = me.collision.types.PROJECTILE_OBJECT;

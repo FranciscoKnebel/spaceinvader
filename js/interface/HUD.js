@@ -60,7 +60,7 @@ game.HUD.ScoreItem = me.Renderable.extend({
 			context,
 			`${this.data.movementTime.value.toFixed(1)}ms`,
 			me.game.viewport.width - 5,
-			5,
+			5
 		);
 
 		this.data.score.font.draw(context, this.data.score.value, me.game.viewport.width / 2, 5);

@@ -38,7 +38,7 @@ game.HelpScreen = me.ScreenObject.extend({
 				},
 				onDestroyEvent() {}
 			}))(),
-			2,
+			2
 		);
 
 		me.input.bindKey(me.input.KEY.ENTER, 'resume', true);

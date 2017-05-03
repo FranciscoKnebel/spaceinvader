@@ -26,19 +26,19 @@ game.LostScreen = me.ScreenObject.extend({
 						renderer,
 						`Final level: ${game.data.level + 1}`,
 						me.game.viewport.width / 2,
-						250,
+						250
 					);
 					this.points.draw(
 						renderer,
 						`Total Points: ${game.data.score}`,
 						me.game.viewport.width / 2,
-						300,
+						300
 					);
 					this.points.draw(
 						renderer,
 						`Total Time: ${(game.data.endTime / 1000).toFixed(3)}s`,
 						me.game.viewport.width / 2,
-						350,
+						350
 					);
 					this.btnFont.draw(renderer, 'PRESS ENTER TO RESTART', me.game.viewport.width / 2, 410);
 				},
@@ -47,7 +47,7 @@ game.LostScreen = me.ScreenObject.extend({
 				},
 				onDestroyEvent() {}
 			}))(),
-			2,
+			2
 		);
 
 		me.input.bindKey(me.input.KEY.ENTER, 'restart', true);

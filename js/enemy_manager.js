@@ -38,7 +38,7 @@ game.EnemyManager = me.Container.extend({
 
 		this.baseSpeed = {
 			x: 4,
-			y: 10,
+			y: 10
 		};
 
 		if ((game.data.level + 1) % 10 === 0) {
@@ -95,7 +95,7 @@ game.EnemyManager = me.Container.extend({
 				me.timer.clearInterval(this.current);
 				this.current = me.timer.setInterval(cb, time);
 				return this.current;
-			},
+			}
 		};
 
 		movement(this, true);
@@ -108,5 +108,5 @@ game.EnemyManager = me.Container.extend({
 	removeChildNow(child) {
 		this._super(me.Container, 'removeChildNow', [child]);
 		this.updateChildBounds();
-	},
+	}
 });
