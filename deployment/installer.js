@@ -1,11 +1,14 @@
-const win32Installer = require('electron-installer-windows');
-const debInstaller = require('electron-installer-debian');
+let debInstaller;
+let win32Installer;
+
 const argv = require('minimist')(process.argv.slice(2));
 const options = require('./installer_options');
 
 options.src = argv._[0];
 switch (argv.platform) {
 case 'linux':
+	debInstaller = require('electron-installer-debian');
+
 	if (argv.arch) {
 		if (argv.arch === 'x64') {
 			options.arch = 'amd64';
@@ -30,13 +33,15 @@ case 'linux':
 	break;
 
 case 'win32':
+	win32Installer = require('electron-installer-windows');
+
 	win32Installer(options, (err) => {
 		if (err) {
 			console.error(err, err.stack);
 			process.exit(1);
 		}
 
-		console.log(`Successfully created package at ${options.dest}`);
+		console.log(`Successfully created package ${options.src} at ${options.dest}`);
 	});
 
 	break;

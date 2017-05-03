@@ -10,13 +10,18 @@ if (argv.zip) {
 		if (err) {
 			console.log('oh no!', err);
 		} else {
-			console.log(`Folder "${src}" tar compression finished correctly.`);
+			console.log(`Folder "${src}" zipped correctly.`);
 		}
 	});
 }
 
 if (argv.tar) {
-	targz().compress(src, `${dst}.tar.gz`)
-  .then(() => { console.log(`Folder "${src}" zipped correctly.`); })
-  .catch((err) => { console.log('Something is wrong ', err.stack); });
+	targz()
+		.compress(src, `${dst}.tar.gz`)
+		.then(() => {
+			console.log(`Folder "${src}" tar compression finished correctly.`);
+		})
+		.catch((err) => {
+			console.log('Something is wrong ', err.stack);
+		});
 }

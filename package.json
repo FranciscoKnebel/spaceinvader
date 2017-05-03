@@ -1,6 +1,6 @@
 {
   "name": "spaceinvader",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "main.js",
   "scripts": {
     "build": "grunt dist && npm run build-linux && npm run build-win32 && npm run build-darwin",
@@ -8,7 +8,7 @@
     "build-darwin": "node deployment/build --platform darwin",
     "build-linux": "node deployment/build --platform linux",
     "build-win32": "node deployment/build --platform win32",
-    "deploy-appveyor": "node deployment/build --platform win32 --arch all && node deployment/deploy-appveyor 'apps'",
+    "deploy-appveyor": "node deployment/build --platform win32 --arch all && node deployment/deploy-appveyor apps",
     "deploy-travis": "node deployment/build --platform 'linux,darwin,mas' --arch all && node deployment/deploy-travis 'apps'",
     "lint": "npm run lint-js",
     "lint-js": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js",
