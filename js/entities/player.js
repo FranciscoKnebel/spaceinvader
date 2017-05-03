@@ -14,6 +14,7 @@ game.Player = me.Sprite.extend({
 
 	update(time) {
 		this._super(me.Sprite, 'update', [time]);
+
 		if (me.input.isKeyPressed('left')) {
 			this.pos.x -= this.velx * time / 1000;
 		}
@@ -50,10 +51,29 @@ game.Player = me.Sprite.extend({
 		if (me.input.isKeyPressed('volume-minus')) {
 			const currentVolume = me.audio.getVolume();
 
-			if (currentVolume >= 0.0) {
+			if (currentVolume >= 0.025) {
 				me.audio.setVolume(currentVolume - 0.025);
 			}
 		}
+
+		me.event.subscribe("wheel", function (event) {
+			const currentVolume = me.audio.getVolume();
+			me.input.releasePointerEvent('wheel', me.game.viewport);
+
+			if(event.deltaY < 0) {
+				if (currentVolume <= 1.0) {
+					me.audio.setVolume(currentVolume + 0.0005);
+				}
+			} else {
+				if (currentVolume >= 0.0005) {
+					me.audio.setVolume(currentVolume - 0.0005);
+				}
+			}
+
+			me.input.registerPointerEvent('wheel', me.game.viewport, (event) => {
+	      me.event.publish('wheel', [ event ]);
+			});
+		});
 
 		this.pos.x = this.pos.x.clamp(0, this.maxX);
 
