@@ -30,7 +30,7 @@ build_script:
 
 before_deploy:
   - grunt dist
-  - mkdir apps/installers
+  - mkdir apps\installers
   - npm run deploy-appveyor
 
 deploy:
