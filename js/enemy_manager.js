@@ -78,7 +78,7 @@ game.EnemyManager = me.Container.extend({
 	},
 
 	onActivateEvent() {
-		game.data.movementTime = 50 - Math.pow(1.05 * game.data.level, 1.5);
+		game.data.movementTime = 50 - (1.05 * game.data.level) ** 1.5;
 
 		this.timer = {
 			current: null,
