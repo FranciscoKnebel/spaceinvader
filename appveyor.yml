@@ -31,10 +31,6 @@ build_script:
 before_deploy:
   - grunt dist
 # test
-  - dir
-  - cd apps
-  - dir
-  - cd ..
   - node deployment/build --platform win32 --arch all
   - dir
   - cd apps
@@ -43,6 +39,10 @@ before_deploy:
   - cd ..
   - cd ..
   - node deployment/deploy-appveyor apps
+  - dir
+  - cd apps
+  - dir
+  - cd installers
 #  - npm run deploy-appveyor
 
 deploy:

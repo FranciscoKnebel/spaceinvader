@@ -1,6 +1,6 @@
 {
   "name": "spaceinvader",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "main.js",
   "scripts": {
     "build": "grunt dist && npm run build-linux && npm run build-win32 && npm run build-darwin",
