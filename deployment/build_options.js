@@ -3,7 +3,7 @@ module.exports = {
 	out: 'apps/',
 	asar: true,
 	appCopyright: 'Francisco Knebel',
-	electronVersion: '1.4.16',
+	electronVersion: '1.6.6',
   // icon: 'icons/appIcon', // .icns for darwin, .ico for win32, .png for linux
 	name: 'Space Invader',
 	arch: '', // Allowed values: ia32, x64, armv7l, all

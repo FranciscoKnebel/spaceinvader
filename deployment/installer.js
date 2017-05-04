@@ -38,7 +38,7 @@ case 'win32':
 	win32Installer(options, (err) => {
 		if (err) {
 			console.error(err, err.stack);
-			process.exit(1);
+			process.exit(2);
 		}
 
 		console.log(`Successfully created package ${options.src} at ${options.dest}`);
@@ -46,10 +46,8 @@ case 'win32':
 
 	break;
 case 'darwin':
-	console.error('Installer not defined for platform darwin. Soon!');
-	break;
 case 'mas':
-	console.error('Installer not defined for platform mas. Soon!');
+	console.error(`Installer not defined for platform ${argv.platform}.`);
 	break;
 default:
 	console.log(argv);

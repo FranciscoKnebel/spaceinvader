@@ -30,7 +30,20 @@ build_script:
 
 before_deploy:
   - grunt dist
-  - npm run deploy-appveyor
+# test
+  - dir
+  - cd apps
+  - dir
+  - cd ..
+  - node deployment/build --platform win32 --arch all
+  - dir
+  - cd apps
+  - dir
+  - cd installers
+  - cd ..
+  - cd ..
+  - node deployment/deploy-appveyor apps
+#  - npm run deploy-appveyor
 
 deploy:
   release: Space Invader-v$(appveyor_build_version)
