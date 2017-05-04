@@ -13,18 +13,22 @@ for (const folder of getDirectories(folderPath)) {
 		const compressArgs = '--zip';
 
 		console.log(`Compressing "${folder}."`);
-		exec(`node deployment/compress "apps/${folder}" "apps/installers/${folder}" ${compressArgs}`, (err, stdout, stderr) => {
-			if (err) {
-				console.error(err);
-			}
+		console.log(`node deployment/compress "apps/${folder}" "apps/installers/${folder}" ${compressArgs}`);
+		exec(
+			`node deployment/compress "apps/${folder}" "apps/installers/${folder}" ${compressArgs}`,
+			(err, stdout, stderr) => {
+				if (err) {
+					console.error(err);
+				}
 
-			if (stdout) {
-				console.log(stdout);
-			}
+				if (stdout) {
+					console.log(stdout);
+				}
 
-			if (stderr) {
-				console.error(stderr);
+				if (stderr) {
+					console.error(stderr);
+				}
 			}
-		});
+		);
 	}
 }

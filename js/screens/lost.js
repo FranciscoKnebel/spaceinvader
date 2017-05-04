@@ -12,7 +12,7 @@ game.LostScreen = me.ScreenObject.extend({
 						0,
 						0,
 						me.game.viewport.width,
-						me.game.viewport.height,
+						me.game.viewport.height
 					]);
 
 					this.titleFont = new me.Font('Serif', 72, '#000', 'center');
@@ -45,7 +45,7 @@ game.LostScreen = me.ScreenObject.extend({
 				update() {
 					return true;
 				},
-				onDestroyEvent() {},
+				onDestroyEvent() {}
 			}))(),
 			2
 		);
@@ -69,5 +69,5 @@ game.LostScreen = me.ScreenObject.extend({
 
 		me.audio.stopTrack();
 		me.audio.playTrack('tronicles');
-	},
+	}
 });

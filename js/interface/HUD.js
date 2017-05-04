@@ -9,7 +9,7 @@ game.HUD.Container = me.Container.extend({
 		this.name = 'HUD';
 
 		this.addChild(new game.HUD.ScoreItem(5, 5));
-	},
+	}
 });
 
 game.HUD.ScoreItem = me.Renderable.extend({
@@ -19,16 +19,16 @@ game.HUD.ScoreItem = me.Renderable.extend({
 		this.data = {
 			enemyQuantity: {
 				value: -1,
-				font: new me.Font('Serif', 24, '#FFFFFF', 'left'),
+				font: new me.Font('Serif', 24, '#FFFFFF', 'left')
 			},
 			score: {
 				value: 0,
-				font: new me.Font('Arial', 32, '#FFFF5C', 'center'),
+				font: new me.Font('Arial', 32, '#FFFF5C', 'center')
 			},
 			movementTime: {
 				value: 0,
-				font: new me.Font('Serif', 24, '#285428', 'right'),
-			},
+				font: new me.Font('Serif', 24, '#285428', 'right')
+			}
 		};
 	},
 
@@ -64,5 +64,5 @@ game.HUD.ScoreItem = me.Renderable.extend({
 		);
 
 		this.data.score.font.draw(context, this.data.score.value, me.game.viewport.width / 2, 5);
-	},
+	}
 });

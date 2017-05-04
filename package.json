@@ -1,6 +1,6 @@
 {
   "name": "spaceinvader",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "main.js",
   "scripts": {
     "build": "grunt dist && npm run build-linux && npm run build-win32 && npm run build-darwin",
@@ -18,14 +18,14 @@
     "test": "npm run lint"
   },
   "devDependencies": {
-    "electron": "1.4.16",
+    "electron": "1.6.6",
     "electron-packager": "^8.6.0",
     "eslint": "^3.8.0",
-    "eslint-config-airbnb": "^12.0.0",
-    "eslint-plugin-import": "^1.16.0",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.4.1",
-    "extract-zip": "=1.6.0",
+    "extract-zip": "1.6.5",
     "grunt": "^1.0.1",
     "grunt-asar": "github:bwin/grunt-asar#update-asar",
     "grunt-contrib-clean": "^1.0.0",
@@ -37,7 +37,7 @@
     "grunt-download-electron": "^2.1.4",
     "grunt-processhtml": "^0.4.1",
     "grunt-replace": "^1.0.1",
-    "husky": "^0.11.9",
+    "husky": "^0.13.3",
     "minimist": "^1.2.0",
     "tar.gz": "^1.0.5",
     "zip-folder": "^1.0.0"
