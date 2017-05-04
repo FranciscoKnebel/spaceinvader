@@ -9,7 +9,7 @@ function getDirectories(path) {
 }
 
 for (const folder of getDirectories(folderPath)) {
-	if (folder.includes('Space Invader')) {
+	if (folder.includes('spaceinvader')) {
 		const compressArgs = '--zip';
 
 		console.log(`Compressing "${folder}."`);

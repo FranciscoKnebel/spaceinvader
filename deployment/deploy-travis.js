@@ -9,8 +9,8 @@ function getDirectories(path) {
 }
 
 for (const folder of getDirectories(folderPath)) {
-	if (folder.includes('Space Invader')) {
-		const platform = folder.split('Invader-')[1].split('-')[0];
+	if (folder.includes('invader')) {
+		const platform = folder.split('invader-')[1].split('-')[0];
 		let compressArgs = '';
 
 		switch (platform) {

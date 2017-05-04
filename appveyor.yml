@@ -30,20 +30,8 @@ build_script:
 
 before_deploy:
   - grunt dist
-# test
-  - node deployment/build --platform win32 --arch all
-  - dir
-  - cd apps
-  - dir
-  - cd installers
-  - cd ..
-  - cd ..
-  - node deployment/deploy-appveyor apps
-  - dir
-  - cd apps
-  - dir
-  - cd installers
-#  - npm run deploy-appveyor
+  - mkdir apps/installers
+  - npm run deploy-appveyor
 
 deploy:
   release: Space Invader-v$(appveyor_build_version)
@@ -51,7 +39,7 @@ deploy:
   provider: GitHub
   auth_token:
     secure: MlfKyZtLHvTys776AZ3o3btQQTtEUH2ePWSH98OX39TY/q6NBeoSAUkvbDkawB2ramHtLmuMj2dNE0hcSg2Fmo+vrQu1NQ6iUQeZPClzainwlAH3bmeBqDJFKyFK0vxXVWceiLLQo5QgUtfb+xsRbxQHXkFeg4Rllxj6pr001S+qhI08oz9gtRTeBBLyOuinSC5y2lpfLyxbB+Ym13Or5ngDhuASH8jQS+wRjWs1/LOkldVANK3qx4RQVhbEJYkA121FTHsG77hWNpTc7TXu4iFCPRVUq+eyl2rB/+vZDQpcA8sew5NdAbG/ovSm/5nDnZti+7pxBC12ykwA5WPS51GxOOFk36AmvdV/PPHRcFxf1cy6OrrrnmLAkn2EEdHCKvPrJGLGr2B7wihiH/B4nJBBd/KMsg/UkfSmtkXDKR9SywRqKKxg2u56d1pvQlVh1wV56iHwUi5nZnMrEOsGkZjVzEcUuShNg2Z1TD2fuYxREM+8YrtzIbIPonXyj7mk6zsxTEansMjOS1SZpqOnGiNARaMcOx/J4QYSMB0e3Z0cmvvnTcm0K4/ad/2VqAXhNK7u/CQGBiqpjSAnv+hGZHXxgpCQkaygQalrPTWoP9pNIoKWAloOBtHC6uxu3DZPNv6txECbH+Ky3GwPlrRiI2nyQicUP6yGzg8cUh7lczM=
-  artifact: /.*\.nupkg/            # upload all NuGet packages to release assets
+  artifact: apps/installers/spaceinvader-*.zip
   draft: false
   prerelease: false
   on:

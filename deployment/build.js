@@ -13,33 +13,37 @@ packager(options, (err, appPaths) => {
 		console.error(err, err.stack);
 		process.exit(1);
 	} else {
-		console.log('Packager finished.');
-		console.log('Application Paths: ');
-		for (const path of appPaths) {
-			console.log(`"${path}"`);
+		if (appPaths) {
+			console.log('Packager finished.');
+			console.log('Application Paths: ');
+			for (const path of appPaths) {
+				console.log(`"${path}"`);
+			}
 		}
 
 		if (!options.noinstaller) {
 			for (const path of appPaths) {
-				const tmp = path.split('Space Invader-')[1].split('-');
+				const tmp = path.split('spaceinvader-')[1].split('-');
 
 				const platform = tmp[0];
 				const arch = tmp[1];
 
-				console.log(`Building installer for Platform: "${platform}" and Arch: "${arch}". Please wait...`);
-				exec(`node deployment/installer "${path}" --platform ${platform} --arch ${arch}`, (error, stdout, stderr) => {
-					if (error) {
-						console.error(error);
-					}
-					
-					if (stdout) {
-						console.log(stdout);
-					}
+				if(!(platform === 'win32' && arch === 'ia32')) {
+					console.log(`Building installer for Platform: "${platform}" and Arch: "${arch}". Please wait...`);
+					exec(`node deployment/installer "${path}" --platform ${platform} --arch ${arch}`, (error, stdout, stderr) => {
+						if (error) {
+							console.error(error);
+						}
 
-					if (stderr) {
-						console.error(stderr);
-					}
-				});
+						if (stdout) {
+							console.log(stdout);
+						}
+
+						if (stderr) {
+							console.error(stderr);
+						}
+					});
+				}
 			}
 		}
 	}
