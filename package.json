@@ -24,7 +24,7 @@
     "eslint": "^3.8.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-jsx-a11y": "^5.0.0",
     "eslint-plugin-react": "^6.4.1",
     "extract-zip": "1.6.5",
     "grunt": "^1.0.1",
