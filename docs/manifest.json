@@ -1,12 +1,11 @@
 {
-  "short_name": "melonJS Boilerplate",
-  "name": "My melonJS Boilerplate Game",
+  "short_name": "Space Invader",
+  "name": "Space Invader",
   "orientation": "landscape",
   "developer": {
-    "name": "melonjs",
-    "url": "http://www.melonjs.org"
+    "name": "Francisco Knebel",
+    "url": "https://github.com/FranciscoKnebel/spaceinvader/"
   },
-  "start_url": "./index.html",
   "display": "fullscreen",
   "icons": [{
     "src": "/icons/touch-icon-iphone-60x60.png",
