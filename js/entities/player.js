@@ -73,7 +73,7 @@ game.Player = me.Sprite.extend({
 			});
 		});
 
-		this.pos.x = this.pos.x.clamp(0, this.maxX);
+		this.pos.x = this.pos.x.clamp(this.width, this.maxX);
 
 		return true;
 	}
