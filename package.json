@@ -38,7 +38,7 @@
     "grunt-download-electron": "^2.1.4",
     "grunt-processhtml": "^0.4.1",
     "grunt-replace": "^1.0.1",
-    "husky": "^0.13.3",
+    "husky": "^0.14.0",
     "minimist": "^1.2.0",
     "tar.gz": "^1.0.5",
     "zip-folder": "^1.0.0"
