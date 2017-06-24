@@ -21,7 +21,7 @@
     "electron": "1.6.6",
     "electron-builder": "^17.1.2",
     "electron-packager": "^8.6.0",
-    "eslint": "^3.8.0",
+    "eslint": "^4.1.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
