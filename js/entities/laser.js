@@ -39,6 +39,7 @@ game.Laser = me.Entity.extend({
 
 			me.audio.play('hit');
 
+			game.data.levelscore += 10;
 			game.data.score += 10;
 			return true;
 		}

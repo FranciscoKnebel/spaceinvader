@@ -13,6 +13,8 @@ game.WonScreen = me.ScreenObject.extend({
 		// Play music
 		me.audio.play('won');
 
+		game.data.levelscore = 0;
+
 		me.game.world.addChild(
 			new (me.Renderable.extend({
 				init() {

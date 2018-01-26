@@ -4,6 +4,7 @@
 const game = {
 	data: {
 		score: 0,
+		levelscore: 0,
 		level: 0,
 		muted: false,
 		startTime: new Date()

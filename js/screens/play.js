@@ -41,6 +41,8 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.H, 'help', true);
 		this.handler = me.event.subscribe(me.event.KEYDOWN, (action) => {
 			if (action === 'help') {
+				game.data.score -= 360; // + game.data.levelscore;
+				game.data.levelscore = 0;
 				me.state.change(me.state.MENU);
 			}
 		});

@@ -110,7 +110,7 @@ module.exports = (grunt) => {
 		},
 
 		'download-electron': {
-			version: '1.6.6',
+			version: '1.6.16',
 			outputDir: 'bin',
 			rebuild: false,
 			token: process.env.GITHUB_API_TOKEN || process.env.GHTOKEN
@@ -168,7 +168,7 @@ module.exports = (grunt) => {
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-uglify-es');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-watch');
