@@ -1,5 +1,7 @@
 # Space Invader
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/FranciscoKnebel/spaceinvader.svg)](https://greenkeeper.io/)
+
 A MelonJS Space Invaders-like space shooter game.
 You can play the latest stable release right here in your browser, at https://franciscoknebel.github.io/spaceinvader/.
 
