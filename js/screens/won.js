@@ -1,6 +1,6 @@
 game.WonScreen = me.ScreenObject.extend({
 	onResetEvent() {
-		const level = game.data.level;
+		const { level } = game.data;
 		let background = '#63C664';
 
 		if (game.colors.backgrounds.won.length > level) {

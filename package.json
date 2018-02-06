@@ -8,11 +8,11 @@
     "build-darwin": "node deployment/build --platform darwin",
     "build-linux": "node deployment/build --platform linux",
     "build-win32": "node deployment/build --platform win32",
+    "dev": "grunt dev",
     "deploy-appveyor": "node deployment/build --platform win32 --arch all --noinstaller && node deployment/deploy-appveyor apps",
     "deploy-travis": "node deployment/build --platform 'linux,darwin,mas' --arch all && node deployment/deploy-travis 'apps'",
-    "lint": "npm run lint-js",
-    "lint-js": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js",
-    "lint-js-fix": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js --fix",
+    "lint": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js",
+    "lint-fix": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js --fix",
     "postinstall": "grunt dist",
     "prepush": "npm run lint",
     "test": "npm run lint"
@@ -65,8 +65,5 @@
   "optionalDependencies": {
     "electron-installer-debian": "^0.8.0",
     "electron-installer-windows": "^0.2.0"
-  },
-  "dependencies": {
-    "grunt-contrib-uglify-es": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony"
   }
 }

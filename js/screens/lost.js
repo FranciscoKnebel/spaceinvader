@@ -56,7 +56,6 @@ game.LostScreen = me.ScreenObject.extend({
 				game.data.level = 0;
 				game.data.score = 0;
 
-				// marky.mark('startGame');
 				game.data.startTime = new Date();
 				me.state.change(me.state.PLAY);
 			}

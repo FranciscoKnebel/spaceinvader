@@ -22,7 +22,6 @@ module.exports = {
 	},
 	globals: {
 		game: true,
-		me: true,
-		marky: true
+		me: true
 	}
 };
