@@ -13,17 +13,29 @@ const game = {
 	// Run on page load.
 	onload() {
 		// Initialize the video.
-		if (!me.video.init(640, 480, { wrapper: 'screen', scale: 'auto', antiAlias: 'true' })) {
-			// alert('Your browser does not support HTML5 canvas.');
+		if (!me.video.init(640, 480, { wrapper: 'screen', scale: 'auto', antiAlias: 'false' })) {
+			alert('Your browser does not support HTML5 canvas.');
 			return;
+		}
+
+		// add "#debug" to the URL to enable the debug Panel
+		if (me.game.HASH.debug === true) {
+			window.onReady(function () {
+				me.plugin.register.defer(this, me.debug.Panel, 'debug', me.input.KEY.P);
+			});
 		}
 
 		// Initialize the audio.
 		me.audio.init('mp3,ogg');
 
-		// set and load all resources.
-		// (this will also automatically switch to the loading screen)
-		me.loader.preload(game.resources, this.loaded.bind(this));
+		// Set a callback to run when loading is complete.
+		me.loader.onload = this.loaded.bind(this);
+
+		// Load the resources.
+		me.loader.preload(game.resources);
+
+		// Initialize melonJS and display a loading screen.
+		me.state.change(me.state.LOADING);
 	},
 
 	// Run on game resources loaded.
@@ -39,9 +51,7 @@ const game = {
 		me.state.set(me.state.MENU, new game.HelpScreen());
 
 		// Start the game.
-		me.audio.playTrack('tronicles');
 		game.data.startTime = new Date();
-		marky.mark('startGame');
 		me.state.change(me.state.MENU);
 	}
 };

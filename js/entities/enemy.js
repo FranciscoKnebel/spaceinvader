@@ -1,8 +1,7 @@
 game.Enemy = me.Entity.extend({
 	init(x, y) {
 		this._super(me.Entity, 'init', [
-			x,
-			y,
+			x, y,
 			{
 				image: 'ships',
 				width: 32,

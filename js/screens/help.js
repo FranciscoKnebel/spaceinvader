@@ -1,5 +1,8 @@
 game.HelpScreen = me.ScreenObject.extend({
 	onResetEvent() {
+		me.audio.stopTrack('tronicles');
+		me.audio.playTrack('tronicles');
+
 		me.game.world.addChild(new me.ColorLayer('background', '#000000'), 0);
 
 		me.game.world.addChild(

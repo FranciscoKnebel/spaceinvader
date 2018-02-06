@@ -35,7 +35,6 @@ game.EnemyManager = me.Container.extend({
 		this.ROWS = (game.data.level + 1) % 10 === 0 ? 2 : 4;
 
 		this._super(me.Container, 'init', [0, 32, this.COLS * 64 - 32, this.ROWS * 64 - 32]);
-
 		this.baseSpeed = {
 			x: 4,
 			y: 10
@@ -50,6 +49,8 @@ game.EnemyManager = me.Container.extend({
 		}
 
 		this.vel = this.baseSpeed.x;
+
+		this.createEnemies();
 	},
 
 	createEnemies() {
@@ -68,8 +69,7 @@ game.EnemyManager = me.Container.extend({
 
 	update(time) {
 		if (this.children.length === 0 && this.createdEnemies) {
-			game.data.startTime2 = new Date();
-			game.data.endTime = game.data.startTime2 - game.data.startTime;
+			game.data.endTime = new Date() - game.data.startTime;
 			me.state.change(me.state.GAME_END);
 		}
 
