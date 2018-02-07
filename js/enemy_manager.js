@@ -1,32 +1,8 @@
-function outOfBounds(that, bounds) {
+function outOfBounds(velocity, bounds) {
 	return (
-		(that.vel > 0 && bounds.right + that.vel >= me.game.viewport.width) ||
-		(that.vel < 0 && bounds.left + that.vel <= 0)
+		(velocity > 0 && bounds.right + velocity >= me.game.viewport.width) ||
+		(velocity < 0 && bounds.left + velocity <= 0)
 	);
-}
-
-function movement(that, init) {
-	const bounds = that.childBounds;
-
-	if (outOfBounds(that, bounds)) {
-		game.data.movementTime -= 0.25;
-		that.vel *= -1;
-		that.pos.y += that.baseSpeed.y + 0.25 * game.data.level;
-
-		if (!game.playScreen.checkIfLoss(bounds.bottom)) {
-			that.timer.change(() => {
-				movement(that);
-			}, game.data.movementTime);
-		}
-	} else {
-		if (init) {
-			that.timer.start(() => {
-				movement(that);
-			}, game.data.movementTime);
-		}
-
-		that.pos.x += that.vel;
-	}
 }
 
 game.EnemyManager = me.Container.extend({
@@ -35,6 +11,8 @@ game.EnemyManager = me.Container.extend({
 		this.ROWS = (game.data.level + 1) % 10 === 0 ? 2 : 4;
 
 		this._super(me.Container, 'init', [0, 32, this.COLS * 64 - 32, this.ROWS * 64 - 32]);
+		this.anchorPoint.set(0, 0);
+
 		this.baseSpeed = {
 			x: 4,
 			y: 10
@@ -51,20 +29,6 @@ game.EnemyManager = me.Container.extend({
 		this.vel = this.baseSpeed.x;
 
 		this.createEnemies();
-	},
-
-	createEnemies() {
-		let i;
-		let j;
-
-		for (i = 0; i < this.COLS; i += 1) {
-			for (j = 0; j < this.ROWS; j += 1) {
-				this.addChild(me.pool.pull('enemy', i * 64, j * 64));
-			}
-		}
-
-		this.updateChildBounds();
-		this.createdEnemies = true;
 	},
 
 	update(time) {
@@ -98,7 +62,7 @@ game.EnemyManager = me.Container.extend({
 			}
 		};
 
-		movement(this, true);
+		this.moveEnemies(true);
 	},
 
 	onDeactivateEvent() {
@@ -108,5 +72,48 @@ game.EnemyManager = me.Container.extend({
 	removeChildNow(child) {
 		this._super(me.Container, 'removeChildNow', [child]);
 		this.updateChildBounds();
+	},
+
+	createEnemies() {
+		let i;
+		let j;
+
+		let amountOfEnemiesCreated = 0;
+
+		for (i = 0; i < this.COLS; i += 1) {
+			for (j = 0; j < this.ROWS; j += 1) {
+				this.addChild(me.pool.pull('enemy', i * 64, j * 64));
+				amountOfEnemiesCreated += 1;
+			}
+		}
+
+		this.updateChildBounds();
+		this.createdEnemies = true;
+		this.amountOfEnemiesCreated = amountOfEnemiesCreated;
+
+		return amountOfEnemiesCreated;
+	},
+
+	moveEnemies(init) {
+		const { childBounds } = this;
+
+		if (outOfBounds(this.vel, childBounds)) {
+			game.data.movementTime -= 0.25;
+			this.vel *= -1;
+			this.pos.y += this.baseSpeed.y + 0.25 * game.data.level;
+
+			if (!game.playScreen.checkIfLoss(childBounds.bottom)) {
+				this.timer.change(() => {
+					this.moveEnemies();
+				}, game.data.movementTime);
+			}
+		} else {
+			if (init) {
+				this.timer.start(() => {
+					this.moveEnemies();
+				}, game.data.movementTime);
+			}
+			this.pos.x += this.vel;
+		}
 	}
 });

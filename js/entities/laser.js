@@ -2,8 +2,9 @@ game.Laser = me.Entity.extend({
 	init(x, y) {
 		this._super(me.Entity, 'init', [x, y, { width: game.Laser.width, height: game.Laser.height }]);
 		this.z = 5;
-		this.body.setVelocity(0, 300);
+		this.body.setVelocity(0, 250);
 		this.body.collisionType = me.collision.types.PROJECTILE_OBJECT;
+
 		this.renderable = new (me.Renderable.extend({
 			init() {
 				this._super(me.Renderable, 'init', [0, 0, game.Laser.width, game.Laser.height]);
@@ -46,5 +47,5 @@ game.Laser = me.Entity.extend({
 	}
 });
 
-game.Laser.width = 5;
-game.Laser.height = 28;
+game.Laser.width = 3;
+game.Laser.height = 20;

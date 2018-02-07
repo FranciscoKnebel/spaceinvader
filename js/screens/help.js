@@ -1,7 +1,7 @@
 game.HelpScreen = me.ScreenObject.extend({
 	onResetEvent() {
-		me.audio.stopTrack('tronicles');
-		me.audio.playTrack('tronicles');
+		// me.audio.stopTrack('tronicles');
+		// me.audio.playTrack('tronicles');
 
 		me.game.world.addChild(new me.ColorLayer('background', '#000000'), 0);
 
@@ -14,6 +14,9 @@ game.HelpScreen = me.ScreenObject.extend({
 						me.game.viewport.width,
 						me.game.viewport.height
 					]);
+
+					this.anchorPoint.set(0, 0);
+
 					this.titleFont = new me.Font('Serif', 72, '#FFFFFF', 'center');
 					this.commandFont = new me.Font('Serif', 24, '#FFFFFF', 'left');
 					this.descriptionFont = new me.Font('Serif', 24, '#FFFFFF', 'right');

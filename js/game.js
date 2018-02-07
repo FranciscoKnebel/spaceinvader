@@ -14,13 +14,13 @@ const game = {
 	onload() {
 		// Initialize the video.
 		if (!me.video.init(640, 480, { wrapper: 'screen', scale: 'auto', antiAlias: 'false' })) {
-			alert('Your browser does not support HTML5 canvas.');
+			// alert('Your browser does not support HTML5 canvas.');
 			return;
 		}
 
 		// add "#debug" to the URL to enable the debug Panel
 		if (me.game.HASH.debug === true) {
-			window.onReady(function () {
+			me.device.onReady(() => {
 				me.plugin.register.defer(this, me.debug.Panel, 'debug', me.input.KEY.P);
 			});
 		}
