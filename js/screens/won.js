@@ -1,6 +1,6 @@
 game.WonScreen = me.ScreenObject.extend({
 	onResetEvent() {
-		const level = game.data.level;
+		const { level } = game.data;
 		let background = '#63C664';
 
 		if (game.colors.backgrounds.won.length > level) {
@@ -24,6 +24,8 @@ game.WonScreen = me.ScreenObject.extend({
 						me.game.viewport.width,
 						me.game.viewport.height
 					]);
+
+					this.anchorPoint.set(0, 0);
 
 					this.titleFont = new me.Font('Serif', 64, '#000', 'center');
 					this.level = new me.Font('Serif', 32, '#000', 'center');

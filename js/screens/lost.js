@@ -15,6 +15,8 @@ game.LostScreen = me.ScreenObject.extend({
 						me.game.viewport.height
 					]);
 
+					this.anchorPoint.set(0, 0);
+
 					this.titleFont = new me.Font('Serif', 72, '#000', 'center');
 					this.level = new me.Font('Serif', 32, '#000', 'center');
 					this.points = new me.Font('Serif', 32, '#000', 'center');
@@ -56,7 +58,6 @@ game.LostScreen = me.ScreenObject.extend({
 				game.data.level = 0;
 				game.data.score = 0;
 
-				// marky.mark('startGame');
 				game.data.startTime = new Date();
 				me.state.change(me.state.PLAY);
 			}

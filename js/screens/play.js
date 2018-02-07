@@ -1,6 +1,6 @@
 game.PlayScreen = me.ScreenObject.extend({
 	onResetEvent() {
-		const level = game.data.level;
+		const { level } = game.data;
 		let background = '#000';
 
 		if (game.colors.backgrounds.level.length > level) {
@@ -14,7 +14,6 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.game.world.addChild(this.player, 1);
 
 		this.enemyManager = new game.EnemyManager();
-		this.enemyManager.createEnemies();
 		me.game.world.addChild(this.enemyManager, 2);
 
 		this.HUD = new game.HUD.Container();
@@ -41,7 +40,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.H, 'help', true);
 		this.handler = me.event.subscribe(me.event.KEYDOWN, (action) => {
 			if (action === 'help') {
-				game.data.score -= 360; // + game.data.levelscore;
+				game.data.score -= game.data.levelscore;
 				game.data.levelscore = 0;
 				me.state.change(me.state.MENU);
 			}
@@ -55,8 +54,6 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.input.unbindKey(me.input.KEY.D);
 		me.input.unbindKey(me.input.KEY.SPACE);
 		me.input.unbindPointer(me.input.pointer.LEFT);
-		me.input.unbindKey(me.input.KEY.PLUS);
-		me.input.unbindKey(me.input.KEY.MINUS);
 		me.input.unbindKey(me.input.KEY.H);
 
 		me.input.unbindKey(me.input.KEY.J);
@@ -73,7 +70,6 @@ game.PlayScreen = me.ScreenObject.extend({
 			me.audio.pauseTrack();
 			game.data.startTime2 = new Date();
 			game.data.endTime = game.data.startTime2 - game.data.startTime;
-			// game.data.endTime = marky.stop('startGame');
 
 			me.state.change(me.state.GAMEOVER);
 			return true;

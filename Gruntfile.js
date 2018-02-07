@@ -5,8 +5,8 @@ module.exports = (grunt) => {
 		concat: {
 			dist: {
 				src: [
-					'lib/melonJS.js',
-					'lib/plugins/*.js',
+					'lib/melonjs.js',
+					'lib/plugins/**/*.js',
 					'js/game.js',
 					'build/js/resources.js',
 					'js/**/*.js'
@@ -110,7 +110,7 @@ module.exports = (grunt) => {
 		},
 
 		'download-electron': {
-			version: '1.6.16',
+			version: '1.7.12',
 			outputDir: 'bin',
 			rebuild: false,
 			token: process.env.GITHUB_API_TOKEN || process.env.GHTOKEN

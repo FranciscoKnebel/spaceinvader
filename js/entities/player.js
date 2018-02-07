@@ -15,6 +15,14 @@ game.Player = me.Sprite.extend({
 	update(time) {
 		this._super(me.Sprite, 'update', [time]);
 
+		this.movementControls(time);
+		this.volumeControls();
+
+		this.pos.x = this.pos.x.clamp(this.width, this.maxX);
+		return true;
+	},
+
+	movementControls(time) {
 		if (me.input.isKeyPressed('left')) {
 			this.pos.x -= this.velx * time / 1000;
 		}
@@ -24,12 +32,12 @@ game.Player = me.Sprite.extend({
 		}
 
 		if (me.input.isKeyPressed('shoot')) {
-			me.game.world.addChild(
-				me.pool.pull('laser', this.pos.x - game.Laser.width, this.pos.y - game.Laser.height)
-			);
+			me.game.world.addChild(me.pool.pull('laser', this.pos.x - (game.Laser.width / 2), this.pos.y - this.height));
 			me.audio.play('fire');
 		}
+	},
 
+	volumeControls() {
 		if (me.input.isKeyPressed('volume-plus')) {
 			const currentVolume = me.audio.getVolume();
 
@@ -72,9 +80,5 @@ game.Player = me.Sprite.extend({
 				me.event.publish('wheel', [event2]);
 			});
 		});
-
-		this.pos.x = this.pos.x.clamp(this.width, this.maxX);
-
-		return true;
 	}
 });

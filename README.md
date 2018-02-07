@@ -15,6 +15,8 @@ _master_
 [![Travis](https://travis-ci.org/FranciscoKnebel/spaceinvader.svg?branch=master)](https://travis-ci.org/FranciscoKnebel/spaceinvader)
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/franciscoknebel/spaceinvader?branch=master)](https://ci.appveyor.com/project/FranciscoKnebel/spaceinvader)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/FranciscoKnebel/spaceinvader.svg)](https://greenkeeper.io/)
+
 ### Development
 
 To build, be sure you have [node](http://nodejs.org) installed. Clone the project:
