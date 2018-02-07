@@ -65,8 +65,8 @@ game.WonScreen = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.ENTER, 'continue', true);
 		this.handler = me.event.subscribe(me.event.KEYDOWN, (action) => {
 			if (action === 'continue') {
-				me.state.change(me.state.PLAY);
 				game.data.level += 1;
+				me.state.change(me.state.PLAY, game.data.level);
 			}
 		});
 	},

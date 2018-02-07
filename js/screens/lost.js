@@ -59,7 +59,7 @@ game.LostScreen = me.ScreenObject.extend({
 				game.data.score = 0;
 
 				game.data.startTime = new Date();
-				me.state.change(me.state.PLAY);
+				me.state.change(me.state.PLAY, game.data.level);
 			}
 		});
 	},

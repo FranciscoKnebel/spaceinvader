@@ -1,6 +1,5 @@
 game.PlayScreen = me.ScreenObject.extend({
-	onResetEvent() {
-		const { level } = game.data;
+	onResetEvent(level) {
 		let background = '#000';
 
 		if (game.colors.backgrounds.level.length > level) {

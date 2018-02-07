@@ -50,7 +50,7 @@ game.HelpScreen = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.ENTER, 'resume', true);
 		this.handler = me.event.subscribe(me.event.KEYDOWN, (action /* , keyCode, edge */) => {
 			if (action === 'resume') {
-				me.state.change(me.state.PLAY);
+				me.state.change(me.state.PLAY, game.data.level);
 			}
 		});
 	},
