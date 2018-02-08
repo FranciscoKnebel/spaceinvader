@@ -48,7 +48,11 @@ const game = {
 		me.state.set(me.state.PLAY, this.playScreen);
 		me.state.set(me.state.GAMEOVER, new game.LostScreen());
 		me.state.set(me.state.GAME_END, new game.WonScreen());
-		me.state.set(me.state.MENU, new game.HelpScreen());
+		me.state.set(me.state.MENU, new game.StartMenuScreen());
+
+		// User defined states
+		me.state.HELP = me.state.USER;
+		me.state.set(me.state.HELP, new game.HelpScreen());
 
 		// Start the game.
 		game.data.startTime = new Date();

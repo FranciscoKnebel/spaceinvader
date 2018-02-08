@@ -1,3 +1,5 @@
+const today = new Date().toISOString().replace('-', '/').split('T')[0].replace('-', '/');
+
 module.exports = (grunt) => {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -76,6 +78,10 @@ module.exports = (grunt) => {
 						{
 							match: /this\._super\(\s*([\w]+)\s*,\s*["'](\w+)["']\s*(,\s*)?/g,
 							replacement: '$1.prototype.$2.apply(this$3'
+						},
+						{
+							match: /(<<space_invader_release_version>>)/g,
+							replacement: `${require('./package.json').version} - ${today}`
 						}
 					]
 				},

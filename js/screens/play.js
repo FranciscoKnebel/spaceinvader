@@ -41,7 +41,7 @@ game.PlayScreen = me.ScreenObject.extend({
 			if (action === 'help') {
 				game.data.score -= game.data.levelscore;
 				game.data.levelscore = 0;
-				me.state.change(me.state.MENU);
+				me.state.change(me.state.HELP);
 			}
 		});
 	},

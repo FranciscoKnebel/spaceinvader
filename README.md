@@ -45,6 +45,10 @@ To build:
 
 This will create a `build` directory containing the files that can be uploaded to a server, or packaged into a mobile app.
 
+#### Updating docs folder for web release
+
+    npm run build-docs
+
 #### Packaging a standalone desktop release via scripts
 
     grunt dist
