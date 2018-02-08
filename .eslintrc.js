@@ -18,7 +18,8 @@ module.exports = {
 		'no-param-reassign': 0,
 		'no-mixed-operators': 0,
 		'no-bitwise': ['error', { allow: ['~'] }],
-		'comma-dangle': ['error', { functions: 'ignore' }]
+		'comma-dangle': ['error', { functions: 'ignore' }],
+		'new-cap': 0
 	},
 	globals: {
 		game: true,

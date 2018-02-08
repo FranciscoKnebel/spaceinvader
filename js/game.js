@@ -54,6 +54,19 @@ const game = {
 		me.state.HELP = me.state.USER;
 		me.state.set(me.state.HELP, new game.HelpScreen());
 
+
+		// add some keyboard shortcuts
+		/*
+		me.event.subscribe(me.event.KEYDOWN, (action, keyCode) => {
+			if (keyCode === me.input.KEY.F) {
+				if (!me.device.isFullscreen) {
+					me.device.requestFullscreen();
+				} else {
+					me.device.exitFullscreen();
+				}
+			}
+		}); */
+
 		// Start the game.
 		game.data.startTime = new Date();
 		me.state.change(me.state.MENU);

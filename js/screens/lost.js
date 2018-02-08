@@ -42,7 +42,7 @@ game.LostScreen = me.ScreenObject.extend({
 						me.game.viewport.width / 2,
 						350
 					);
-					this.btnFont.draw(renderer, 'PRESS ENTER TO RESTART', me.game.viewport.width / 2, 410);
+					this.btnFont.draw(renderer, 'PRESS ENTER TO CONTINUE', me.game.viewport.width / 2, 410);
 				},
 				update() {
 					return true;
@@ -52,14 +52,14 @@ game.LostScreen = me.ScreenObject.extend({
 			2
 		);
 
-		me.input.bindKey(me.input.KEY.ENTER, 'restart', true);
+		me.input.bindKey(me.input.KEY.ENTER, 'continue', true);
 		this.handler = me.event.subscribe(me.event.KEYDOWN, (action) => {
-			if (action === 'restart') {
+			if (action === 'continue') {
 				game.data.level = 0;
 				game.data.score = 0;
 
 				game.data.startTime = new Date();
-				me.state.change(me.state.PLAY, game.data.level);
+				me.state.change(me.state.MENU);
 			}
 		});
 	},
@@ -69,6 +69,5 @@ game.LostScreen = me.ScreenObject.extend({
 		me.event.unsubscribe(this.handler);
 
 		me.audio.stopTrack();
-		me.audio.playTrack('tronicles');
 	}
 });
