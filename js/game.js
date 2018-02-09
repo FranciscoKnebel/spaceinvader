@@ -13,7 +13,9 @@ const game = {
 	// Run on page load.
 	onload() {
 		// Initialize the video.
-		if (!me.video.init(1024, 768, { wrapper: 'screen', scale: 'auto', antiAlias: 'false' })) {
+		if (!me.video.init(1024, 768, {
+			wrapper: 'screen', scale: 'auto', scaleMethod: 'flex-height', antiAlias: 'false'
+		})) {
 			// alert('Your browser does not support HTML5 canvas.');
 			return;
 		}

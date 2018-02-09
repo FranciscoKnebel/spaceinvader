@@ -23,11 +23,11 @@ game.Player = me.Sprite.extend({
 	},
 
 	movementControls(time) {
-		if (me.input.isKeyPressed('left')) {
+		if (me.input.isKeyPressed('left') || me.device.accelerationX > 1) {
 			this.pos.x -= this.velx * time / 1000;
 		}
 
-		if (me.input.isKeyPressed('right')) {
+		if (me.input.isKeyPressed('right') || me.device.accelerationX < -1) {
 			this.pos.x += this.velx * time / 1000;
 		}
 

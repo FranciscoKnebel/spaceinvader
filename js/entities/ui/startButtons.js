@@ -25,10 +25,3 @@ game.menuButton4 = game.menuButton.extend({
 		return false;
 	}
 });
-
-game.menuButton5 = game.menuButton.extend({
-	onClick() {
-		alert('clicked option 5. This option is not implemented, yet.');
-		return false;
-	}
-});

@@ -47,13 +47,11 @@ game.StartMenuScreen = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.NUM2, 'numericEnter', true);
 		me.input.bindKey(me.input.KEY.NUM3, 'numericEnter', true);
 		me.input.bindKey(me.input.KEY.NUM4, 'numericEnter', true);
-		me.input.bindKey(me.input.KEY.NUM5, 'numericEnter', true);
 
 		me.input.bindKey(me.input.KEY.NUMPAD1, 'numericEnter', true);
 		me.input.bindKey(me.input.KEY.NUMPAD2, 'numericEnter', true);
 		me.input.bindKey(me.input.KEY.NUMPAD3, 'numericEnter', true);
 		me.input.bindKey(me.input.KEY.NUMPAD4, 'numericEnter', true);
-		me.input.bindKey(me.input.KEY.NUMPAD5, 'numericEnter', true);
 
 		// Menu choice handling
 		this.handleMenuOptions();
@@ -66,7 +64,6 @@ game.StartMenuScreen = me.ScreenObject.extend({
 		me.game.world.addChild(new game.menuButton2(halfViewportWidth, 280, 300, 50, 'ui/startMenu/2'));
 		me.game.world.addChild(new game.menuButton3(halfViewportWidth, 370, 300, 50, 'ui/startMenu/3'));
 		me.game.world.addChild(new game.menuButton4(halfViewportWidth, 430, 300, 50, 'ui/startMenu/4'));
-		me.game.world.addChild(new game.menuButton5(halfViewportWidth, 490, 300, 50, 'ui/startMenu/5'));
 	},
 
 	handleMenuOptions() {
@@ -101,9 +98,6 @@ game.StartMenuScreen = me.ScreenObject.extend({
 				case 4:
 					alert(`Option ${menuChoice.current} not implemented, yet.`);
 					break;
-				case 5:
-					alert(`Option ${menuChoice.current} not implemented, yet.`);
-					break;
 				default:
 				}
 			}
@@ -125,9 +119,6 @@ game.StartMenuScreen = me.ScreenObject.extend({
 		case me.input.KEY.NUM4:
 		case me.input.KEY.NUMPAD4:
 			return 4;
-		case me.input.KEY.NUM5:
-		case me.input.KEY.NUMPAD5:
-			return 5;
 		default:
 			return 0;
 		}
@@ -144,12 +135,10 @@ game.StartMenuScreen = me.ScreenObject.extend({
 		me.input.unbindKey(me.input.KEY.NUM2);
 		me.input.unbindKey(me.input.KEY.NUM3);
 		me.input.unbindKey(me.input.KEY.NUM4);
-		me.input.unbindKey(me.input.KEY.NUM5);
 		me.input.unbindKey(me.input.KEY.NUMPAD1);
 		me.input.unbindKey(me.input.KEY.NUMPAD2);
 		me.input.unbindKey(me.input.KEY.NUMPAD3);
 		me.input.unbindKey(me.input.KEY.NUMPAD4);
-		me.input.unbindKey(me.input.KEY.NUMPAD5);
 
 		me.event.unsubscribe(this.handler);
 	}
