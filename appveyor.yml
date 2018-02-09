@@ -37,7 +37,7 @@ deploy:
   description: 'Release description'
   provider: GitHub
   auth_token:
-    secure: 88f37644abca80c930fa440b11f2e0438feaf506
+    secure: GGWpP6cibMdB2Q9L41M3GBz4KEQILhjiI+gXJtKlD1YkMmGMW0DlF7g6JdYg3znT
   artifact: apps/installers/spaceinvader-*.zip
   draft: false
   prerelease: false
