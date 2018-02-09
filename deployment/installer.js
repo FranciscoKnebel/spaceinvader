@@ -1,3 +1,7 @@
+/* eslint prefer-destructuring: 0 */
+/* eslint import/no-unresolved: 0 */
+// due to optional dependencies, one installer will always be missing.
+
 let debInstaller;
 let win32Installer;
 

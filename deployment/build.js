@@ -1,10 +1,9 @@
 const packager = require('electron-packager');
 const options = require('./build_options');
-const exec = require('child_process').exec;
+const { exec } = require('child_process');
 const argv = require('minimist')(process.argv.slice(2));
 
 options.arch = argv.arch || 'x64';
-options.platform = argv.platform || 'linux';
 options.overwrite = argv.overwrite || false;
 options.noinstaller = argv.noinstaller || false;
 
@@ -16,21 +15,22 @@ packager(options, (err, appPaths) => {
 		if (appPaths) {
 			console.log('Packager finished.');
 			console.log('Application Paths: ');
-			for (const path of appPaths) {
-				console.log(`"${path}"`);
+
+			for (let i = 0; i < appPaths.length; i += 1) {
+				console.log(`"${appPaths[i]}"`);
 			}
 		}
 
 		if (!options.noinstaller) {
-			for (const path of appPaths) {
-				const tmp = path.split('spaceinvader-')[1].split('-');
+			for (let i = 0; i < appPaths.length; i += 1) {
+				const tmp = appPaths[i].split('spaceinvader-')[1].split('-');
 
 				const platform = tmp[0];
 				const arch = tmp[1];
 
-				if(!(platform === 'win32' && arch === 'ia32')) {
+				if (!(platform === 'win32' && arch === 'ia32')) {
 					console.log(`Building installer for Platform: "${platform}" and Arch: "${arch}". Please wait...`);
-					exec(`node deployment/installer "${path}" --platform ${platform} --arch ${arch}`, (error, stdout, stderr) => {
+					exec(`node deployment/installer "${appPaths[i]}" --platform ${platform} --arch ${arch}`, (error, stdout, stderr) => {
 						if (error) {
 							console.error(error);
 						}

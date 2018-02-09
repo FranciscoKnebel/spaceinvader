@@ -29,7 +29,6 @@ build_script:
   - npm run test
 
 before_deploy:
-  - grunt dist
   - mkdir apps\installers
   - npm run deploy-appveyor
 

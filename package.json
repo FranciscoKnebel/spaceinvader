@@ -11,9 +11,9 @@
     "build-docs": "grunt dist && ncp build docs",
     "dev": "grunt dev",
     "deploy-appveyor": "node deployment/build --platform win32 --arch all --noinstaller && node deployment/deploy-appveyor apps",
-    "deploy-travis": "node deployment/build --platform 'linux,darwin,mas' --arch all && node deployment/deploy-travis 'apps'",
-    "lint": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js",
-    "lint-fix": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js --fix",
+    "deploy-travis": "node deployment/build --platform 'linux' --arch all && node deployment/build --platform 'darwin' --arch all && node deployment/build --platform 'mas' --arch all && node deployment/deploy-travis 'apps'",
+    "lint": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js deployment",
+    "lint-fix": "npm run lint -- --fix",
     "postinstall": "grunt dist",
     "prepush": "npm run lint",
     "test": "npm run lint"
