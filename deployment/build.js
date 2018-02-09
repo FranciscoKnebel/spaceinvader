@@ -7,23 +7,23 @@ options.arch = argv.arch || 'x64';
 options.overwrite = argv.overwrite || false;
 options.noinstaller = argv.noinstaller || false;
 
-packager(options, (err, appPaths) => {
+packager(options, (err, paths) => {
 	if (err) {
 		console.error(err, err.stack);
 		process.exit(1);
 	} else {
-		if (appPaths) {
+		if (paths) {
 			console.log('Packager finished.');
 			console.log('Application Paths: ');
 
-			for (let i = 0; i < appPaths.length; i += 1) {
-				console.log(`"${appPaths[i]}"`);
+			for (let i = 0; i < paths.length; i += 1) {
+				console.log(`"${paths[i]}"`);
 			}
 		}
 
 		if (!options.noinstaller) {
-			for (let i = 0; i < appPaths.length; i += 1) {
-				const path = appPaths[i];
+			for (let i = 0; i < paths.length; i += 1) {
+				const path = paths[i];
 				const tmp = path.split('spaceinvader-')[1].split('-');
 
 				const platform = tmp[0];
