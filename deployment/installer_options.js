@@ -1,4 +1,5 @@
 module.exports = {
 	dest: 'apps/installers',
-	bin: 'Space Invader'
+	bin: 'Space Invader',
+	overwrite: true
 };

@@ -14,5 +14,6 @@ module.exports = {
 		OriginalFilename: '',
 		ProductName: '',
 		InternalName: ''
-	}
+	},
+	overwrite: true
 };
