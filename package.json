@@ -10,7 +10,7 @@
     "build-win32": "node deployment/build --platform win32",
     "build-docs": "grunt dist && ncp build docs",
     "dev": "grunt dev",
-    "deploy-appveyor": "node deployment/build --platform win32 --arch all --noinstaller && node deployment/deploy-appveyor apps",
+    "deploy-appveyor": "node deployment/build --platform win32 --arch all && node deployment/deploy-appveyor apps",
     "deploy-travis": "node deployment/build --platform 'linux' --arch all && node deployment/build --platform 'darwin' --arch all && node deployment/build --platform 'mas' --arch all && node deployment/deploy-travis 'apps'",
     "lint": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js deployment",
     "lint-fix": "npm run lint -- --fix",

@@ -23,14 +23,15 @@ packager(options, (err, appPaths) => {
 
 		if (!options.noinstaller) {
 			for (let i = 0; i < appPaths.length; i += 1) {
-				const tmp = appPaths[i].split('spaceinvader-')[1].split('-');
+				const path = appPaths[i];
+				const tmp = path.split('spaceinvader-')[1].split('-');
 
 				const platform = tmp[0];
 				const arch = tmp[1];
 
 				if (!(platform === 'win32' && arch === 'ia32')) {
 					console.log(`Building installer for Platform: "${platform}" and Arch: "${arch}". Please wait...`);
-					exec(`node deployment/installer "${appPaths[i]}" --platform ${platform} --arch ${arch}`, (error, stdout, stderr) => {
+					exec(`node deployment/installer "${path}" --platform ${platform} --arch ${arch}`, (error, stdout, stderr) => {
 						if (error) {
 							console.error(error);
 						}

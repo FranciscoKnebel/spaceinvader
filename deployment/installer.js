@@ -21,6 +21,7 @@ case 'linux':
 		}
 		options.bin = 'Space Invader';
 
+		console.log(options);
 		debInstaller(options, (err) => {
 			if (err) {
 				console.error(err, err.stack);
@@ -39,6 +40,7 @@ case 'linux':
 case 'win32':
 	win32Installer = require('electron-installer-windows');
 
+	console.log(options);
 	win32Installer(options, (err) => {
 		if (err) {
 			console.error(err, err.stack);
