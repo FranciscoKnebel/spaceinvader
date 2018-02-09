@@ -11,6 +11,7 @@ module.exports = {
 		'no-tabs': 0,
 		'consistent-return': 0,
 		strict: 0,
+		'linebreak-style': 0,
 		'no-console': 0,
 		'no-underscore-dangle': 0,
 		'global-require': 0,

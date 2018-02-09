@@ -30,10 +30,6 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.SPACE, 'shoot', true);
 		me.input.bindPointer(me.input.pointer.LEFT, me.input.KEY.SPACE);
 
-		if (me.device.isMobile && me.device.hasAccelerometer) {
-			me.device.watchAccelerometer();
-		}
-
 		me.input.bindKey(me.input.KEY.J, 'volume-plus');
 		me.input.bindKey(me.input.KEY.K, 'volume-mute', true);
 		me.input.bindKey(me.input.KEY.L, 'volume-minus');

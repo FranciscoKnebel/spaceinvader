@@ -1,7 +1,7 @@
 {
   "short_name": "Space Invader",
   "name": "Space Invader",
-  "orientation": "landscape",
+  "orientation": "portrait",
   "developer": {
     "name": "Francisco Knebel",
     "url": "https://github.com/FranciscoKnebel/spaceinvader/"

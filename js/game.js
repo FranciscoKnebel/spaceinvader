@@ -9,6 +9,8 @@ const game = {
 		muted: false,
 		startTime: new Date()
 	},
+	options: {
+	},
 
 	// Run on page load.
 	onload() {
@@ -25,6 +27,11 @@ const game = {
 			me.device.onReady(() => {
 				me.plugin.register.defer(this, me.debug.Panel, 'debug', me.input.KEY.P);
 			});
+		}
+
+		// Detect if mobile and can use the accelerometer
+		if (me.device.isMobile && me.device.hasAccelerometer) {
+			me.device.watchAccelerometer();
 		}
 
 		// Initialize the audio.

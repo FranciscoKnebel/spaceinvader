@@ -1,7 +1,4 @@
-const electron = require('electron');
-
-const app = electron.app; // Module to control application life.
-const BrowserWindow = electron.BrowserWindow; // Module to create native browser window.
+const { app, BrowserWindow } = require('electron');
 
 const path = require('path');
 const url = require('url');
@@ -22,13 +19,11 @@ function createWindow() {
 	mainWindow = new BrowserWindow({ width: 960, height: 660 });
 
 	// and load the index.html of the app.
-	mainWindow.loadURL(
-		url.format({
-			pathname: path.join(__dirname, 'index.html'),
-			protocol: 'file:',
-			slashes: true
-		})
-	);
+	mainWindow.loadURL(url.format({
+		pathname: path.join(__dirname, 'index.html'),
+		protocol: 'file:',
+		slashes: true
+	}));
 
 	// Emitted when the window is closed.
 	mainWindow.on('closed', () => {

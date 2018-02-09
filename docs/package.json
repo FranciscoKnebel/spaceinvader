@@ -1,6 +1,6 @@
 {
   "name": "spaceinvader",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "main": "main.js",
   "scripts": {
     "build": "grunt dist && npm run build-linux && npm run build-win32 && npm run build-darwin",
@@ -8,25 +8,26 @@
     "build-darwin": "node deployment/build --platform darwin",
     "build-linux": "node deployment/build --platform linux",
     "build-win32": "node deployment/build --platform win32",
+    "build-docs": "grunt dist && ncp build docs",
+    "dev": "grunt dev",
     "deploy-appveyor": "node deployment/build --platform win32 --arch all --noinstaller && node deployment/deploy-appveyor apps",
     "deploy-travis": "node deployment/build --platform 'linux,darwin,mas' --arch all && node deployment/deploy-travis 'apps'",
-    "lint": "npm run lint-js",
-    "lint-js": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js",
-    "lint-js-fix": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js --fix",
+    "lint": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js",
+    "lint-fix": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js --fix",
     "postinstall": "grunt dist",
     "prepush": "npm run lint",
     "test": "npm run lint"
   },
   "devDependencies": {
-    "electron": "1.6.16",
-    "electron-builder": "^17.1.2",
-    "electron-packager": "^8.6.0",
-    "eslint": "^3.8.0",
-    "eslint-config-airbnb": "^14.1.0",
+    "electron": "1.7.12",
+    "electron-builder": "^19.56.0",
+    "electron-packager": "^10.1.2",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.4.1",
-    "extract-zip": "1.6.5",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
+    "extract-zip": "1.6.6",
     "grunt": "^1.0.1",
     "grunt-asar": "github:bwin/grunt-asar#update-asar",
     "grunt-contrib-clean": "^1.0.0",
@@ -38,8 +39,9 @@
     "grunt-download-electron": "^2.1.4",
     "grunt-processhtml": "^0.4.1",
     "grunt-replace": "^1.0.1",
-    "husky": "^0.13.3",
+    "husky": "^0.14.3",
     "minimist": "^1.2.0",
+    "ncp": "^2.0.0",
     "tar.gz": "^1.0.5",
     "zip-folder": "^1.0.0"
   },
@@ -63,10 +65,7 @@
   },
   "homepage": "https://github.com/FranciscoKnebel/spaceinvader#readme",
   "optionalDependencies": {
-    "electron-installer-debian": "^0.5.1",
+    "electron-installer-debian": "^0.8.0",
     "electron-installer-windows": "^0.2.0"
-  },
-  "dependencies": {
-    "grunt-contrib-uglify-es": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony"
   }
 }
