@@ -66,6 +66,7 @@ game.HelpScreen = me.ScreenObject.extend({
 
 	onDestroyEvent() {
 		me.input.unbindKey(me.input.KEY.ENTER);
+		me.input.unbindPointer(me.input.pointer.LEFT);
 		me.event.unsubscribe(this.handler);
 	}
 });

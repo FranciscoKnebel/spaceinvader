@@ -17,7 +17,7 @@ game.WonScreen = me.ScreenObject.extend({
 
 		// Time buffer for the user to not spam through the screen.
 		const timeCountdown = new Date();
-		let timeLeft = game.options.constants.bufferTimeLimitMS;
+		let timeLeft = game.data.options.constants.bufferTimeLimitMS;
 
 		me.game.world.addChild(
 			new (me.Renderable.extend({
@@ -61,7 +61,7 @@ game.WonScreen = me.ScreenObject.extend({
 
 					if (timeLeft > 0) {
 						// There is still time left on the buffer, so recalculate
-						timeLeft = game.options.constants.bufferTimeLimitMS - (new Date() - timeCountdown);
+						timeLeft = game.data.options.constants.bufferTimeLimitMS - (new Date() - timeCountdown);
 					}
 
 					if (timeLeft > 0) {
@@ -97,6 +97,7 @@ game.WonScreen = me.ScreenObject.extend({
 
 	onDestroyEvent() {
 		me.input.unbindKey(me.input.KEY.ENTER);
+		me.input.unbindPointer(me.input.pointer.LEFT);
 		me.event.unsubscribe(this.handler);
 	}
 });

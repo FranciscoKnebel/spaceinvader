@@ -1,6 +1,6 @@
 {
   "name": "spaceinvader",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "main": "main.js",
   "scripts": {
     "build": "grunt dist && npm run build-linux && npm run build-win32 && npm run build-darwin",
@@ -10,10 +10,10 @@
     "build-win32": "node deployment/build --platform win32",
     "build-docs": "grunt dist && ncp build docs",
     "dev": "grunt dev",
-    "deploy-appveyor": "node deployment/build --platform win32 --arch all --noinstaller && node deployment/deploy-appveyor apps",
-    "deploy-travis": "node deployment/build --platform 'linux,darwin,mas' --arch all && node deployment/deploy-travis 'apps'",
-    "lint": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js",
-    "lint-fix": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js --fix",
+    "deploy-appveyor": "node deployment/build --platform win32 --arch all && node deployment/deploy-appveyor apps",
+    "deploy-travis": "node deployment/build --platform linux --arch all && node deployment/deploy-travis 'apps'",
+    "lint": "./node_modules/.bin/eslint js/**/*.js *.js tasks/**/*.js deployment",
+    "lint-fix": "npm run lint -- --fix",
     "postinstall": "grunt dist",
     "prepush": "npm run lint",
     "test": "npm run lint"

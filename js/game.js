@@ -12,7 +12,6 @@ const game = {
 
 	// Run on page load.
 	onload() {
-		console.log(game.data);
 		let options;
 		if (me.device.isMobile) {
 			options = game.data.options.mobile;
