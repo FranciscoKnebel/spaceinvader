@@ -1,24 +1,27 @@
 /* Game namespace */
 /* global me */
+/* eslint no-alert: 0 */
 
 const game = {
 	data: {
 		score: 0,
 		levelscore: 0,
 		level: 0,
-		muted: false,
-		startTime: new Date()
-	},
-	options: {
+		startPlayTime: new Date()
 	},
 
 	// Run on page load.
 	onload() {
-		// Initialize the video.
-		if (!me.video.init(1024, 768, {
-			wrapper: 'screen', scale: 'auto', scaleMethod: 'flex-height', antiAlias: 'false'
-		})) {
-			// alert('Your browser does not support HTML5 canvas.');
+		console.log(game.data);
+		let options;
+		if (me.device.isMobile) {
+			options = game.data.options.mobile;
+		} else {
+			options = game.data.options.default;
+		}
+
+		if (!me.video.init(options.resolution.height, options.resolution.height, options.rendering)) {
+			alert('Your browser does not support HTML5 canvas.');
 			return;
 		}
 
@@ -77,7 +80,7 @@ const game = {
 		}); */
 
 		// Start the game.
-		game.data.startTime = new Date();
+		game.data.startPlayTime = new Date();
 		me.state.change(me.state.MENU);
 	}
 };

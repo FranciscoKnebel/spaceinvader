@@ -71,13 +71,11 @@ game.PlayScreen = me.ScreenObject.extend({
 	checkIfLoss(y) {
 		if (y >= this.player.pos.y - this.player.height) {
 			me.audio.pauseTrack();
-			game.data.startTime2 = new Date();
-			game.data.endTime = game.data.startTime2 - game.data.startTime;
+			game.data.endPlayTime = new Date() - game.data.startPlayTime;
 
 			me.state.change(me.state.GAMEOVER);
 			return true;
 		}
-
 		return false;
 	}
 });

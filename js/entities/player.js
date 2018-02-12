@@ -42,25 +42,25 @@ game.Player = me.Sprite.extend({
 			const currentVolume = me.audio.getVolume();
 
 			if (currentVolume <= 1.0) {
-				me.audio.setVolume(currentVolume + 0.025);
+				me.audio.setVolume(currentVolume + game.data.options.sound.changeRatio.keys);
 			}
 		}
 
 		if (me.input.isKeyPressed('volume-mute')) {
-			if (game.data.muted === true) {
+			if (game.data.options.muted === true) {
 				me.audio.unmuteAll();
 			} else {
 				me.audio.muteAll();
 			}
 
-			game.data.muted = !game.data.muted;
+			game.data.options.muted = !game.data.options.muted;
 		}
 
 		if (me.input.isKeyPressed('volume-minus')) {
 			const currentVolume = me.audio.getVolume();
 
-			if (currentVolume >= 0.025) {
-				me.audio.setVolume(currentVolume - 0.025);
+			if (currentVolume >= game.data.options.sound.changeRatio.keys) {
+				me.audio.setVolume(currentVolume - game.data.options.sound.changeRatio.keys);
 			}
 		}
 
@@ -70,10 +70,10 @@ game.Player = me.Sprite.extend({
 
 			if (event.deltaY < 0) {
 				if (currentVolume <= 1.0) {
-					me.audio.setVolume(currentVolume + 0.0005);
+					me.audio.setVolume(currentVolume + game.data.options.sound.changeRatio.wheel);
 				}
-			} else if (currentVolume >= 0.0005) {
-				me.audio.setVolume(currentVolume - 0.0005);
+			} else if (currentVolume >= game.data.options.sound.changeRatio.wheel) {
+				me.audio.setVolume(currentVolume - game.data.options.sound.changeRatio.wheel);
 			}
 
 			me.input.registerPointerEvent('wheel', me.game.viewport, (event2) => {

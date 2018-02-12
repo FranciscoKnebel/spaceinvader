@@ -33,7 +33,7 @@ game.EnemyManager = me.Container.extend({
 
 	update(time) {
 		if (this.children.length === 0 && this.createdEnemies) {
-			game.data.endTime = new Date() - game.data.startTime;
+			game.data.endPlayTime = new Date() - game.data.startPlayTime;
 			me.state.change(me.state.GAME_END);
 		}
 

@@ -23,7 +23,7 @@ game.StartMenuScreen = me.ScreenObject.extend({
 				},
 				draw(renderer) {
 					this.title.draw(renderer, 'Space Invader', halfViewportWidth, 50);
-					this.version.draw(renderer, 'version <<space_invader_release_version>>', halfViewportWidth, 125);
+					this.version.draw(renderer, 'version <<space_invader_release_version>>', halfViewportWidth, 130);
 				},
 				update() {
 					return true;
@@ -87,6 +87,7 @@ game.StartMenuScreen = me.ScreenObject.extend({
 
 				switch (menuChoice.current) {
 				case 1:
+					game.data.startPlayTime = new Date();
 					me.state.change(me.state.PLAY, game.data.level);
 					break;
 				case 2:
