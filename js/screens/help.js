@@ -36,7 +36,11 @@ game.HelpScreen = me.ScreenObject.extend({
 					this.commandFont.draw(renderer, 'J/K/L & 1/2/3', 50, 325);
 					this.descriptionFont.draw(renderer, '+/Mute/- Volume', me.game.viewport.width - 50, 325);
 
-					this.btnFont.draw(renderer, 'PRESS ENTER TO CONTINUE', me.game.viewport.width / 2, 400);
+					if (me.device.isMobile) {
+						this.btnFont.draw(renderer, 'TOUCH TO CONTINUE', me.game.viewport.width / 2, 400);
+					} else {
+						this.btnFont.draw(renderer, 'PRESS ENTER TO CONTINUE', me.game.viewport.width / 2, 400);
+					}
 				},
 				update() {
 					return true;
@@ -47,6 +51,8 @@ game.HelpScreen = me.ScreenObject.extend({
 		);
 
 		me.input.bindKey(me.input.KEY.ENTER, 'resume', true);
+		me.input.bindPointer(me.input.pointer.LEFT, me.input.KEY.ENTER);
+
 		this.handler = me.event.subscribe(me.event.KEYDOWN, (action) => {
 			if (action === 'resume') {
 				if (fromStartMenu) {

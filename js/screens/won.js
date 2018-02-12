@@ -15,6 +15,10 @@ game.WonScreen = me.ScreenObject.extend({
 
 		game.data.levelscore = 0;
 
+		// Time buffer for the user to not spam through the screen.
+		const timeCountdown = new Date();
+		let timeLeft = game.options.constants.bufferTimeLimitMS;
+
 		me.game.world.addChild(
 			new (me.Renderable.extend({
 				init() {
@@ -27,32 +31,48 @@ game.WonScreen = me.ScreenObject.extend({
 
 					this.anchorPoint.set(0, 0);
 
-					this.titleFont = new me.Font('Serif', 64, '#000', 'center');
-					this.level = new me.Font('Serif', 32, '#000', 'center');
+					this.titleFont = new me.Font('Serif', 56, '#000', 'center');
 					this.points = new me.Font('Serif', 32, '#000', 'center');
+					this.time = new me.Font('Serif', 32, '#000', 'center');
 					this.btnFont = new me.Font('Serif', 32, '#000', 'center');
 				},
 				draw(renderer) {
-					this.titleFont.draw(renderer, 'LEVEL CLEARED!', me.game.viewport.width / 2, 150);
-					this.level.draw(
-						renderer,
-						`Current level: ${game.data.level + 1}`,
-						me.game.viewport.width / 2,
-						250
-					);
+					this.titleFont.draw(renderer, `LEVEL ${game.data.level + 1} CLEARED!`, me.game.viewport.width / 2, 150);
+
 					this.points.draw(
 						renderer,
 						`Total Points: ${game.data.score}`,
 						me.game.viewport.width / 2,
 						300
 					);
-					this.points.draw(
+
+					this.time.draw(
 						renderer,
-						`Total Time: ${(game.data.endTime / 1000).toFixed(3)}s`,
+						`Total Time: ${(game.data.endPlayTime / 1000).toFixed(3)}s`,
 						me.game.viewport.width / 2,
 						350
 					);
-					this.btnFont.draw(renderer, 'PRESS ENTER TO CONTINUE', me.game.viewport.width / 2, 410);
+
+					if (me.device.isMobile) {
+						this.btnFont.draw(renderer, 'TOUCH TO CONTINUE', me.game.viewport.width / 2, 410);
+					} else {
+						this.btnFont.draw(renderer, 'PRESS ENTER TO CONTINUE', me.game.viewport.width / 2, 410);
+					}
+
+					if (timeLeft > 0) {
+						// There is still time left on the buffer, so recalculate
+						timeLeft = game.options.constants.bufferTimeLimitMS - (new Date() - timeCountdown);
+					}
+
+					if (timeLeft > 0) {
+						// Time limit still valid.
+						this.points.draw(
+							renderer,
+							`${(timeLeft / 1000).toFixed(3)}s`,
+							me.game.viewport.width / 2,
+							440
+						);
+					}
 				},
 				update() {
 					return true;
@@ -63,8 +83,12 @@ game.WonScreen = me.ScreenObject.extend({
 		);
 
 		me.input.bindKey(me.input.KEY.ENTER, 'continue', true);
+		me.input.bindPointer(me.input.pointer.LEFT, me.input.KEY.ENTER);
+
 		this.handler = me.event.subscribe(me.event.KEYDOWN, (action) => {
-			if (action === 'continue') {
+			const bufferTimeLimitIsDone = timeLeft <= 0;
+
+			if (action === 'continue' && bufferTimeLimitIsDone) {
 				game.data.level += 1;
 				me.state.change(me.state.PLAY, game.data.level);
 			}
