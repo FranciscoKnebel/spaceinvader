@@ -19,6 +19,7 @@ game.Player = me.Sprite.extend({
 		this.volumeControls();
 
 		this.pos.x = this.pos.x.clamp(this.width, this.maxX);
+
 		return true;
 	},
 
@@ -34,6 +35,14 @@ game.Player = me.Sprite.extend({
 		if (me.input.isKeyPressed('shoot')) {
 			me.game.world.addChild(me.pool.pull('laser', this.pos.x - (game.Laser.width / 2), this.pos.y - this.height));
 			me.audio.play('fire');
+		}
+
+		if (me.device.isMobile) {
+			if (me.device.accelerationX > 0.4) {
+				this.pos.x -= this.velx / 3 * time / 1000;
+			} else if (me.device.accelerationX < -0.4) {
+				this.pos.x += this.velx / 3 * time / 1000;
+			}
 		}
 	},
 

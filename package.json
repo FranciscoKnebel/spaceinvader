@@ -16,7 +16,7 @@
     "lint-fix": "npm run lint -- --fix",
     "postinstall": "grunt dist",
     "prepush": "npm run lint",
-    "test": "npm run lint"
+    "test": "npm run lint && grunt dist"
   },
   "devDependencies": {
     "electron": "1.7.12",
