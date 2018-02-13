@@ -21,7 +21,6 @@ game.menuButton3 = game.menuButton.extend({
 
 game.menuButton4 = game.menuButton.extend({
 	onClick() {
-		alert('clicked option 4. This option is not implemented, yet.');
-		return false;
+		me.state.change(me.state.CREDITS);
 	}
 });

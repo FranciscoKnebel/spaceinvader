@@ -97,7 +97,7 @@ game.StartMenuScreen = me.ScreenObject.extend({
 					alert(`Option ${menuChoice.current} not implemented, yet.`);
 					break;
 				case 4:
-					alert(`Option ${menuChoice.current} not implemented, yet.`);
+					me.state.change(me.state.CREDITS);
 					break;
 				default:
 				}

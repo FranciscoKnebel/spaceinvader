@@ -65,6 +65,8 @@ const game = {
 		me.state.HELP = me.state.USER;
 		me.state.set(me.state.HELP, new game.HelpScreen());
 
+		me.state.CREDITS = me.state.USER + 1;
+		me.state.set(me.state.CREDITS, new game.CreditsScreen());
 
 		// add some keyboard shortcuts
 		/*
