@@ -1,30 +1,5 @@
 game.resources = [
     {
-        "name": "deathmatch",
-        "type": "audio",
-        "src": "data/bgm/"
-    },
-    {
-        "name": "defeated",
-        "type": "audio",
-        "src": "data/bgm/"
-    },
-    {
-        "name": "rain_of_lasers",
-        "type": "audio",
-        "src": "data/bgm/"
-    },
-    {
-        "name": "tronicles",
-        "type": "audio",
-        "src": "data/bgm/"
-    },
-    {
-        "name": "victory_tune",
-        "type": "audio",
-        "src": "data/bgm/"
-    },
-    {
         "name": "fire",
         "type": "audio",
         "src": "data/sfx/"
