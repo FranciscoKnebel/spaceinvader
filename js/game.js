@@ -42,8 +42,14 @@ const game = {
 		// Set a callback to run when loading is complete.
 		me.loader.onload = this.loaded.bind(this);
 
-		// Load the resources.
+		// Load the game resources.
 		me.loader.preload(game.resources);
+
+		// Load the music resources.
+		// TODO: Check on user settings for music quality option
+		// TODO: Load music resources according to quality option
+		// TODO: Default to low quality music, for fast loading
+		me.loader.preload(game.music_resources);
 
 		// Initialize melonJS and display a loading screen.
 		me.state.change(me.state.LOADING);

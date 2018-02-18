@@ -11,6 +11,7 @@ module.exports = (grunt) => {
 					'lib/plugins/**/*.js',
 					'js/game.js',
 					'build/js/resources.js',
+					'build/js/music_resources.js',
 					'js/**/*.js'
 				],
 				dest: 'build/js/app.js'
@@ -133,13 +134,14 @@ module.exports = (grunt) => {
 
 		resources: {
 			dist: {
-				options: {
-					dest: 'build/js/resources.js',
-					varname: 'game.resources'
-				},
 				files: [
 					{
-						src: ['data/bgm/**/*', 'data/sfx/**/*'],
+						src: ['data/bgm/**/*', '!data/bgm/high_res/*', '!data/bgm/mid_res/*', '!data/bgm/unused/*'],
+						type: 'audio',
+						bgm: true
+					},
+					{
+						src: ['data/sfx/**/*'],
 						type: 'audio'
 					},
 					{

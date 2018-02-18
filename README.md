@@ -98,5 +98,7 @@ See also the full list of [contributors](https://github.com/FranciscoKnebel/spac
 ### Other credited work
 Music, artwork and other creditations can be found on the [CREDITS.md](CREDITS.md) file.
 
+Music bitrate change using MP3 Quality Modifier 2.5.3.
+
 ## License
 This project is licensed under the _MIT License_ - see the [LICENSE.md](LICENSE.md) file for details.

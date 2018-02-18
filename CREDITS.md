@@ -13,3 +13,7 @@ _(https://opengameart.org/content/space-shooter-music)_
 - Defeated
 - Victory Tune
 - DeathMatch
+
+##### cyguration _(https://modarchive.org/forums/index.php?topic=1620.0)_
+- Tranquil Trance Express
+- Cold Stone

@@ -1,5 +1,7 @@
 game.CreditsScreen = me.ScreenObject.extend({
 	onResetEvent() {
+		me.audio.playTrack('cold_stone');
+
 		const hVW = me.game.viewport.width / 2;
 		me.game.world.addChild(new me.ColorLayer('background', '#000000'), 0);
 
@@ -127,5 +129,7 @@ game.CreditsScreen = me.ScreenObject.extend({
 		me.input.unbindKey(me.input.KEY.ENTER);
 		me.input.unbindPointer(me.input.pointer.LEFT);
 		me.event.unsubscribe(this.handler);
+
+		me.audio.stopTrack();
 	}
 });

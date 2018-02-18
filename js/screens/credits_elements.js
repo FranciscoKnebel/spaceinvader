@@ -70,6 +70,14 @@ game.Credits = {
 				'Victory Tune',
 				'DeathMatch'
 			]
+		},
+		{
+			header: 'cyguration',
+			subheader: '(https://modarchive.org/forums/index.php?topic=1620.0)',
+			items: [
+				'Tranquil Trance Express',
+				'Cold Stone'
+			]
 		}
 	],
 	buildElements: () => {
