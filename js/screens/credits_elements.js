@@ -43,7 +43,7 @@ function creditElement(headerText, subheaderText, itemsText) {
 game.Credits = {
 	FontSize,
 	minHeight,
-	transitionSpeed: 1,
+	transitionSpeed: 0.5,
 	elements: [
 		{
 			header: 'Author',

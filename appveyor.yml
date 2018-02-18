@@ -21,12 +21,11 @@ install:
   - npm install npm -g
   - npm install grunt-cli -g
   - npm install
-  - npm prune
 
 build_script:
   - node --version
   - npm --version
-  - npm run test
+  - grunt dist
 
 before_deploy:
   - mkdir apps\installers

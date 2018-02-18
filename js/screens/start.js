@@ -2,8 +2,6 @@
 
 game.StartMenuScreen = me.ScreenObject.extend({
 	onResetEvent() {
-		const halfViewportWidth = me.game.viewport.width / 2;
-
 		me.game.world.addChild(new me.ColorLayer('background', '#000'), 0);
 
 		me.game.world.addChild(
@@ -22,8 +20,7 @@ game.StartMenuScreen = me.ScreenObject.extend({
 					this.version = new me.Font('Serif', 24, '#FFFFFF', 'center');
 				},
 				draw(renderer) {
-					this.title.draw(renderer, 'Space Invader', halfViewportWidth, 50);
-					this.version.draw(renderer, 'version <<space_invader_release_version>>', halfViewportWidth, 130);
+					game.Title.draw(renderer, this.title, this.version);
 				},
 				update() {
 					return true;

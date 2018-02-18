@@ -27,8 +27,7 @@ game.CreditsScreen = me.ScreenObject.extend({
 				renderer.setColor('#000');
 				renderer.fillRect(0, 0, this.width, this.height);
 
-				this.title.draw(renderer, 'Space Invader', hVW, 50);
-				this.version.draw(renderer, 'version <<space_invader_release_version>>', hVW, 130);
+				game.Title.draw(renderer, this.title, this.version);
 			},
 			update() {
 				return true;

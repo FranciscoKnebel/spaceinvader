@@ -16,13 +16,13 @@ game.HelpScreen = me.ScreenObject.extend({
 
 					this.titleFont = new me.Font('Serif', 72, '#FFFFFF', 'center');
 					this.version = new me.Font('Serif', 24, '#FFFFFF', 'center');
+
 					this.commandFont = new me.Font('Serif', 24, '#FFFFFF', 'left');
 					this.descriptionFont = new me.Font('Serif', 24, '#FFFFFF', 'right');
 					this.btnFont = new me.Font('Serif', 32, '#FFFFFF', 'center');
 				},
 				draw(renderer) {
-					this.titleFont.draw(renderer, 'Space Invader', me.game.viewport.width / 2, 50);
-					this.version.draw(renderer, 'version <<space_invader_release_version>>', me.game.viewport.width / 2, 125);
+					game.Title.draw(renderer, this.titleFont, this.version);
 
 					this.commandFont.draw(renderer, 'Key A & LEFT', 50, 175);
 					this.descriptionFont.draw(renderer, 'move left', me.game.viewport.width - 50, 175);
