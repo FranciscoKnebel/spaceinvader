@@ -88,7 +88,7 @@ Where ** can be `win32` (Windows), `linux` (Linux) and `darwin` (OSX).
       <a href="https://github.com/FranciscoKnebel">Francisco Knebel</a>
     </td>
     <td>
-      <a href="https://github.com/FranciscoKnebel/comparadorAig/commits?author=FranciscoKnebel">Contributions</a> by FranciscoKnebel
+      <a href="https://github.com/FranciscoKnebel/spaceinvader/commits?author=FranciscoKnebel">Contributions</a> by FranciscoKnebel
     </td>
   </tr>
 </table>

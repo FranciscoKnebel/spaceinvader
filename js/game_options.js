@@ -34,3 +34,10 @@ game.data.options = {
 		bufferTimeLimitMS: 3000 // == 5 seconds
 	}
 };
+
+game.constants = {
+	highscoresURI: 'https://spaceinvader-highscores.herokuapp.com',
+	// highscoresURI: 'localhost:3000',
+	version: '<<si_release_version>>',
+	version_date: '<<si_current_date>>'
+};

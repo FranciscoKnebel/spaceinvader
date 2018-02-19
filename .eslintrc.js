@@ -2,6 +2,7 @@ module.exports = {
 	extends: 'airbnb',
 	plugins: ['react', 'jsx-a11y', 'import'],
 	env: {
+		jquery: true,
 		browser: true,
 		node: true,
 		es6: true
@@ -24,6 +25,7 @@ module.exports = {
 	},
 	globals: {
 		game: true,
-		me: true
+		me: true,
+		io: true
 	}
 };

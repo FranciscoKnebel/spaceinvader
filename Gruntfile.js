@@ -81,8 +81,12 @@ module.exports = (grunt) => {
 							replacement: '$1.prototype.$2.apply(this$3'
 						},
 						{
-							match: /(<<space_invader_release_version>>)/g,
-							replacement: `${require('./package.json').version} - ${today}`
+							match: /(<<si_release_version>>)/g,
+							replacement: `${require('./package.json').version}`
+						},
+						{
+							match: /(<<si_current_date>>)/g,
+							replacement: today
 						}
 					]
 				},

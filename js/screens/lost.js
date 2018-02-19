@@ -3,6 +3,7 @@ game.LostScreen = me.ScreenObject.extend({
 		me.game.world.addChild(new me.ColorLayer('background', game.colors.backgrounds.lost), 0);
 
 		// Play music
+		me.audio.stopTrack();
 		me.audio.play('lost');
 
 		// Time buffer for the user to not spam through the screen.
