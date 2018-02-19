@@ -36,6 +36,7 @@ body {
 #screen div.wrapper {
   position: absolute;
   z-index: 2;
+  width: 90%;
 }
 
 .ui.input, .ui.input > input {
@@ -63,6 +64,13 @@ body {
   transition: box-shadow .1s ease, border-color .1s ease;
   transition: box-shadow .1s ease, border-color .1s ease, -webkit-box-shadow .1s ease;
   box-shadow: none;
+}
+
+@media only screen and (max-width: 480px) {
+  .ui.input > input {
+    width: 60%;
+    padding: .5em;
+  }
 }
 
 .ui.input, .ui.input > input {
