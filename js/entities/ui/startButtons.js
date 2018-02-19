@@ -2,7 +2,12 @@
 
 game.menuButton1 = game.menuButton.extend({
 	onClick() {
-		me.state.change(me.state.PLAY, game.data.level);
+		game.data.startPlayTime = new Date();
+
+		game.data.level = 0;
+		game.data.score = 0;
+
+		me.state.change(me.state.PLAY, game.data.level, true);
 	}
 });
 

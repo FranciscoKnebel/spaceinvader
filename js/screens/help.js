@@ -1,5 +1,8 @@
 game.HelpScreen = me.ScreenObject.extend({
 	onResetEvent(fromStartMenu) {
+		me.audio.pauseTrack();
+		me.audio.play('hit');
+
 		me.game.world.addChild(new me.ColorLayer('background', '#000000'), 0);
 
 		me.game.world.addChild(
@@ -58,7 +61,7 @@ game.HelpScreen = me.ScreenObject.extend({
 				if (fromStartMenu) {
 					me.state.change(me.state.MENU);
 				} else {
-					me.state.change(me.state.PLAY, game.data.level);
+					me.state.change(me.state.PLAY, game.data.level, false);
 				}
 			}
 		});

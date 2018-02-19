@@ -14,9 +14,9 @@ const game = {
 	onload() {
 		let options;
 		if (me.device.isMobile) {
-			options = game.data.options.mobile;
+			options = game.options.mobile;
 		} else {
-			options = game.data.options.default;
+			options = game.options.default;
 		}
 
 		if (!me.video.init(options.resolution.height, options.resolution.height, options.rendering)) {

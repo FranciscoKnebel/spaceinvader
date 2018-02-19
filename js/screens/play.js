@@ -1,6 +1,11 @@
 game.PlayScreen = me.ScreenObject.extend({
-	onResetEvent(level) {
-		me.audio.playTrack('tronicles');
+	onResetEvent(level, fromStartMenu) {
+		if (fromStartMenu) {
+			me.audio.playTrack('tronicles');
+		} else {
+			me.audio.resumeTrack();
+		}
+
 		let background = '#000';
 
 		if (game.colors.backgrounds.level.length > level) {

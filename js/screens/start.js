@@ -85,7 +85,11 @@ game.StartMenuScreen = me.ScreenObject.extend({
 				switch (menuChoice.current) {
 				case 1:
 					game.data.startPlayTime = new Date();
-					me.state.change(me.state.PLAY, game.data.level);
+
+					game.data.level = 0;
+					game.data.score = 0;
+
+					me.state.change(me.state.PLAY, game.data.level, true);
 					break;
 				case 2:
 					me.state.change(me.state.HELP, true);
