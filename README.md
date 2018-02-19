@@ -19,6 +19,8 @@ _master_
 
 ### Development
 
+Before anything, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file, for all the project guidelines.
+
 To build, be sure you have [node](http://nodejs.org) installed. Clone the project:
 
     git clone https://github.com/FranciscoKnebel/spaceinvader.git
@@ -96,7 +98,7 @@ Where ** can be `win32` (Windows), `linux` (Linux) and `darwin` (OSX).
 See also the full list of [contributors](https://github.com/FranciscoKnebel/spaceinvader/contributors) who participated in this project.
 
 ### Other credited work
-Music, artwork and other creditations can be found on the [CREDITS.md](CREDITS.md) file.
+Music, artwork and other accreditations can be found on the [CREDITS.md](CREDITS.md) file.
 
 Music bitrate change using MP3 Quality Modifier 2.5.3.
 
