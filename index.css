@@ -1,34 +1,136 @@
 body {
-    background-color: #000;
-    color: #fff;
+  background-color: #000;
+  color: #fff;
 
-    /* Allow mouse dragging. */
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
+  /* Allow mouse dragging. */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 
-    /* disable touch panning/zooming */
-    -ms-touch-action: none;
-    touch-action: none;
+  /* disable touch panning/zooming */
+  -ms-touch-action: none;
+  touch-action: none;
 
-    /* Allow canvas to hit the edges of the browser viewport. */
-    margin: 0;
+  /* Allow canvas to hit the edges of the browser viewport. */
+  margin: 0;
 }
 
 #screen canvas {
-    margin: auto;
+  margin: auto;
 
-    /* Hide the gap for font descenders. */
-    display: block;
+  /* Hide the gap for font descenders. */
+  display: block;
 
-    /* disable scaling interpolation */
-    image-rendering: optimizeSpeed;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -o-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: optimize-contrast;
-    image-rendering: pixelated;
-    -ms-interpolation-mode: nearest-neighbor;
+  /* disable scaling interpolation */
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+#screen div.wrapper {
+  position: absolute;
+  z-index: 2;
+}
+
+.ui.input, .ui.input > input {
+  font-size: 1em;
+  width: 40%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: 100%;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  outline: 0;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  text-align: left;
+  line-height: 1.21428571em;
+  padding: .67857143em 1em;
+  background: #fff;
+  border: 1px solid rgba(34, 36, 38, .15);
+  color: rgba(0, 0, 0, .87);
+  border-radius: .28571429rem;
+  transition: border-color .1s ease, -webkit-box-shadow .1s ease;
+  transition: box-shadow .1s ease, border-color .1s ease;
+  transition: box-shadow .1s ease, border-color .1s ease, -webkit-box-shadow .1s ease;
+  box-shadow: none;
+}
+
+.ui.input, .ui.input > input {
+  position: relative;
+  font-weight: 400;
+  font-style: normal;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  color: rgba(0,0,0,.87);
+}
+
+.ui.action.input > .button {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  border-radius: 0 .28571429rem .28571429rem 0;
+  padding-top: .78571429em;
+  padding-bottom: .78571429em;
+  margin: 0;
+}
+
+.ui.action.input > input {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right-color: transparent;
+}
+
+.ui.action.input > input[disabled] {
+  border-top-right-radius: .28571429rem;
+  border-bottom-right-radius: .28571429rem;
+  border-right-color: rgba(34, 36, 38, .15);
+}
+
+.ui.button {
+  cursor: pointer;
+  display: inline-block;
+  min-height: 1em;
+  outline: 0;
+  border: none;
+  vertical-align: baseline;
+  background: #e0e1e2 none;
+  color: rgba(0,0,0,.6);
+  margin: 0 .25em 0 0;
+  padding: .78571429em 1.5em .78571429em;
+  text-transform: none;
+  text-shadow: none;
+  font-weight: 700;
+  line-height: 1em;
+  font-style: normal;
+  text-align: center;
+  text-decoration: none;
+  border-radius: .28571429rem;
+  -webkit-box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(34,36,38,.15) inset;
+  box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(34,36,38,.15) inset;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: opacity .1s ease,background-color .1s ease,color .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
+  transition: opacity .1s ease,background-color .1s ease,color .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
+  transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
+  transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
+  will-change: '';
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Disabled */
+.ui.input[disabled], .ui.action.input > input[disabled] {
+  background: #e0e1e2 none;
 }

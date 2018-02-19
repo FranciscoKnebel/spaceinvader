@@ -82,6 +82,15 @@ game.LostScreen = me.ScreenObject.extend({
 			2
 		);
 
+		me.game.world.addChild(new game.gui.ScoreInput(
+			500, 'text', 10,
+			(name) => {
+				if (name.length > 0) {
+					game.socket.submitNewScore(game.data.score, name);
+				}
+			}
+		), 3);
+
 		me.input.bindKey(me.input.KEY.ENTER, 'continue', true);
 		me.input.bindPointer(me.input.pointer.LEFT, me.input.KEY.ENTER);
 
