@@ -66,6 +66,7 @@ const game = {
 		me.state.set(me.state.GAMEOVER, new game.LostScreen());
 		me.state.set(me.state.GAME_END, new game.WonScreen());
 		me.state.set(me.state.MENU, new game.StartMenuScreen());
+		me.state.set(me.state.SCORE, new game.HighscoreScreen());
 
 		// User defined states
 		me.state.HELP = me.state.USER;

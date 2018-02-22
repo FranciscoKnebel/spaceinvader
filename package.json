@@ -1,6 +1,6 @@
 {
   "name": "spaceinvader",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "main": "main.js",
   "scripts": {
     "build": "grunt dist && npm run build-linux && npm run build-win32 && npm run build-darwin",
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "electron": "1.7.12",
-    "electron-builder": "^20.0.5",
+    "electron-builder": "^20.0.7",
     "electron-packager": "^11.0.1",
     "eslint": "^4.18.0",
     "eslint-config-airbnb": "^16.1.0",

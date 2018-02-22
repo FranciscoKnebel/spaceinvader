@@ -29,3 +29,9 @@ game.menuButton4 = game.menuButton.extend({
 		me.state.change(me.state.CREDITS);
 	}
 });
+
+game.menuButton5 = game.menuButton.extend({
+	onClick() {
+		me.state.change(me.state.SCORE);
+	}
+});

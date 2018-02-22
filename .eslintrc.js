@@ -21,7 +21,8 @@ module.exports = {
 		'no-mixed-operators': 0,
 		'no-bitwise': ['error', { allow: ['~'] }],
 		'comma-dangle': ['error', { functions: 'ignore' }],
-		'new-cap': 0
+		'new-cap': 0,
+		'no-restricted-syntax': 0
 	},
 	globals: {
 		game: true,

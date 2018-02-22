@@ -44,11 +44,13 @@ game.StartMenuScreen = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.NUM2, 'numericEnter', true);
 		me.input.bindKey(me.input.KEY.NUM3, 'numericEnter', true);
 		me.input.bindKey(me.input.KEY.NUM4, 'numericEnter', true);
+		me.input.bindKey(me.input.KEY.NUM5, 'numericEnter', true);
 
 		me.input.bindKey(me.input.KEY.NUMPAD1, 'numericEnter', true);
 		me.input.bindKey(me.input.KEY.NUMPAD2, 'numericEnter', true);
 		me.input.bindKey(me.input.KEY.NUMPAD3, 'numericEnter', true);
 		me.input.bindKey(me.input.KEY.NUMPAD4, 'numericEnter', true);
+		me.input.bindKey(me.input.KEY.NUMPAD5, 'numericEnter', true);
 
 		// Menu choice handling
 		this.handleMenuOptions();
@@ -57,10 +59,13 @@ game.StartMenuScreen = me.ScreenObject.extend({
 	createMenuButtons() {
 		const halfViewportWidth = me.game.viewport.width / 2;
 
-		me.game.world.addChild(new game.menuButton1(halfViewportWidth, 220, 300, 50, 'ui/startMenu/1'));
-		me.game.world.addChild(new game.menuButton2(halfViewportWidth, 280, 300, 50, 'ui/startMenu/2'));
-		me.game.world.addChild(new game.menuButton3(halfViewportWidth, 370, 300, 50, 'ui/startMenu/3'));
-		me.game.world.addChild(new game.menuButton4(halfViewportWidth, 430, 300, 50, 'ui/startMenu/4'));
+		const buttonHeight = [220, 280, 370, 430, 490];
+
+		me.game.world.addChild(new game.menuButton1(halfViewportWidth, buttonHeight[0], 300, 50, 'ui/startMenu/1'));
+		me.game.world.addChild(new game.menuButton2(halfViewportWidth, buttonHeight[1], 300, 50, 'ui/startMenu/2'));
+		me.game.world.addChild(new game.menuButton3(halfViewportWidth, buttonHeight[2], 300, 50, 'ui/startMenu/3'));
+		me.game.world.addChild(new game.menuButton4(halfViewportWidth, buttonHeight[3], 300, 50, 'ui/startMenu/4'));
+		me.game.world.addChild(new game.menuButton5(halfViewportWidth, buttonHeight[4], 300, 50, 'ui/startMenu/5'));
 	},
 
 	handleMenuOptions() {
@@ -100,6 +105,9 @@ game.StartMenuScreen = me.ScreenObject.extend({
 				case 4:
 					me.state.change(me.state.CREDITS);
 					break;
+				case 5:
+					me.state.change(me.state.SCORE);
+					break;
 				default:
 				}
 			}
@@ -121,6 +129,9 @@ game.StartMenuScreen = me.ScreenObject.extend({
 		case me.input.KEY.NUM4:
 		case me.input.KEY.NUMPAD4:
 			return 4;
+		case me.input.KEY.NUM5:
+		case me.input.KEY.NUMPAD5:
+			return 5;
 		default:
 			return 0;
 		}
@@ -137,10 +148,13 @@ game.StartMenuScreen = me.ScreenObject.extend({
 		me.input.unbindKey(me.input.KEY.NUM2);
 		me.input.unbindKey(me.input.KEY.NUM3);
 		me.input.unbindKey(me.input.KEY.NUM4);
+		me.input.unbindKey(me.input.KEY.NUM5);
+
 		me.input.unbindKey(me.input.KEY.NUMPAD1);
 		me.input.unbindKey(me.input.KEY.NUMPAD2);
 		me.input.unbindKey(me.input.KEY.NUMPAD3);
 		me.input.unbindKey(me.input.KEY.NUMPAD4);
+		me.input.unbindKey(me.input.KEY.NUMPAD5);
 
 		me.event.unsubscribe(this.handler);
 	}

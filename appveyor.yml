@@ -36,11 +36,12 @@ deploy:
   provider: GitHub
   auth_token:
     secure: GGWpP6cibMdB2Q9L41M3GBz4KEQILhjiI+gXJtKlD1YkMmGMW0DlF7g6JdYg3znT
-  artifact: apps/installers/spaceinvader-win32-*
+  artifact:
+    apps/installers/spaceinvader-win32-ia32.zip
+    apps/installers/spaceinvader-win32-x64.zip
+    apps/installers/spaceinvader-*-setup.msi
   draft: false
   prerelease: false
-  on:
-    branch: master                 # release from master branch only
-    appveyor_repo_tag: true        # deploy on tag push only
+  appveyor_repo_tag: true        # deploy on tag push only
 
 test: off
