@@ -6,15 +6,14 @@ game.HighscoreScreen = me.ScreenObject.extend({
 		me.game.world.addChild(new me.ColorLayer('background', '#000000'), 0);
 
 		// fetch highscore from API.
-		const versions = [];
 		const highscores = [];
 		let fetchScoreMessage = 'Fetching scores...';
 
-		const versionsURI = `${game.constants.highscoresURI}/api/v1/versions/find/all`;
+		const versionsURI = `${game.constants.highscoresURI}/api/v1/scores/top10/all-time`;
 		fetch(versionsURI)
 			.then(res => res.json())
 			.then((res) => {
-				versions.push(...res.data);
+				highscores.push(...res.data);
 
 				if (res.data.length === 0) {
 					fetchScoreMessage = 'No results.';
@@ -36,7 +35,7 @@ game.HighscoreScreen = me.ScreenObject.extend({
 					this.titleFont = new me.Font('Serif', 32, '#FFFFFF', 'center');
 					this.version = new me.Font('Serif', 20, '#FFFFFF', 'center');
 
-					this.scores = new me.Font('Serif', 28, '#FFFFFF', 'center');
+					this.scores = new me.Font('Serif', 28, '#FFFFFF', 'left');
 					this.btnFont = new me.Font('Serif', 32, '#FFFFFF', 'center');
 				},
 				draw(renderer) {
@@ -48,12 +47,14 @@ game.HighscoreScreen = me.ScreenObject.extend({
 
 						height += 30;
 						for (let i = 0; i < highscores.length && i < 10; i += 1) {
-							console.log(highscores);
 							height += 30;
-							this.scores.draw(renderer, `${highscores[i].score} - ${highscores[i].player}`, me.game.viewport.width / 2, height);
+							this.scores.draw(
+								renderer,
+								`${i + 1}: ${highscores[i].score} - level ${highscores[i].level} - ${highscores[i].player}`,
+								me.game.viewport.width / 4, height
+							);
 						}
 					} else {
-						fetchScoreMessage = versions.toString();
 						this.btnFont.draw(renderer, fetchScoreMessage, me.game.viewport.width / 2, 200);
 					}
 

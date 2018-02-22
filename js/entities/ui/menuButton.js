@@ -1,6 +1,4 @@
 game.menuButton = me.GUI_Object.extend({
-	// output something in the console
-	// when the object is clicked
 	init(x, y, framewidth, frameheight, image) {
 		this.settings = {
 			image,

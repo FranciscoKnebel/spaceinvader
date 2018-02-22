@@ -32,7 +32,7 @@ before_deploy:
   - npm run deploy-appveyor
 
 deploy:
-  description: 'Space Invader-v$(appveyor_build_version)'
+  description: ''
   provider: GitHub
   auth_token:
     secure: GGWpP6cibMdB2Q9L41M3GBz4KEQILhjiI+gXJtKlD1YkMmGMW0DlF7g6JdYg3znT
@@ -40,8 +40,9 @@ deploy:
     apps/installers/spaceinvader-win32-ia32.zip
     apps/installers/spaceinvader-win32-x64.zip
     apps/installers/spaceinvader-*-setup.msi
-  draft: false
+  draft: true
   prerelease: false
-  appveyor_repo_tag: true        # deploy on tag push only
+  on:
+    appveyor_repo_tag: true        # deploy on tag push only
 
 test: off

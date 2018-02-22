@@ -1,0 +1,3 @@
+[submodule "modules/highscores"]
+	path = modules/highscores
+	url = https://github.com/FranciscoKnebel/spaceinvader-highscores

@@ -23,11 +23,17 @@ Before anything, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file, for al
 
 To build, be sure you have [node](http://nodejs.org) installed. Clone the project:
 
-    git clone https://github.com/FranciscoKnebel/spaceinvader.git
+    git clone --recurse-submodules https://github.com/FranciscoKnebel/spaceinvader.git
+
 
 Then in the cloned directory, simply run:
 
     npm install
+
+Install the submodule dependencies too:
+    npm run install-submodules
+
+    Be sure to check if the module projects have any other setup on their respective README.md files.
 
 You must also have `grunt-cli` installed globally:
 
