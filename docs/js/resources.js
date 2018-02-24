@@ -30,6 +30,11 @@ game.resources = [
         "src": "data/img/ships.png"
     },
     {
+        "name": "ships2",
+        "type": "image",
+        "src": "data/img/ships2.png"
+    },
+    {
         "name": "1_hover",
         "type": "image",
         "src": "data/img/ui/startMenu/1_hover.png"
