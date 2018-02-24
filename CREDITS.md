@@ -1,4 +1,19 @@
 # Credits
+
+## Artwork
+
+##### MillionthVector _(http://millionthvector.blogspot.com.br/p/free-sprites.html)_
+- Player Spaceship
+  - F5S3
+- Enemy Spaceship
+  - att2
+  - att5
+  - blueship2
+  - blueship3
+  - RD1
+  - RD2
+  - RD3
+
 ## Music
 > ##### Author _(Link)_
 > - Track Number 1

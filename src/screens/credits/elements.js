@@ -1,10 +1,29 @@
 game.Credits = game.Credits || {};
-
 game.Credits.elements = [
 	{
 		header: 'Author',
 		items: [
 			'Francisco Knebel'
+		]
+	},
+	{
+		header: 'Artwork'
+	},
+	{
+		header: 'MillionthVector',
+		subheader: '(http://millionthvector.blogspot.com.br/p/free-sprites.html)',
+		items: [
+			'Player Spaceship:',
+			'F5S3',
+			'',
+			'Enemy Spaceship',
+			'att2',
+			'att5',
+			'blueship2',
+			'blueship3',
+			'RD1',
+			'RD2',
+			'RD3'
 		]
 	},
 	{
