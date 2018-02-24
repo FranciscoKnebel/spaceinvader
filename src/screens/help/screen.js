@@ -1,4 +1,5 @@
-game.HelpScreen = me.ScreenObject.extend({
+game.Screens = game.Screens || {};
+game.Screens.Help = me.ScreenObject.extend({
 	onResetEvent(fromStartMenu) {
 		me.audio.pauseTrack();
 		me.audio.play('hit');

@@ -1,4 +1,5 @@
-game.HighscoreScreen = me.ScreenObject.extend({
+game.Screens = game.Screens || {};
+game.Screens.Highscores = me.ScreenObject.extend({
 	onResetEvent() {
 		me.audio.pauseTrack();
 		me.audio.play('hit');
@@ -9,7 +10,7 @@ game.HighscoreScreen = me.ScreenObject.extend({
 		const highscores = [];
 		let fetchScoreMessage = 'Fetching scores...';
 
-		const versionsURI = `${game.constants.highscoresURI}/api/v1/scores/top10/all-time`;
+		const versionsURI = `${game.constants.highscoresURI}/api/v1/scores/top10/all-time/${game.constants.version}`;
 		fetch(versionsURI)
 			.then(res => res.json())
 			.then((res) => {

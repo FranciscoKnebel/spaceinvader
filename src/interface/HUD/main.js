@@ -1,6 +1,7 @@
-game.HUD = game.HUD || {};
+game.GUI = game.GUI || {};
+game.GUI.HUD = game.GUI.HUD || {};
 
-game.HUD.Container = me.Container.extend({
+game.GUI.HUD.Container = me.Container.extend({
 	init() {
 		this._super(me.Container, 'init');
 
@@ -8,11 +9,11 @@ game.HUD.Container = me.Container.extend({
 		this.floating = true;
 		this.name = 'HUD';
 
-		this.addChild(new game.HUD.ScoreItem(5, 5));
+		this.addChild(new game.GUI.HUD.ScoreItem(5, 5));
 	}
 });
 
-game.HUD.ScoreItem = me.Renderable.extend({
+game.GUI.HUD.ScoreItem = me.Renderable.extend({
 	init(x, y) {
 		this._super(me.Renderable, 'init', [x, y, 10, 10]);
 
@@ -35,8 +36,8 @@ game.HUD.ScoreItem = me.Renderable.extend({
 	update() {
 		let updated = false;
 
-		if (this.data.enemyQuantity.value !== game.playScreen.enemyManager.children.length) {
-			this.data.enemyQuantity.value = game.playScreen.enemyManager.children.length;
+		if (this.data.enemyQuantity.value !== game.playing.enemyManager.children.length) {
+			this.data.enemyQuantity.value = game.playing.enemyManager.children.length;
 			updated = true;
 		}
 

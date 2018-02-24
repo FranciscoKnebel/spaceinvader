@@ -20,7 +20,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'UA-71954823-10');
     </script>
   </head>
@@ -33,42 +32,48 @@
     <!-- Plugin(s) -->
     <script type="text/javascript" src="lib/plugins/debug/debugPanel.js"></script>
     <script type="text/javascript" src="lib/plugins/jquery.js"></script>
+    <script type="text/javascript" src="lib/plugins/socket.io.js"></script>
 
     <!-- Game Scripts -->
-    <script type="text/javascript" src="js/game.js"></script>
-    <script type="text/javascript" src="js/game_options.js"></script>
-    <script type="text/javascript" src="js/enemy_manager.js"></script>
+    <script type="text/javascript" src="src/game.js"></script>
+    <script type="text/javascript" src="src/config/options.js"></script>
+    <script type="text/javascript" src="src/config/constants.js"></script>
+
     <script type="text/javascript" src="build/js/resources.js"></script>
     <script type="text/javascript" src="build/js/music_resources.js"></script>
 
-    <!-- Game Entities -->
-    <script type="text/javascript" src="js/entities/player.js"></script>
-    <script type="text/javascript" src="js/entities/laser.js"></script>
-    <script type="text/javascript" src="js/entities/enemy.js"></script>
+    <!-- Interface -->
+    <script type="text/javascript" src="src/interface/HUD/main.js"></script>
+    <script type="text/javascript" src="src/interface/HUD/debug.js"></script>
+    <script type="text/javascript" src="src/interface/highscores/scoreInput.js"></script>
+    <script type="text/javascript" src="src/interface/colors.js"></script>
 
-    <!-- UI Entities -->
-    <script type="text/javascript" src="js/entities/ui/menuButton.js"></script>
-    <script type="text/javascript" src="js/entities/ui/startButtons.js"></script>
+    <script type="text/javascript" src="src/interface/buttons/menu.js"></script>
+
+    <!-- Game Entities -->
+    <script type="text/javascript" src="src/entities/enemy/entity.js"></script>
+    <script type="text/javascript" src="src/entities/enemy/manager.js"></script>
+    <script type="text/javascript" src="src/entities/player/entity.js"></script>
+    <script type="text/javascript" src="src/entities/laser/entity.js"></script>
 
     <!-- Screens -->
-    <script type="text/javascript" src="js/screens/play.js"></script>
-    <script type="text/javascript" src="js/screens/title.js"></script>
-    <script type="text/javascript" src="js/screens/lost.js"></script>
-    <script type="text/javascript" src="js/screens/won.js"></script>
-    <script type="text/javascript" src="js/screens/help.js"></script>
-    <script type="text/javascript" src="js/screens/start.js"></script>
-    <script type="text/javascript" src="js/screens/credits.js"></script>
-    <script type="text/javascript" src="js/screens/credits_elements.js"></script>
-    <script type="text/javascript" src="js/screens/highscores.js"></script>
+    <script type="text/javascript" src="src/screens/play/screen.js"></script>
+    <script type="text/javascript" src="src/screens/play/won.js"></script>
+    <script type="text/javascript" src="src/screens/play/lost.js"></script>
 
-    <script type="text/javascript" src="js/interface/HUD.js"></script>
-    <script type="text/javascript" src="js/interface/debugHUD.js"></script>
-    <script type="text/javascript" src="js/interface/colors.js"></script>
-    <script type="text/javascript" src="js/interface/score_input.js"></script>
+    <script type="text/javascript" src="src/screens/start/screen.js"></script>
+    <script type="text/javascript" src="src/screens/start/buttons.js"></script>
+    <script type="text/javascript" src="src/screens/start/title.js"></script>
 
-    <!-- Socket.io -->
-    <script type="text/javascript" src="lib/plugins/socket.io.js"></script>
-    <script type="text/javascript" src="js/highscores.js"></script>
+
+    <script type="text/javascript" src="src/screens/help/screen.js"></script>
+
+    <script type="text/javascript" src="src/screens/credits/screen.js"></script>
+    <script type="text/javascript" src="src/screens/credits/config.js"></script>
+    <script type="text/javascript" src="src/screens/credits/elements.js"></script>
+
+    <script type="text/javascript" src="src/screens/highscores/screen.js"></script>
+    <script type="text/javascript" src="src/screens/highscores/socket.js"></script>
 
     <!-- /build -->
 

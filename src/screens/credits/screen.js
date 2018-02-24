@@ -1,4 +1,5 @@
-game.CreditsScreen = me.ScreenObject.extend({
+game.Screens = game.Screens || {};
+game.Screens.Credits = me.ScreenObject.extend({
 	onResetEvent() {
 		me.audio.playTrack('cold_stone');
 

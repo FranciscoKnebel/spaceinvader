@@ -1,6 +1,7 @@
-game.HUD = game.HUD || {};
+game.GUI = game.GUI || {};
+game.GUI.HUD = game.GUI.HUD || {};
 
-game.HUD.debugContainer = me.Container.extend({
+game.GUI.HUD.debugContainer = me.Container.extend({
 	init() {
 		this._super(me.Container, 'init');
 
@@ -8,11 +9,11 @@ game.HUD.debugContainer = me.Container.extend({
 		this.floating = true;
 		this.name = 'debugHUD';
 
-		this.addChild(new game.HUD.debugHUD(5, 5));
+		this.addChild(new game.GUI.HUD.debugHUD(5, 5));
 	}
 });
 
-game.HUD.debugHUD = me.Renderable.extend({
+game.GUI.HUD.debugHUD = me.Renderable.extend({
 	init(x, y) {
 		this._super(me.Renderable, 'init', [x, y, 10, 10]);
 
@@ -32,9 +33,9 @@ game.HUD.debugHUD = me.Renderable.extend({
 	draw(context) {
 		/*
 			Example usage:
-			game.playScreen.debugHUD.children[0].data.values.push(`X: ${me.device.accelerationX}`);
-			game.playScreen.debugHUD.children[0].data.values.push(`Y: ${me.device.accelerationY}`);
-			game.playScreen.debugHUD.children[0].data.values.push(`Z: ${me.device.accelerationZ}`);
+			game.playing.debugHUD.children[0].data.values.push(`X: ${me.device.accelerationX}`);
+			game.playing.debugHUD.children[0].data.values.push(`Y: ${me.device.accelerationY}`);
+			game.playing.debugHUD.children[0].data.values.push(`Z: ${me.device.accelerationZ}`);
 
 			Will add values to this object data. When this object draw method is activated,
 			it will draw the values on the screen.

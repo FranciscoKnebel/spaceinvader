@@ -1,4 +1,5 @@
-game.Enemy = me.Entity.extend({
+game.Entities = game.Entities || {};
+game.Entities.Enemy = me.Entity.extend({
 	init(x, y) {
 		this._super(me.Entity, 'init', [
 			x, y,

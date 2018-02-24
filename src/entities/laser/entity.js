@@ -1,13 +1,14 @@
-game.Laser = me.Entity.extend({
+game.Entities = game.Entities || {};
+game.Entities.Laser = me.Entity.extend({
 	init(x, y) {
-		this._super(me.Entity, 'init', [x, y, { width: game.Laser.width, height: game.Laser.height }]);
+		this._super(me.Entity, 'init', [x, y, { width: game.Entities.Laser.width, height: game.Entities.Laser.height }]);
 		this.z = 5;
 		this.body.setVelocity(0, 250);
 		this.body.collisionType = me.collision.types.PROJECTILE_OBJECT;
 
 		this.renderable = new (me.Renderable.extend({
 			init() {
-				this._super(me.Renderable, 'init', [0, 0, game.Laser.width, game.Laser.height]);
+				this._super(me.Renderable, 'init', [0, 0, game.Entities.Laser.width, game.Entities.Laser.height]);
 			},
 			destroy() {},
 			draw(renderer) {
@@ -36,7 +37,7 @@ game.Laser = me.Entity.extend({
 	onCollision(res, other) {
 		if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
 			me.game.world.removeChild(this);
-			game.playScreen.enemyManager.removeChild(other);
+			game.playing.enemyManager.removeChild(other);
 
 			me.audio.play('hit');
 
@@ -47,5 +48,5 @@ game.Laser = me.Entity.extend({
 	}
 });
 
-game.Laser.width = 3;
-game.Laser.height = 20;
+game.Entities.Laser.width = 3;
+game.Entities.Laser.height = 20;

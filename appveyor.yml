@@ -30,17 +30,17 @@ build_script:
 before_deploy:
   - mkdir apps\installers
   - npm run deploy-appveyor
+  - appveyor PushArtifact apps\installers\spaceinvader-win32-ia32
+  - appveyor PushArtifact apps\installers\spaceinvader-win32-x64
+  - appveyor PushArtifact apps\installers\*.msi
+  - appveyor PushArtifact apps\installers\*.exe
 
 deploy:
   description: ''
   provider: GitHub
   auth_token:
     secure: GGWpP6cibMdB2Q9L41M3GBz4KEQILhjiI+gXJtKlD1YkMmGMW0DlF7g6JdYg3znT
-  artifact:
-    apps/installers/spaceinvader-win32-ia32.zip
-    apps/installers/spaceinvader-win32-x64.zip
-    apps/installers/spaceinvader-*-setup.msi
-  draft: true
+  draft: false
   prerelease: false
   on:
     appveyor_repo_tag: true        # deploy on tag push only

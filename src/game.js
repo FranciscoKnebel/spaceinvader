@@ -57,23 +57,23 @@ const game = {
 
 	// Run on game resources loaded.
 	loaded() {
-		me.pool.register('player', game.Player);
-		me.pool.register('enemy', game.Enemy);
-		me.pool.register('laser', game.Laser);
+		me.pool.register('player', game.Entities.Player);
+		me.pool.register('enemy', game.Entities.Enemy);
+		me.pool.register('laser', game.Entities.Laser);
 
-		this.playScreen = new game.PlayScreen();
-		me.state.set(me.state.PLAY, this.playScreen);
-		me.state.set(me.state.GAMEOVER, new game.LostScreen());
-		me.state.set(me.state.GAME_END, new game.WonScreen());
-		me.state.set(me.state.MENU, new game.StartMenuScreen());
-		me.state.set(me.state.SCORE, new game.HighscoreScreen());
+		this.playing = new game.Screens.Play();
+		me.state.set(me.state.PLAY, this.playing);
+		me.state.set(me.state.GAMEOVER, new game.Screens.Lost());
+		me.state.set(me.state.GAME_END, new game.Screens.Won());
+		me.state.set(me.state.MENU, new game.Screens.Start());
+		me.state.set(me.state.SCORE, new game.Screens.Highscores());
 
 		// User defined states
 		me.state.HELP = me.state.USER;
-		me.state.set(me.state.HELP, new game.HelpScreen());
+		me.state.set(me.state.HELP, new game.Screens.Help());
 
 		me.state.CREDITS = me.state.USER + 1;
-		me.state.set(me.state.CREDITS, new game.CreditsScreen());
+		me.state.set(me.state.CREDITS, new game.Screens.Credits());
 
 		// add some keyboard shortcuts
 		/*

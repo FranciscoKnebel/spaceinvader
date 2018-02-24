@@ -1,31 +1,32 @@
-game.PlayScreen = me.ScreenObject.extend({
+game.Screens = game.Screens || {};
+game.Screens.Play = me.ScreenObject.extend({
 	onResetEvent(level, fromStartMenu) {
 		if (fromStartMenu) {
-			me.audio.playTrack('tronicles');
+			// me.audio.playTrack('tronicles');
 		} else {
 			me.audio.resumeTrack();
 		}
 
 		let background = '#000';
 
-		if (game.colors.backgrounds.level.length > level) {
-			background = game.colors.backgrounds.level[level];
+		if (game.GUI.colors.backgrounds.level.length > level) {
+			background = game.GUI.colors.backgrounds.level[level];
 		} else {
-			background = game.colors.backgrounds.level[game.colors.backgrounds.level.length - 1];
+			background = game.GUI.colors.backgrounds.level[game.GUI.colors.backgrounds.level.length - 1];
 		}
 		me.game.world.addChild(new me.ColorLayer('background', background), 0);
 
 		this.player = me.pool.pull('player');
 		me.game.world.addChild(this.player, 1);
 
-		this.enemyManager = new game.EnemyManager();
+		this.enemyManager = new game.Entities.EnemyManager();
 		me.game.world.addChild(this.enemyManager, 2);
 
-		this.HUD = new game.HUD.Container();
+		this.HUD = new game.GUI.HUD.Container();
 		me.game.world.addChild(this.HUD);
 
 		// DEBUG HUD, uncomment only for DEBUGGING purposes.
-		// this.debugHUD = new game.HUD.debugContainer();
+		// this.debugHUD = new game.GUI.HUD.debugContainer();
 		// me.game.world.addChild(this.debugHUD);
 
 		// Commands

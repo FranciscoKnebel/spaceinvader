@@ -1,6 +1,6 @@
 /* eslint no-alert: 0 */
-
-game.StartMenuScreen = me.ScreenObject.extend({
+game.Screens = game.Screens || {};
+game.Screens.Start = me.ScreenObject.extend({
 	onResetEvent() {
 		me.game.world.addChild(new me.ColorLayer('background', '#000'), 0);
 

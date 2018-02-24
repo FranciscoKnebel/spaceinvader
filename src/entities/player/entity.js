@@ -1,4 +1,5 @@
-game.Player = me.Sprite.extend({
+game.Entities = game.Entities || {};
+game.Entities.Player = me.Sprite.extend({
 	init() {
 		const image = me.loader.getImage('player');
 
@@ -8,7 +9,6 @@ game.Player = me.Sprite.extend({
 			{ image }
 		]);
 
-		this.velx = 450;
 		this.maxX = me.game.viewport.width - this.width;
 	},
 
@@ -24,24 +24,26 @@ game.Player = me.Sprite.extend({
 	},
 
 	movementControls(time) {
+		const velx = 450;
+
 		if (me.input.isKeyPressed('left') || me.device.accelerationX > 1) {
-			this.pos.x -= this.velx * time / 1000;
+			this.pos.x -= velx * time / 1000;
 		}
 
 		if (me.input.isKeyPressed('right') || me.device.accelerationX < -1) {
-			this.pos.x += this.velx * time / 1000;
+			this.pos.x += velx * time / 1000;
 		}
 
 		if (me.input.isKeyPressed('shoot')) {
-			me.game.world.addChild(me.pool.pull('laser', this.pos.x - (game.Laser.width / 2), this.pos.y - this.height));
+			me.game.world.addChild(me.pool.pull('laser', this.pos.x - (game.Entities.Laser.width / 2), this.pos.y - this.height));
 			me.audio.play('fire');
 		}
 
 		if (me.device.isMobile) {
 			if (me.device.accelerationX > 0.4) {
-				this.pos.x -= this.velx / 3 * time / 1000;
+				this.pos.x -= velx / 3 * time / 1000;
 			} else if (me.device.accelerationX < -0.4) {
-				this.pos.x += this.velx / 3 * time / 1000;
+				this.pos.x += velx / 3 * time / 1000;
 			}
 		}
 	},

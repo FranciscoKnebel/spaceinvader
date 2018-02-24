@@ -1,6 +1,5 @@
-game.gui = game.gui || {};
-
-game.gui.ScoreInput = me.Renderable.extend({
+game.GUI = game.GUI || {};
+game.GUI.ScoreInput = me.Renderable.extend({
 	init(y, type, maxlength, onClickCallback) {
 		this.$wrapper = $('<div class="wrapper ui action input">')
 			.css({

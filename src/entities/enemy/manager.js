@@ -5,7 +5,8 @@ function outOfBounds(velocity, bounds) {
 	);
 }
 
-game.EnemyManager = me.Container.extend({
+game.Entities = game.Entities || {};
+game.Entities.EnemyManager = me.Container.extend({
 	init() {
 		this.COLS = Math.floor((me.game.viewport.width - 32) / 64);
 		this.ROWS = (game.data.level + 1) % 10 === 0 ? 2 : 4;
@@ -102,7 +103,7 @@ game.EnemyManager = me.Container.extend({
 			this.vel *= -1;
 			this.pos.y += this.baseSpeed.y + 0.25 * game.data.level;
 
-			if (!game.playScreen.checkIfLoss(childBounds.bottom)) {
+			if (!game.playing.checkIfLoss(childBounds.bottom)) {
 				this.timer.change(() => {
 					this.moveEnemies();
 				}, game.data.movementTime);

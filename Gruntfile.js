@@ -9,10 +9,10 @@ module.exports = (grunt) => {
 				src: [
 					'lib/melonjs.js',
 					'lib/plugins/**/*.js',
-					'js/game.js',
+					'src/game.js',
 					'build/js/resources.js',
 					'build/js/music_resources.js',
-					'js/**/*.js'
+					'src/**/*.js'
 				],
 				dest: 'build/js/app.js'
 			}
@@ -46,6 +46,10 @@ module.exports = (grunt) => {
 						src: 'icons/*',
 						dest: 'build/',
 						expand: true
+					},
+					{
+						src: 'icons/favicon.ico',
+						dest: 'build/favicon.ico'
 					}
 				]
 			}
@@ -130,7 +134,7 @@ module.exports = (grunt) => {
 		asar: {
 			dist: {
 				cwd: 'build',
-				src: ['**/*', '!js/app.js'],
+				src: ['**/*', '!src/app.js'],
 				expand: true,
 				dest: `bin/${process.platform === 'darwin' ? 'Electron.app/Contents/Resources/' : 'resources/'}app.asar`
 			}
