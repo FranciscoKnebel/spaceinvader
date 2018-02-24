@@ -1,3 +1,4 @@
+game.GUI = game.GUI || {};
 game.GUI.colors = {
 	backgrounds: {
 		level: ['#000', '#043604', '#3D0E03', '#4C1104', '#1A1A1A'],
