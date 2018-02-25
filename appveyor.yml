@@ -30,10 +30,8 @@ build_script:
 before_deploy:
   - mkdir apps\installers
   - npm run deploy-appveyor
-  - appveyor PushArtifact apps\installers\spaceinvader-win32-ia32
-  - appveyor PushArtifact apps\installers\spaceinvader-win32-x64
-  - appveyor PushArtifact apps\installers\*.msi
-  - appveyor PushArtifact apps\installers\*.exe
+  - appveyor PushArtifact apps\installers\spaceinvader-win32-ia32.zip
+  - appveyor PushArtifact apps\installers\spaceinvader-win32-x64.zip
 
 deploy:
   description: ''
