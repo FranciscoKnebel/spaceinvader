@@ -83,5 +83,10 @@ game.resources = [
         "name": "5",
         "type": "image",
         "src": "data/img/ui/startMenu/5.png"
+    },
+    {
+        "name": "weapons",
+        "type": "image",
+        "src": "data/img/ui/weapons.png"
     }
 ];

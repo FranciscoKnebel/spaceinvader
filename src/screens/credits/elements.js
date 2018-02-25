@@ -16,7 +16,7 @@ game.Credits.elements = [
 			'Player Spaceship:',
 			'F5S3',
 			'',
-			'Enemy Spaceship',
+			'Enemy Spaceship:',
 			'att2',
 			'att5',
 			'blueship2',
@@ -24,6 +24,21 @@ game.Credits.elements = [
 			'RD1',
 			'RD2',
 			'RD3'
+		]
+	},
+	{
+		header: 'Freepik',
+		items: [
+			'Weapon icons:',
+			'Bomb',
+			'Trident'
+		]
+	},
+	{
+		header: 'Creaticca Creative Agency',
+		items: [
+			'Weapon icons:',
+			'Shotgun'
 		]
 	},
 	{

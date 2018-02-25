@@ -14,10 +14,16 @@
   - RD2
   - RD3
 
+##### Freepik
+- Weapon icons
+  - Bomb
+  - Trident
+
+##### Creaticca Creative Agency
+- Weapon icons
+  - Shotgun
+
 ## Music
-> ##### Author _(Link)_
-> - Track Number 1
-> - Track Number 2
 
 ##### Sirius Beat _(http://youtu.be/zIRo7NJ4uLE)_
 - Tronicles
