@@ -55,6 +55,9 @@ game.Screens.Play = me.ScreenObject.extend({
 				me.state.change(me.state.HELP);
 			}
 		});
+
+		me.input.bindKey(me.input.KEY.Q, 'weapon-minus', true);
+		me.input.bindKey(me.input.KEY.E, 'weapon-plus', true);
 	},
 
 	onDestroyEvent() {
@@ -73,6 +76,9 @@ game.Screens.Play = me.ScreenObject.extend({
 		me.input.unbindKey(me.input.KEY.NUM2);
 		me.input.unbindKey(me.input.KEY.NUM3);
 		me.input.releasePointerEvent('wheel', me.game.viewport);
+
+		me.input.unbindKey(me.input.KEY.Q);
+		me.input.unbindKey(me.input.KEY.E);
 	},
 
 	checkIfLoss(y) {

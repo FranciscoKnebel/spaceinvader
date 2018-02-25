@@ -18,9 +18,39 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 		this._super(me.Renderable, 'init', [x, y, 10, 10]);
 
 		this.data = {
-			enemyQuantity: {
-				value: -1,
-				font: new me.Font('Serif', 24, '#FFFFFF', 'left')
+			currentWeapon: {
+				sprite: new (me.Sprite.extend({
+					init() {
+						const image = me.loader.getImage('weapons');
+
+						this._super(me.Sprite, 'init', [
+							25, 25,
+							{ image, frameheight: 32, framewidth: 32 }
+						]);
+
+						this.addAnimation('shotgun', [0]);
+						this.addAnimation('trident', [1]);
+						this.addAnimation('bomb', [2]);
+						this.addAnimation('trident-bomb', [3]);
+					},
+					update() {
+						switch (game.data.currentWeapon) {
+						case 0:
+							this.setCurrentAnimation('shotgun');
+							break;
+						case 1:
+							this.setCurrentAnimation('trident');
+							break;
+						case 2:
+							this.setCurrentAnimation('bomb');
+							break;
+						case 3:
+							this.setCurrentAnimation('trident-bomb');
+							break;
+						default:
+						}
+					}
+				}))()
 			},
 			score: {
 				value: 0,
@@ -31,15 +61,12 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 				font: new me.Font('Serif', 24, '#285428', 'right')
 			}
 		};
+
+		me.game.world.addChild(this.data.currentWeapon.sprite, 3);
 	},
 
 	update() {
 		let updated = false;
-
-		if (this.data.enemyQuantity.value !== game.playing.enemyManager.children.length) {
-			this.data.enemyQuantity.value = game.playing.enemyManager.children.length;
-			updated = true;
-		}
 
 		if (this.data.movementTime.value !== game.data.movementTime) {
 			this.data.movementTime.value = game.data.movementTime;
@@ -55,8 +82,6 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 	},
 
 	draw(context) {
-		this.data.enemyQuantity.font.draw(context, `${this.data.enemyQuantity.value} enemies`, 5, 5);
-
 		this.data.movementTime.font.draw(
 			context,
 			`${this.data.movementTime.value.toFixed(1)}ms`,

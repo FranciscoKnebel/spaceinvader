@@ -45,21 +45,41 @@ game.Entities.Player = me.Sprite.extend({
 	},
 	shootingControls() {
 		if (me.input.isKeyPressed('shoot')) {
-			me.game.world.addChild(me.pool.pull('laser', this.pos.x - (game.Entities.Laser.width / 2), this.pos.y - this.height, 'n'));
-
-			// me.game.world.addChild(me.pool.pull('bomb', this.pos.x -
-			// (game.Entities.Weapons.Trident.width / 2), this.pos.y - this.height));
-			//
-			// me.game.world.addChild(me.pool.pull('trident', this.pos.x -
-			// (game.Entities.Weapons.Trident.width / 2), this.pos.y - this.height));
-			//
-			// me.game.world.addChild(me.pool.pull('trident', this.pos.x -
-			// (game.Entities.Weapons.Trident.width / 2), this.pos.y - this.height, true));
-			//
-			// me.game.world.addChild(me.pool.pull('shotgun', this.pos.x -
-			// (game.Entities.Weapons.Shotgun.width / 2), this.pos.y - this.height, 3));
+			switch (game.data.currentWeapon) {
+			case 0:
+				me.game.world.addChild(me.pool.pull('shotgun', this.pos.x -
+				(game.Entities.Weapons.Shotgun.width / 2), this.pos.y - this.height, 3));
+				break;
+			case 1:
+				me.game.world.addChild(me.pool.pull('trident', this.pos.x -
+				(game.Entities.Weapons.Trident.width / 2), this.pos.y - this.height, true));
+				break;
+			case 2:
+				me.game.world.addChild(me.pool.pull('bomb', this.pos.x -
+				(game.Entities.Weapons.Trident.width / 2), this.pos.y - this.height));
+				break;
+			case 3:
+				me.game.world.addChild(me.pool.pull('trident', this.pos.x -
+				(game.Entities.Weapons.Trident.width / 2), this.pos.y - this.height));
+				break;
+			default:
+			}
 
 			me.audio.play('fire');
+		}
+
+		if (me.input.isKeyPressed('weapon-minus')) {
+			game.data.currentWeapon -= 1;
+			if (game.data.currentWeapon < 0) {
+				game.data.currentWeapon = 3;
+			}
+		}
+
+		if (me.input.isKeyPressed('weapon-plus')) {
+			game.data.currentWeapon += 1;
+			if (game.data.currentWeapon > 3) {
+				game.data.currentWeapon = 0;
+			}
 		}
 	},
 	volumeControls() {

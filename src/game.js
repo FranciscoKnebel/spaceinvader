@@ -7,7 +7,8 @@ const game = {
 		score: 0,
 		levelscore: 0,
 		level: 0,
-		startPlayTime: new Date()
+		startPlayTime: new Date(),
+		currentWeapon: 0
 	},
 
 	// Run on page load.
