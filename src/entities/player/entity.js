@@ -16,6 +16,7 @@ game.Entities.Player = me.Sprite.extend({
 		this._super(me.Sprite, 'update', [time]);
 
 		this.movementControls(time);
+		this.shootingControls();
 		this.volumeControls();
 
 		this.pos.x = this.pos.x.clamp(this.width, this.maxX);
@@ -34,11 +35,6 @@ game.Entities.Player = me.Sprite.extend({
 			this.pos.x += velx * time / 1000;
 		}
 
-		if (me.input.isKeyPressed('shoot')) {
-			me.game.world.addChild(me.pool.pull('laser', this.pos.x - (game.Entities.Laser.width / 2), this.pos.y - this.height));
-			me.audio.play('fire');
-		}
-
 		if (me.device.isMobile) {
 			if (me.device.accelerationX > 0.4) {
 				this.pos.x -= velx / 3 * time / 1000;
@@ -47,7 +43,13 @@ game.Entities.Player = me.Sprite.extend({
 			}
 		}
 	},
+	shootingControls() {
+		if (me.input.isKeyPressed('shoot')) {
+			me.game.world.addChild(me.pool.pull('laser', this.pos.x - (game.Entities.Laser.width / 2), this.pos.y - this.height, 'n'));
 
+			me.audio.play('fire');
+		}
+	},
 	volumeControls() {
 		if (me.input.isKeyPressed('volume-plus')) {
 			const currentVolume = me.audio.getVolume();

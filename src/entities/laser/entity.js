@@ -1,10 +1,8 @@
 game.Entities = game.Entities || {};
 game.Entities.Laser = me.Entity.extend({
-	init(x, y) {
+	init(x, y, direction) {
 		this._super(me.Entity, 'init', [x, y, { width: game.Entities.Laser.width, height: game.Entities.Laser.height }]);
 		this.z = 5;
-		this.body.setVelocity(0, 250);
-		this.body.collisionType = me.collision.types.PROJECTILE_OBJECT;
 
 		this.renderable = new (me.Renderable.extend({
 			init() {
@@ -19,12 +17,78 @@ game.Entities.Laser = me.Entity.extend({
 				renderer.setColor(color);
 			}
 		}))();
+
+		this.direction = direction;
+		this.body.collisionType = me.collision.types.PROJECTILE_OBJECT;
+
+		// Rotate rectangle and set entity velocity
+		switch (this.direction) {
+		case 'n':
+		case 's':
+			this.body.setVelocity(0, 100);
+			break;
+		case 'w':
+		case 'e':
+			this.body.setVelocity(100, 0);
+			this.renderable.currentTransform.rotate(1.55);
+			break;
+		case 'ne':
+		case 'sw':
+			this.body.setVelocity(50, 50);
+			this.renderable.currentTransform.rotate(0.75);
+			break;
+		case 'nw':
+		case 'se':
+			this.body.setVelocity(50, 50);
+			this.renderable.currentTransform.rotate(-0.75);
+			break;
+		default:
+		}
+
 		this.alwaysUpdate = true;
 	},
 
 	update(time) {
-		this.body.vel.y -= this.body.accel.y * time / 1000;
+		const deltaX = this.body.accel.x * time / 1000;
+		const deltaY = this.body.accel.y * time / 1000;
+
+		switch (this.direction) {
+		case 'n':
+			this.body.vel.y -= deltaY;
+			break;
+		case 's':
+			this.body.vel.y += deltaY;
+			break;
+		case 'w':
+			this.body.vel.x -= deltaX;
+			break;
+		case 'e':
+			this.body.vel.x += deltaX;
+			break;
+		case 'ne':
+			this.body.vel.x += deltaX;
+			this.body.vel.y -= deltaY;
+			break;
+		case 'nw':
+			this.body.vel.x -= deltaX;
+			this.body.vel.y -= deltaY;
+			break;
+		case 'se':
+			this.body.vel.x += deltaX;
+			this.body.vel.y += deltaY;
+			break;
+		case 'sw':
+			this.body.vel.x -= deltaX;
+			this.body.vel.y += deltaY;
+			break;
+		default:
+		}
+
 		if (this.pos.y + this.height <= 0) {
+			me.game.world.removeChild(this);
+		}
+
+		if (!this.inViewport) {
 			me.game.world.removeChild(this);
 		}
 
@@ -44,6 +108,11 @@ game.Entities.Laser = me.Entity.extend({
 			game.data.levelscore += 10;
 			game.data.score += 10;
 			return true;
+		}
+
+		if (other.body.collisionType === me.collision.types.PROJECTILE_OBJECT) {
+			// do nothing
+			return false;
 		}
 	}
 });

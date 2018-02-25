@@ -53,6 +53,9 @@ const game = {
 
 		// Initialize melonJS and display a loading screen.
 		me.state.change(me.state.LOADING);
+
+		// Disable gravity.
+		me.sys.gravity = 0;
 	},
 
 	// Run on game resources loaded.
