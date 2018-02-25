@@ -47,6 +47,18 @@ game.Entities.Player = me.Sprite.extend({
 		if (me.input.isKeyPressed('shoot')) {
 			me.game.world.addChild(me.pool.pull('laser', this.pos.x - (game.Entities.Laser.width / 2), this.pos.y - this.height, 'n'));
 
+			// me.game.world.addChild(me.pool.pull('bomb', this.pos.x -
+			// (game.Entities.Weapons.Trident.width / 2), this.pos.y - this.height));
+			//
+			// me.game.world.addChild(me.pool.pull('trident', this.pos.x -
+			// (game.Entities.Weapons.Trident.width / 2), this.pos.y - this.height));
+			//
+			// me.game.world.addChild(me.pool.pull('trident', this.pos.x -
+			// (game.Entities.Weapons.Trident.width / 2), this.pos.y - this.height, true));
+			//
+			// me.game.world.addChild(me.pool.pull('shotgun', this.pos.x -
+			// (game.Entities.Weapons.Shotgun.width / 2), this.pos.y - this.height, 3));
+
 			me.audio.play('fire');
 		}
 	},

@@ -63,6 +63,9 @@ const game = {
 		me.pool.register('player', game.Entities.Player);
 		me.pool.register('enemy', game.Entities.Enemy);
 		me.pool.register('laser', game.Entities.Laser);
+		me.pool.register('bomb', game.Entities.Weapons.Bomb);
+		me.pool.register('trident', game.Entities.Weapons.Trident);
+		me.pool.register('shotgun', game.Entities.Weapons.Shotgun);
 
 		this.playing = new game.Screens.Play();
 		me.state.set(me.state.PLAY, this.playing);
