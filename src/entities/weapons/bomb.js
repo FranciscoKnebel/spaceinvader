@@ -26,6 +26,7 @@ game.Entities.Weapons.Bomb = me.Entity.extend({
 
 		this.body.setVelocity(0, 10);
 		this.body.collisionType = me.collision.types.PROJECTILE_OBJECT;
+		me.audio.play('fire');
 	},
 	update(time) {
 		this.body.vel.y -= this.body.accel.y * time / 1000;

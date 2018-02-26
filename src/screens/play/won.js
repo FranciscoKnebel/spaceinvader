@@ -32,7 +32,7 @@ game.Screens.Won = me.ScreenObject.extend({
 
 					this.anchorPoint.set(0, 0);
 
-					this.titleFont = new me.Font('Serif', 56, '#000', 'center');
+					this.titleFont = new me.Font('Serif', 48, '#000', 'center');
 					this.points = new me.Font('Serif', 32, '#000', 'center');
 					this.time = new me.Font('Serif', 32, '#000', 'center');
 					this.btnFont = new me.Font('Serif', 32, '#000', 'center');

@@ -28,25 +28,52 @@ game.Screens.Help = me.ScreenObject.extend({
 				draw(renderer) {
 					game.Title.draw(renderer, this.titleFont, this.version);
 
-					this.commandFont.draw(renderer, 'A & LEFT', 50, 175);
-					this.descriptionFont.draw(renderer, 'move left', me.game.viewport.width - 50, 175);
-
-					this.commandFont.draw(renderer, 'D & RIGHT', 50, 225);
-					this.descriptionFont.draw(renderer, 'move right', me.game.viewport.width - 50, 225);
-
-					this.commandFont.draw(renderer, 'SPACE & LCLICK', 50, 275);
-					this.descriptionFont.draw(renderer, 'shoot', me.game.viewport.width - 50, 275);
-
-					this.commandFont.draw(renderer, 'Q & E', 50, 325);
-					this.descriptionFont.draw(renderer, 'switch weapons', me.game.viewport.width - 50, 325);
-
-					this.commandFont.draw(renderer, 'J/K/L & 1/2/3', 50, 375);
-					this.descriptionFont.draw(renderer, '+/Mute/- Volume', me.game.viewport.width - 50, 375);
+					let height = 175;
 
 					if (me.device.isMobile) {
-						this.btnFont.draw(renderer, 'TOUCH TO CONTINUE', me.game.viewport.width / 2, 425);
+						this.commandFont.draw(renderer, 'Movement', 50, height);
+						height += 35;
+						this.descriptionFont.draw(renderer, 'use your accelerometer', me.game.viewport.width - 50, height);
+
+						height += 75;
+						this.commandFont.draw(renderer, 'Touch screen', 50, height);
+						height += 35;
+						this.descriptionFont.draw(renderer, 'shoot', me.game.viewport.width - 50, height);
+
+						height += 75;
+						this.commandFont.draw(renderer, 'Touch weapon', 50, height);
+						height += 35;
+						this.descriptionFont.draw(renderer, 'switch weapons', me.game.viewport.width - 50, height);
 					} else {
-						this.btnFont.draw(renderer, 'PRESS ENTER TO CONTINUE', me.game.viewport.width / 2, 425);
+						this.commandFont.draw(renderer, 'A & LEFT', 50, height);
+						this.descriptionFont.draw(renderer, 'move left', me.game.viewport.width - 50, height);
+
+						height += 35;
+						this.commandFont.draw(renderer, 'D & RIGHT', 50, height);
+						this.descriptionFont.draw(renderer, 'move right', me.game.viewport.width - 50, height);
+
+						height += 35;
+						this.commandFont.draw(renderer, 'SPACE & LCLICK', 50, height);
+						this.descriptionFont.draw(renderer, 'shoot', me.game.viewport.width - 50, height);
+
+						height += 35;
+						this.commandFont.draw(renderer, 'Q & E', 50, height);
+						this.descriptionFont.draw(renderer, 'switch weapons', me.game.viewport.width - 50, height);
+
+						height += 35;
+						this.commandFont.draw(renderer, 'R', 50, height);
+						this.descriptionFont.draw(renderer, 'reload', me.game.viewport.width - 50, height);
+
+						height += 35;
+						this.commandFont.draw(renderer, 'J/K/L & 1/2/3', 50, height);
+						this.descriptionFont.draw(renderer, '+/Mute/- Volume', me.game.viewport.width - 50, height);
+					}
+
+					height += 50;
+					if (me.device.isMobile) {
+						this.btnFont.draw(renderer, 'TOUCH TO CONTINUE', me.game.viewport.width / 2, height);
+					} else {
+						this.btnFont.draw(renderer, 'PRESS ENTER TO CONTINUE', me.game.viewport.width / 2, height);
 					}
 				},
 				update() {

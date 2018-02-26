@@ -26,6 +26,7 @@ game.Entities.Weapons.Trident = me.Entity.extend({
 				}
 			}
 		}))();
+		me.audio.play('fire');
 	},
 	update(time) {
 		this.body.vel.y -= this.body.accel.y * time / 1000;

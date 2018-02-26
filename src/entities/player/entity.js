@@ -44,43 +44,43 @@ game.Entities.Player = me.Sprite.extend({
 		}
 	},
 	shootingControls() {
-		if (me.input.isKeyPressed('shoot')) {
-			switch (game.data.currentWeapon) {
-			case 0:
-				me.game.world.addChild(me.pool.pull('shotgun', this.pos.x -
-				(game.Entities.Weapons.Shotgun.width / 2), this.pos.y - this.height, 3));
-				break;
-			case 1:
-				me.game.world.addChild(me.pool.pull('trident', this.pos.x -
-				(game.Entities.Weapons.Trident.width / 2), this.pos.y - this.height, true));
-				break;
-			case 2:
-				me.game.world.addChild(me.pool.pull('bomb', this.pos.x -
-				(game.Entities.Weapons.Trident.width / 2), this.pos.y - this.height));
-				break;
-			case 3:
-				me.game.world.addChild(me.pool.pull('trident', this.pos.x -
-				(game.Entities.Weapons.Trident.width / 2), this.pos.y - this.height));
-				break;
-			default:
-			}
+		const equiped = game.data.weaponEquipped;
+		if (me.input.isKeyPressed('shoot') && game.data.weapons[equiped].ammunition > 0) {
+			game.data.weapons[equiped].ammunition -= 1;
+			this.shoot(equiped);
+		}
 
-			me.audio.play('fire');
+		if (me.input.isKeyPressed('reload') && game.data.weapons[equiped].ammunition === 0) {
+			game.data.weapons[equiped].ammunition = game.data.weapons[equiped].reloadAmount;
 		}
 
 		if (me.input.isKeyPressed('weapon-minus')) {
-			game.data.currentWeapon -= 1;
-			if (game.data.currentWeapon < 0) {
-				game.data.currentWeapon = 3;
+			game.data.weaponEquipped -= 1;
+			if (game.data.weaponEquipped < 0) {
+				game.data.weaponEquipped = 3;
 			}
 		}
 
 		if (me.input.isKeyPressed('weapon-plus')) {
-			game.data.currentWeapon += 1;
-			if (game.data.currentWeapon > 3) {
-				game.data.currentWeapon = 0;
+			game.data.weaponEquipped += 1;
+			if (game.data.weaponEquipped > 3) {
+				game.data.weaponEquipped = 0;
+			}
+
+			if (me.device.isMobile) {
+				// if mobile, autoreload on weapon change.
+				const { weaponEquipped } = game.data;
+				const amount = game.data.weapons[weaponEquipped].reloadAmount;
+
+				game.data.weapons[weaponEquipped].ammunition = amount;
 			}
 		}
+	},
+	shoot(equiped) {
+		const { name, extraArg } = game.data.weapons[equiped];
+
+		me.game.world.addChild(me.pool.pull(name, this.pos.x -
+		(game.Entities.Weapons.Shotgun.width / 2), this.pos.y - this.height, extraArg));
 	},
 	volumeControls() {
 		if (me.input.isKeyPressed('volume-plus')) {
@@ -111,6 +111,7 @@ game.Entities.Player = me.Sprite.extend({
 
 		me.event.subscribe('wheel', (event) => {
 			const currentVolume = me.audio.getVolume();
+
 			me.input.releasePointerEvent('wheel', me.game.viewport);
 
 			if (event.deltaY < 0) {

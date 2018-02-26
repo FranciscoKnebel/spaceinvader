@@ -14,6 +14,7 @@ game.Entities.Weapons.Shotgun = me.Entity.extend({
 			},
 			destroy() {}
 		}))();
+		me.audio.play('fire');
 	},
 	update() {
 		me.game.world.removeChild(this);

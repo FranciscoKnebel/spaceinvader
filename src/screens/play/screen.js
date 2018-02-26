@@ -58,6 +58,7 @@ game.Screens.Play = me.ScreenObject.extend({
 
 		me.input.bindKey(me.input.KEY.Q, 'weapon-minus', true);
 		me.input.bindKey(me.input.KEY.E, 'weapon-plus', true);
+		me.input.bindKey(me.input.KEY.R, 'reload', true);
 	},
 
 	onDestroyEvent() {
@@ -79,6 +80,7 @@ game.Screens.Play = me.ScreenObject.extend({
 
 		me.input.unbindKey(me.input.KEY.Q);
 		me.input.unbindKey(me.input.KEY.E);
+		me.input.unbindKey(me.input.KEY.R);
 	},
 
 	checkIfLoss(y) {

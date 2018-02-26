@@ -19,14 +19,15 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 
 		this.data = {
 			currentWeapon: {
-				sprite: new (me.Sprite.extend({
+				sprite: new (me.GUI_Object.extend({
 					init() {
 						const image = me.loader.getImage('weapons');
 
-						this._super(me.Sprite, 'init', [
-							25, 25,
-							{ image, frameheight: 32, framewidth: 32 }
+						this._super(me.GUI_Object, 'init', [
+							50, 50,
+							{ image, frameheight: 64, framewidth: 64 }
 						]);
+						this.pos.z = 5;
 
 						this.addAnimation('shotgun', [0]);
 						this.addAnimation('trident', [1]);
@@ -34,27 +35,44 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 						this.addAnimation('trident-bomb', [3]);
 					},
 					update() {
-						switch (game.data.currentWeapon) {
+						switch (game.data.weaponEquipped) {
 						case 0:
 							this.setCurrentAnimation('shotgun');
-							break;
+							return true;
 						case 1:
 							this.setCurrentAnimation('trident');
-							break;
+							return true;
 						case 2:
 							this.setCurrentAnimation('bomb');
-							break;
+							return true;
 						case 3:
 							this.setCurrentAnimation('trident-bomb');
-							break;
+							return true;
 						default:
+							return false;
 						}
+					},
+					onClick() {
+						me.input.triggerKeyEvent(me.input.KEY.E, true);
+					},
+					onRelease() {
+						me.input.triggerKeyEvent(me.input.KEY.E, false);
+					},
+					onOver() {
+						this.onClick();
+					},
+					onOut() {
+						this.onRelease();
 					}
 				}))()
 			},
+			ammo: {
+				value: 0,
+				font: new me.Font('Arial', 32, '#FFFF5C', 'left')
+			},
 			score: {
 				value: 0,
-				font: new me.Font('Arial', 32, '#FFFF5C', 'center')
+				font: new me.Font('Arial', 64, '#FFFF5C', 'center')
 			},
 			movementTime: {
 				value: 0,
@@ -67,6 +85,11 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 
 	update() {
 		let updated = false;
+
+		if (this.data.ammo.value !== game.data.weapons[game.data.weaponEquipped].ammunition) {
+			this.data.ammo.value = game.data.weapons[game.data.weaponEquipped].ammunition;
+			updated = true;
+		}
 
 		if (this.data.movementTime.value !== game.data.movementTime) {
 			this.data.movementTime.value = game.data.movementTime;
@@ -82,13 +105,15 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 	},
 
 	draw(context) {
+		this.data.ammo.font.draw(context, this.data.ammo.value, 64, 50);
+
+		this.data.score.font.draw(context, this.data.score.value, me.game.viewport.width / 2, 5);
+
 		this.data.movementTime.font.draw(
 			context,
 			`${this.data.movementTime.value.toFixed(1)}ms`,
 			me.game.viewport.width - 5,
 			5
 		);
-
-		this.data.score.font.draw(context, this.data.score.value, me.game.viewport.width / 2, 5);
 	}
 });
