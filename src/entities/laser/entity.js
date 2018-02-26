@@ -3,6 +3,7 @@ game.Entities.Laser = me.Entity.extend({
 	init(x, y, direction) {
 		this._super(me.Entity, 'init', [x, y, { width: game.Entities.Laser.width, height: game.Entities.Laser.height }]);
 		this.z = 5;
+		this.alwaysUpdate = true;
 
 		this.renderable = new (me.Renderable.extend({
 			init() {

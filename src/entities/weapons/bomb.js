@@ -7,6 +7,7 @@ game.Entities.Weapons = game.Entities.Weapons || {};
 game.Entities.Weapons.Bomb = me.Entity.extend({
 	init(x, y) {
 		this._super(me.Entity, 'init', [x, y, { width: game.Entities.Weapons.Bomb.width, height: game.Entities.Weapons.Bomb.height }]);
+		this.alwaysUpdate = true;
 
 		this.renderable = new (me.Renderable.extend({
 			init() {
