@@ -1,7 +1,8 @@
 game.Screens = game.Screens || {};
 game.Screens.Lost = me.ScreenObject.extend({
 	onResetEvent() {
-		me.game.world.addChild(new me.ColorLayer('background', game.GUI.colors.backgrounds.lost), 0);
+		const { level } = game.data;
+		game.buildLevel(level, 'lost');
 
 		// Play music
 		me.audio.stopTrack();

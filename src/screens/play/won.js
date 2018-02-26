@@ -2,14 +2,7 @@ game.Screens = game.Screens || {};
 game.Screens.Won = me.ScreenObject.extend({
 	onResetEvent() {
 		const { level } = game.data;
-		let background = '#63C664';
-
-		if (game.GUI.colors.backgrounds.won.length > level) {
-			background = game.GUI.colors.backgrounds.won[level];
-		} else {
-			background = game.GUI.colors.backgrounds.won[game.GUI.colors.backgrounds.won.length - 1];
-		}
-		me.game.world.addChild(new me.ColorLayer('background', background), 0);
+		game.buildLevel(level, 'won');
 
 		// Play music
 		me.audio.play('won');

@@ -7,19 +7,12 @@ game.Screens.Play = me.ScreenObject.extend({
 			me.audio.resumeTrack();
 		}
 
-		let background = '#000';
-
-		if (game.GUI.colors.backgrounds.level.length > level) {
-			background = game.GUI.colors.backgrounds.level[level];
-		} else {
-			background = game.GUI.colors.backgrounds.level[game.GUI.colors.backgrounds.level.length - 1];
-		}
-		me.game.world.addChild(new me.ColorLayer('background', background), 0);
+		const { enemyConfig } = game.buildLevel(level, 'play');
 
 		this.player = me.pool.pull('player');
 		me.game.world.addChild(this.player, 1);
 
-		this.enemyManager = new game.Entities.EnemyManager();
+		this.enemyManager = new game.Entities.EnemyManager(enemyConfig);
 		me.game.world.addChild(this.enemyManager, 2);
 
 		this.HUD = new game.GUI.HUD.Container();
