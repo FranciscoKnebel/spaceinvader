@@ -6,6 +6,7 @@ game.Entities.EnemyManager = me.Container.extend({
 
 		this._super(me.Container, 'init', [0, 32, this.COLS * 64 - 32, this.ROWS * 64 - 32]);
 		this.anchorPoint.set(0, 0);
+		this.alwaysUpdate = true;
 
 		this.baseSpeed = {
 			x: 4,

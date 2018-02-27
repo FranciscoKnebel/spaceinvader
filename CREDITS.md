@@ -23,6 +23,9 @@
 - Weapon icons
   - Shotgun
 
+##### Smashicons _(https://www.flaticon.com/packs/essential-set-2/)_
+- Sound icons
+
 ## Music
 
 ##### Sirius Beat _(http://youtu.be/zIRo7NJ4uLE)_

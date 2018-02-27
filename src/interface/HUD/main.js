@@ -66,6 +66,33 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 					}
 				}))()
 			},
+			sound: new (me.GUI_Object.extend({
+				init() {
+					const image = me.loader.getImage('sound');
+
+					this._super(me.GUI_Object, 'init', [
+						me.game.viewport.width - 64, 50,
+						{ image, frameheight: 64, framewidth: 64 }
+					]);
+					this.pos.z = 5;
+
+					this.addAnimation('muted', [0]);
+					this.addAnimation('unmuted', [1]);
+				},
+				update() {
+					if (game.options.sound.muted) {
+						this.setCurrentAnimation('muted');
+					} else {
+						this.setCurrentAnimation('unmuted');
+					}
+				},
+				onClick() {
+					me.input.triggerKeyEvent(me.input.KEY.K, true);
+				},
+				onRelease() {
+					me.input.triggerKeyEvent(me.input.KEY.K, false);
+				}
+			}))(),
 			ammo: {
 				value: 0,
 				font: new me.Font('Arial', 32, '#FFFF5C', 'left')
@@ -74,17 +101,22 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 				value: 0,
 				font: new me.Font('Arial', 16, '#C91D03', 'left')
 			},
+			reloadCost: {
+				value: 0,
+				font: new me.Font('Arial', 16, '#FFF', 'left')
+			},
 			score: {
 				value: 0,
 				font: new me.Font('Arial', 64, '#FFFF5C', 'center')
-			},
-			movementTime: {
-				value: 0,
-				font: new me.Font('Serif', 24, '#285428', 'right')
 			}
+			// movementTime: {
+			// 	value: 0,
+			// 	font: new me.Font('Serif', 24, '#285428', 'right')
+			// }
 		};
 
 		me.game.world.addChild(this.data.currentWeapon.sprite, 3);
+		me.game.world.addChild(this.data.sound, 4);
 	},
 
 	update() {
@@ -100,10 +132,15 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 			updated = true;
 		}
 
-		if (this.data.movementTime.value !== game.data.movementTime) {
-			this.data.movementTime.value = game.data.movementTime;
+		if (this.data.reloadCost.value !== game.data.weapons[game.data.weaponEquipped].reloadCost) {
+			this.data.reloadCost.value = game.data.weapons[game.data.weaponEquipped].reloadCost;
 			updated = true;
 		}
+
+		// if (this.data.movementTime.value !== game.data.movementTime) {
+		// 	this.data.movementTime.value = game.data.movementTime;
+		// 	updated = true;
+		// }
 
 		if (this.data.score.value !== game.data.score) {
 			this.data.score.value = game.data.score;
@@ -116,12 +153,14 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 	draw(context) {
 		this.data.ammo.font.draw(context, this.data.ammo.value, 64, 50);
 		this.data.damage.font.draw(context, `${this.data.damage.value}`, 25, 25);
+		this.data.reloadCost.font.draw(context, `${this.data.reloadCost.value}`, 25, 70);
 		this.data.score.font.draw(context, this.data.score.value, me.game.viewport.width / 2, 5);
-		this.data.movementTime.font.draw(
-			context,
-			`${this.data.movementTime.value.toFixed(1)}ms`,
-			me.game.viewport.width - 5,
-			5
-		);
+
+		// this.data.movementTime.font.draw(
+		// 	context,
+		// 	`${this.data.movementTime.value.toFixed(1)}ms`,
+		// 	me.game.viewport.width - 5,
+		// 	5
+		// );
 	}
 });

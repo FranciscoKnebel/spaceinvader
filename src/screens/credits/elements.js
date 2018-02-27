@@ -42,6 +42,13 @@ game.Credits.elements = [
 		]
 	},
 	{
+		header: 'Smashicons',
+		subheader: 'https://www.flaticon.com/packs/essential-set-2/',
+		items: [
+			'Sound icons'
+		]
+	},
+	{
 		header: 'Music'
 	},
 	{

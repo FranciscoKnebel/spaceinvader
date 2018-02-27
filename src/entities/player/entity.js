@@ -92,13 +92,13 @@ game.Entities.Player = me.Sprite.extend({
 		}
 
 		if (me.input.isKeyPressed('volume-mute')) {
-			if (game.options.muted === true) {
+			if (game.options.sound.muted === true) {
 				me.audio.unmuteAll();
 			} else {
 				me.audio.muteAll();
 			}
 
-			game.options.muted = !game.options.muted;
+			game.options.sound.muted = !game.options.sound.muted;
 		}
 
 		if (me.input.isKeyPressed('volume-minus')) {

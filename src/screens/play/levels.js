@@ -75,6 +75,7 @@ function findTheme(level) {
 	let levelCounter = 0;
 	let obj;
 
+
 	for (let i = 0; i < themes.length; i += 1) {
 		if (level > themes[i].levels.length) {
 			// Skip theme if level is not inside it.
@@ -93,10 +94,16 @@ function findTheme(level) {
 		}
 	}
 
+
+	// Generate array with all enemies indexes from EnemyList.
+	const N = game.Entities.EnemyList.length;
+	const enemies = Array.from(Array(N).keys());
+
 	return {
-		theme: undefined,
+		theme: {
+			enemies
+		},
 		stage: {
-			enemies: [0],
 			play: '#000',
 			won: '#63C664',
 			lost: '#FFF'
