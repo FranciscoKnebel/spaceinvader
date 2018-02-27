@@ -22,14 +22,16 @@ game.Entities.Weapons.Shotgun = me.Entity.extend({
 		return true;
 	},
 	split(x, y) {
-		me.game.world.addChild(me.pool.pull('laser', x, y - 5, 'n'));
+		const { damage } = game.Entities.Weapons.Shotgun;
+
+		me.game.world.addChild(me.pool.pull('laser', x, y - 5, 'n', damage));
 
 		let addToRight = true;
 		for (let i = 1, amountFired = 1; amountFired < this.amount; amountFired += 1) {
 			if (addToRight) {
-				me.game.world.addChild(me.pool.pull('laser', x + i * 5, y - 5 - i * 3, 'n'));
+				me.game.world.addChild(me.pool.pull('laser', x + i * 5, y - 5 - i * 3, 'n', damage));
 			} else {
-				me.game.world.addChild(me.pool.pull('laser', x - i * 5, y - 5 - i * 3, 'n'));
+				me.game.world.addChild(me.pool.pull('laser', x - i * 5, y - 5 - i * 3, 'n', damage));
 				i += 1;
 			}
 
@@ -38,5 +40,6 @@ game.Entities.Weapons.Shotgun = me.Entity.extend({
 	}
 });
 
+game.Entities.Weapons.Shotgun.damage = game.data.weapons[0].damage;
 game.Entities.Weapons.Shotgun.width = 3;
 game.Entities.Weapons.Shotgun.height = 20;

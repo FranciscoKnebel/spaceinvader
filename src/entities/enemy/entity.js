@@ -1,12 +1,12 @@
 game.Entities = game.Entities || {};
 game.Entities.Enemy = me.Entity.extend({
-	init(x, y) {
+	init(x, y, type) {
 		this._super(me.Entity, 'init', [
 			x, y,
 			{
 				image: 'ships',
-				width: 32,
-				height: 32
+				width: 64,
+				height: 64
 			}
 		]);
 		this.anchorPoint.set(0.5, 0.5);
@@ -14,7 +14,8 @@ game.Entities.Enemy = me.Entity.extend({
 		this.body.setVelocity(0, 0);
 		this.body.collisionType = me.collision.types.ENEMY_OBJECT;
 
-		this.chooseShipImage();
+		this.alive = true;
+		this.buildShip(type);
 	},
 
 	update(time) {
@@ -25,10 +26,15 @@ game.Entities.Enemy = me.Entity.extend({
 		return true;
 	},
 
-	chooseShipImage() {
-		const frame = ~~(Math.random() * 7);
+	buildShip(type) {
+		this.type = game.Entities.EnemyList[type];
 
-		this.renderable.addAnimation('idle', [frame], 1);
+		this.renderable.addAnimation('idle', [this.type.frame], 1);
 		this.renderable.setCurrentAnimation('idle');
+
+		this.stats = {
+			health: this.type.health,
+			armor: this.type.armor
+		};
 	}
 });

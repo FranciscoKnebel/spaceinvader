@@ -60,11 +60,16 @@ game.Entities.Weapons.Trident = me.Entity.extend({
 		}
 	},
 	split(x, y) {
-		me.game.world.addChild(me.pool.pull('laser', x, y - 15, 'n'));
-		me.game.world.addChild(me.pool.pull('laser', x + 10, y - 10, 'ne'));
-		me.game.world.addChild(me.pool.pull('laser', x - 10, y - 10, 'nw'));
+		const { damageRegular, damageSplitfire } = game.Entities.Weapons.Trident;
+		const damage = this.splitFire ? damageSplitfire : damageRegular;
+
+		me.game.world.addChild(me.pool.pull('laser', x, y - 15, 'n', damage));
+		me.game.world.addChild(me.pool.pull('laser', x + 10, y - 10, 'ne', damage));
+		me.game.world.addChild(me.pool.pull('laser', x - 10, y - 10, 'nw', damage));
 	}
 });
 
+game.Entities.Weapons.Trident.damage = game.data.weapons[1].damage;
+game.Entities.Weapons.Trident.damageSplitfire = game.data.weapons[3].damage;
 game.Entities.Weapons.Trident.width = 10;
 game.Entities.Weapons.Trident.height = 20;

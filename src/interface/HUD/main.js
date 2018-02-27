@@ -70,6 +70,10 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 				value: 0,
 				font: new me.Font('Arial', 32, '#FFFF5C', 'left')
 			},
+			damage: {
+				value: 0,
+				font: new me.Font('Arial', 16, '#C91D03', 'left')
+			},
 			score: {
 				value: 0,
 				font: new me.Font('Arial', 64, '#FFFF5C', 'center')
@@ -91,6 +95,11 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 			updated = true;
 		}
 
+		if (this.data.damage.value !== game.data.weapons[game.data.weaponEquipped].damage) {
+			this.data.damage.value = game.data.weapons[game.data.weaponEquipped].damage;
+			updated = true;
+		}
+
 		if (this.data.movementTime.value !== game.data.movementTime) {
 			this.data.movementTime.value = game.data.movementTime;
 			updated = true;
@@ -106,9 +115,8 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 
 	draw(context) {
 		this.data.ammo.font.draw(context, this.data.ammo.value, 64, 50);
-
+		this.data.damage.font.draw(context, `${this.data.damage.value}`, 25, 25);
 		this.data.score.font.draw(context, this.data.score.value, me.game.viewport.width / 2, 5);
-
 		this.data.movementTime.font.draw(
 			context,
 			`${this.data.movementTime.value.toFixed(1)}ms`,

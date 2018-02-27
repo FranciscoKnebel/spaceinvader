@@ -27,6 +27,7 @@ module.exports = {
 	globals: {
 		game: true,
 		me: true,
-		io: true
+		io: true,
+		rwc: true
 	}
 };

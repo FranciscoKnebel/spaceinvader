@@ -3,33 +3,6 @@
 /* eslint no-alert: 0 */
 
 const game = {
-	data: {
-		score: 0,
-		levelscore: 0,
-		level: 0,
-		startPlayTime: new Date(),
-		weaponEquipped: 0,
-		weapons: [{
-			name: 'shotgun',
-			ammunition: 3,
-			reloadAmount: 3,
-			extraArg: 3
-		}, {
-			name: 'trident',
-			ammunition: 7,
-			reloadAmount: 7,
-			extraArg: true
-		}, {
-			name: 'bomb',
-			ammunition: 2,
-			reloadAmount: 2
-		}, {
-			name: 'trident-bomb',
-			ammunition: 5,
-			reloadAmount: 5
-		}]
-	},
-
 	// Run on page load.
 	onload() {
 		let options;

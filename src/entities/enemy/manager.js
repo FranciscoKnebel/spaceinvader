@@ -1,14 +1,7 @@
-function outOfBounds(velocity, bounds) {
-	return (
-		(velocity > 0 && bounds.right + velocity >= me.game.viewport.width) ||
-		(velocity < 0 && bounds.left + velocity <= 0)
-	);
-}
-
 game.Entities = game.Entities || {};
 game.Entities.EnemyManager = me.Container.extend({
-	init() {
-		this.COLS = Math.floor((me.game.viewport.width - 32) / 64);
+	init(config) {
+		this.COLS = Math.floor((me.game.viewport.width - 32) / 96);
 		this.ROWS = (game.data.level + 1) % 10 === 0 ? 2 : 4;
 
 		this._super(me.Container, 'init', [0, 32, this.COLS * 64 - 32, this.ROWS * 64 - 32]);
@@ -29,7 +22,7 @@ game.Entities.EnemyManager = me.Container.extend({
 
 		this.vel = this.baseSpeed.x;
 
-		this.createEnemies();
+		this.createEnemies(config);
 	},
 
 	update(time) {
@@ -75,15 +68,30 @@ game.Entities.EnemyManager = me.Container.extend({
 		this.updateChildBounds();
 	},
 
-	createEnemies() {
+	createEnemies(config) {
 		let i;
 		let j;
 
 		let amountOfEnemiesCreated = 0;
 
+		// Build table for random weighted choice
+		const table = [];
+		let { probability } = config;
+		if (!probability) {
+			// If not defined, set random probability for all enemies.
+			probability = [];
+			for (i = 0; i < config.enemies.length; i += 1) {
+				probability.push(~~(Math.random() * 4));
+			}
+		}
+
+		for (i = 0; i < probability.length; i += 1) {
+			table.push({ weight: probability[i], id: config.enemies[i] });
+		}
+
 		for (i = 0; i < this.COLS; i += 1) {
 			for (j = 0; j < this.ROWS; j += 1) {
-				this.addChild(me.pool.pull('enemy', i * 64, j * 64));
+				this.addChild(me.pool.pull('enemy', i * 96, j * 96, config.enemies[rwc(table)]));
 				amountOfEnemiesCreated += 1;
 			}
 		}
@@ -94,16 +102,22 @@ game.Entities.EnemyManager = me.Container.extend({
 
 		return amountOfEnemiesCreated;
 	},
+	outOfBounds() {
+		const velocity = this.vel;
+		const { left, right } = this.childBounds;
 
+		return (
+			(velocity > 0 && right + velocity >= me.game.viewport.width) ||
+			(velocity < 0 && left + velocity <= 0)
+		);
+	},
 	moveEnemies(init) {
-		const { childBounds } = this;
-
-		if (outOfBounds(this.vel, childBounds)) {
+		if (this.outOfBounds(this.vel)) {
 			game.data.movementTime -= 0.25;
 			this.vel *= -1;
 			this.pos.y += this.baseSpeed.y + 0.25 * game.data.level;
 
-			if (!game.playing.checkIfLoss(childBounds.bottom)) {
+			if (!game.playing.checkIfLoss(this.childBounds.bottom)) {
 				this.timer.change(() => {
 					this.moveEnemies();
 				}, game.data.movementTime);

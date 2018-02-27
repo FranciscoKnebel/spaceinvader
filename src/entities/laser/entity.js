@@ -1,8 +1,9 @@
 game.Entities = game.Entities || {};
 game.Entities.Laser = me.Entity.extend({
-	init(x, y, direction) {
+	init(x, y, direction = 'n', damage = 50) {
 		this._super(me.Entity, 'init', [x, y, { width: game.Entities.Laser.width, height: game.Entities.Laser.height }]);
 		this.z = 5;
+		this.damage = damage;
 		this.alwaysUpdate = true;
 
 		this.renderable = new (me.Renderable.extend({
@@ -45,8 +46,6 @@ game.Entities.Laser = me.Entity.extend({
 			break;
 		default:
 		}
-
-		this.alwaysUpdate = true;
 	},
 
 	update(time) {
@@ -102,12 +101,22 @@ game.Entities.Laser = me.Entity.extend({
 	onCollision(res, other) {
 		if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
 			me.game.world.removeChild(this);
-			game.playing.enemyManager.removeChild(other);
 
-			me.audio.play('hit');
+			other.stats.health -= this.damage;
 
-			game.data.levelscore += 10;
-			game.data.score += 10;
+			if (other.stats.health <= 0 && other.alive) {
+				game.playing.enemyManager.removeChild(other);
+
+				if (other.alive) {
+					// Another check to guarantee it was alive.
+					other.alive = false;
+
+					game.data.levelscore += 10;
+					game.data.score += 10;
+				}
+				me.audio.play('hit');
+			}
+
 			return true;
 		}
 

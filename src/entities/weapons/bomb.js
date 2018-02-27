@@ -54,18 +54,21 @@ game.Entities.Weapons.Bomb = me.Entity.extend({
 		}
 	},
 	explode(x, y) {
-		me.game.world.addChild(me.pool.pull('laser', x, y - 15, 'n'));
-		me.game.world.addChild(me.pool.pull('laser', x + 10, y - 10, 'ne'));
-		me.game.world.addChild(me.pool.pull('laser', x - 10, y - 10, 'nw'));
+		const { damage } = game.Entities.Weapons.Bomb;
 
-		me.game.world.addChild(me.pool.pull('laser', x, y, 'w'));
-		me.game.world.addChild(me.pool.pull('laser', x, y, 'e'));
+		me.game.world.addChild(me.pool.pull('laser', x, y - 15, 'n', damage));
+		me.game.world.addChild(me.pool.pull('laser', x + 10, y - 10, 'ne', damage));
+		me.game.world.addChild(me.pool.pull('laser', x - 10, y - 10, 'nw', damage));
 
-		me.game.world.addChild(me.pool.pull('laser', x, y + 15, 's'));
-		me.game.world.addChild(me.pool.pull('laser', x + 10, y + 10, 'se'));
-		me.game.world.addChild(me.pool.pull('laser', x - 10, y + 10, 'sw'));
+		me.game.world.addChild(me.pool.pull('laser', x, y, 'w', damage));
+		me.game.world.addChild(me.pool.pull('laser', x, y, 'e', damage));
+
+		me.game.world.addChild(me.pool.pull('laser', x, y + 15, 's', damage));
+		me.game.world.addChild(me.pool.pull('laser', x + 10, y + 10, 'se', damage));
+		me.game.world.addChild(me.pool.pull('laser', x - 10, y + 10, 'sw', damage));
 	}
 });
 
+game.Entities.Weapons.Bomb.damage = game.data.weapons[2].damage;
 game.Entities.Weapons.Bomb.width = 15;
 game.Entities.Weapons.Bomb.height = 15;

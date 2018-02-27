@@ -5,7 +5,7 @@ game.Entities.Player = me.Sprite.extend({
 
 		this._super(me.Sprite, 'init', [
 			me.game.viewport.width / 2 - image.width / 2,
-			me.game.viewport.height - image.height - 20,
+			me.game.viewport.height - image.height,
 			{ image }
 		]);
 
@@ -80,7 +80,7 @@ game.Entities.Player = me.Sprite.extend({
 		const { name, extraArg } = game.data.weapons[equiped];
 
 		me.game.world.addChild(me.pool.pull(name, this.pos.x -
-		(game.Entities.Weapons.Shotgun.width / 2), this.pos.y - this.height, extraArg));
+		(game.Entities.Weapons.Shotgun.width / 2), this.pos.y - this.height / 2, extraArg));
 	},
 	volumeControls() {
 		if (me.input.isKeyPressed('volume-plus')) {
