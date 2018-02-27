@@ -3,7 +3,7 @@ game.Entities.Weapons = game.Entities.Weapons || {};
 
 game.Entities.Weapons.Trident = me.Entity.extend({
 	init(x, y, splitFire) {
-		this._super(me.Entity, 'init', [x, y, { width: game.Entities.Weapons.Trident.width, height: game.Entities.Weapons.Trident.height }]);
+		this._super(me.Entity, 'init', [x, y, { width: game.Entities.Weapons.Trident.width / 2, height: game.Entities.Weapons.Trident.height / 2 }]);
 		this.alwaysUpdate = true;
 
 		this.splitFire = splitFire;

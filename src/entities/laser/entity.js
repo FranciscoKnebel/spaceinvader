@@ -103,16 +103,18 @@ game.Entities.Laser = me.Entity.extend({
 			me.game.world.removeChild(this);
 
 			other.stats.health -= this.damage;
+			other.renderable.flicker(500);
 
 			if (other.stats.health <= 0 && other.alive) {
+				const pointsEarned = other.stats.points;
 				game.playing.enemyManager.removeChild(other);
 
 				if (other.alive) {
 					// Another check to guarantee it was alive.
 					other.alive = false;
 
-					game.data.levelscore += 10;
-					game.data.score += 10;
+					game.data.levelscore += pointsEarned;
+					game.data.score += pointsEarned;
 				}
 				me.audio.play('hit');
 			}

@@ -51,7 +51,7 @@ game.Entities.Player = me.Sprite.extend({
 		}
 
 		if (me.input.isKeyPressed('reload') && game.data.weapons[equiped].ammunition === 0) {
-			game.data.weapons[equiped].ammunition = game.data.weapons[equiped].reloadAmount;
+			this.reloadEquippedWeapon();
 		}
 
 		if (me.input.isKeyPressed('weapon-minus')) {
@@ -67,14 +67,21 @@ game.Entities.Player = me.Sprite.extend({
 				game.data.weaponEquipped = 0;
 			}
 
+			// if mobile, autoreload on weapon change.
 			if (me.device.isMobile) {
-				// if mobile, autoreload on weapon change.
-				const { weaponEquipped } = game.data;
-				const amount = game.data.weapons[weaponEquipped].reloadAmount;
-
-				game.data.weapons[weaponEquipped].ammunition = amount;
+				this.reloadEquippedWeapon();
 			}
 		}
+	},
+	reloadEquippedWeapon() {
+		const { weaponEquipped } = game.data;
+		const { ammunition, reloadAmount, reloadCost } = game.data.weapons[weaponEquipped];
+
+		const amountToReload = reloadAmount - ammunition;
+
+		// Only deduct points from amount left to reload
+		game.data.score -= Math.floor((amountToReload * reloadCost) / reloadAmount);
+		game.data.weapons[weaponEquipped].ammunition = game.data.weapons[weaponEquipped].reloadAmount;
 	},
 	shoot(equiped) {
 		const { name, extraArg } = game.data.weapons[equiped];

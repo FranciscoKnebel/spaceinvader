@@ -26,15 +26,16 @@ game.Entities.Enemy = me.Entity.extend({
 		return true;
 	},
 
-	buildShip(type) {
-		this.type = game.Entities.EnemyList[type];
+	buildShip(index) {
+		this.type = game.Entities.EnemyList[index];
 
 		this.renderable.addAnimation('idle', [this.type.frame], 1);
 		this.renderable.setCurrentAnimation('idle');
 
 		this.stats = {
 			health: this.type.health,
-			armor: this.type.armor
+			armor: this.type.armor,
+			points: this.type.points
 		};
 	}
 });
