@@ -20,6 +20,11 @@ game.resources = [
         "src": "data/sfx/"
     },
     {
+        "name": "bosses",
+        "type": "image",
+        "src": "data/img/bosses.png"
+    },
+    {
         "name": "player",
         "type": "image",
         "src": "data/img/player.png"
@@ -33,6 +38,11 @@ game.resources = [
         "name": "ships2",
         "type": "image",
         "src": "data/img/ships2.png"
+    },
+    {
+        "name": "sound",
+        "type": "image",
+        "src": "data/img/ui/sound.png"
     },
     {
         "name": "1_hover",
