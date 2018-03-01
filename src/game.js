@@ -5,17 +5,23 @@
 const game = {
 	// Run on page load.
 	onload() {
-		let options;
+		this.options = {};
+
 		if (me.device.isMobile) {
-			options = game.options.mobile;
+			this.options = this.default_options.mobile;
 		} else {
-			options = game.options.default;
+			this.options = this.default_options.default;
 		}
+		this.options.sound = this.default_options.sound;
 
 		if (!me.video.init(options.resolution.height, options.resolution.height, options.rendering)) {
 			alert('Your browser does not support HTML5 canvas.');
 			return;
 		}
+
+		// Set sound according to config options
+		me.audio.setVolume(this.options.sound.volume);
+		this.options.sound.muted ? me.audio.muteAll() : me.audio.unmuteAll();
 
 		// add "#debug" to the URL to enable the debug Panel
 		if (me.game.HASH.debug === true) {

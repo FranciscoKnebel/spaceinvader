@@ -26,6 +26,10 @@ module.exports = (grunt) => {
 						dest: 'build/index.css'
 					},
 					{
+						src: 'fonts.css',
+						dst: 'build/fonts.css'
+					},
+					{
 						src: 'main.js',
 						dest: 'build/main.js'
 					},

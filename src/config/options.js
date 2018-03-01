@@ -1,5 +1,7 @@
-game.options = {
+game.default_options = {
 	sound: {
+		quality: 'low',
+		volume: 0.7,
 		muted: false,
 		changeRatio: {
 			wheel: 0.0005,
@@ -15,7 +17,8 @@ game.options = {
 			wrapper: 'screen',
 			scale: 'auto',
 			scaleMethod: 'flex-width',
-			antiAlias: 'true'
+			antiAlias: 'true',
+			doubleBuffering: 'true'
 		}
 	},
 	default: {
@@ -27,10 +30,8 @@ game.options = {
 			wrapper: 'screen',
 			scale: 'auto',
 			scaleMethod: 'flex-width',
-			antiAlias: 'true'
+			antiAlias: 'true',
+			doubleBuffering: 'true'
 		}
-	},
-	constants: {
-		bufferTimeLimitMS: 3000 // == 3 seconds
 	}
 };

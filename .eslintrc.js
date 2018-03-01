@@ -22,7 +22,8 @@ module.exports = {
 		'no-bitwise': ['error', { allow: ['~'] }],
 		'comma-dangle': ['error', { functions: 'ignore' }],
 		'new-cap': 0,
-		'no-restricted-syntax': 0
+		'no-restricted-syntax': 0,
+		'no-unused-expressions': ['error', { allowTernary: true }]
 	},
 	globals: {
 		game: true,

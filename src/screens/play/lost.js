@@ -10,7 +10,7 @@ game.Screens.Lost = me.ScreenObject.extend({
 
 		// Time buffer for the user to not spam through the screen.
 		const timeCountdown = new Date();
-		let timeLeft = game.options.constants.bufferTimeLimitMS;
+		let timeLeft = game.constants.bufferTimeLimitMS;
 
 		me.game.world.addChild(
 			new (me.Renderable.extend({
@@ -63,7 +63,7 @@ game.Screens.Lost = me.ScreenObject.extend({
 
 					if (timeLeft > 0) {
 						// There is still time left on the buffer, so recalculate
-						timeLeft = game.options.constants.bufferTimeLimitMS - (new Date() - timeCountdown);
+						timeLeft = game.constants.bufferTimeLimitMS - (new Date() - timeCountdown);
 					}
 
 					if (timeLeft > 0) {

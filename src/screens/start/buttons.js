@@ -1,37 +1,47 @@
-/* eslint no-alert: 0 */
+// Trigger keyboard key events for toggling menu buttons
+// Each button logic is defined on the start menu screen.
 
 game.menuButton1 = game.menuButton.extend({
 	onClick() {
-		game.data.startPlayTime = new Date();
-
-		game.data.level = 0;
-		game.data.score = 0;
-
-		me.state.change(me.state.PLAY, game.data.level, true);
+		me.input.triggerKeyEvent(me.input.KEY.NUM1, true);
+	},
+	onRelease() {
+		me.input.triggerKeyEvent(me.input.KEY.NUM1, false);
 	}
 });
 
 game.menuButton2 = game.menuButton.extend({
 	onClick() {
-		me.state.change(me.state.HELP, true);
+		me.input.triggerKeyEvent(me.input.KEY.NUM2, true);
+	},
+	onRelease() {
+		me.input.triggerKeyEvent(me.input.KEY.NUM2, false);
 	}
 });
 
 game.menuButton3 = game.menuButton.extend({
 	onClick() {
-		alert('clicked option 3. This option is not implemented, yet.');
-		return false;
+		me.input.triggerKeyEvent(me.input.KEY.NUM3, true);
+	},
+	onRelease() {
+		me.input.triggerKeyEvent(me.input.KEY.NUM3, false);
 	}
 });
 
 game.menuButton4 = game.menuButton.extend({
 	onClick() {
-		me.state.change(me.state.CREDITS);
+		me.input.triggerKeyEvent(me.input.KEY.NUM4, true);
+	},
+	onRelease() {
+		me.input.triggerKeyEvent(me.input.KEY.NUM4, false);
 	}
 });
 
 game.menuButton5 = game.menuButton.extend({
 	onClick() {
-		me.state.change(me.state.SCORE);
+		me.input.triggerKeyEvent(me.input.KEY.NUM5, true);
+	},
+	onRelease() {
+		me.input.triggerKeyEvent(me.input.KEY.NUM5, false);
 	}
 });
