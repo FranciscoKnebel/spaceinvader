@@ -14,7 +14,15 @@ const game = {
 		}
 		this.options.sound = this.default_options.sound;
 
-		if (!me.video.init(options.resolution.height, options.resolution.height, options.rendering)) {
+		// this.storage.saveOptions(this.options); // Overwrites options with defaults
+
+		this.options = this.storage.checkOptions(this.options);
+
+		if (!me.video.init(
+			this.options.resolution.width,
+			this.options.resolution.height,
+			this.options.rendering
+		)) {
 			alert('Your browser does not support HTML5 canvas.');
 			return;
 		}
@@ -45,7 +53,7 @@ const game = {
 		me.loader.preload(game.resources);
 
 		// Load the music resources.
-		// TODO: Check on user settings for music quality option
+		// TODO: Check on user settings for music quality option (game.options.sound.quality)
 		// TODO: Load music resources according to quality option
 		// TODO: Default to low quality music, for fast loading
 		me.loader.preload(game.music_resources);

@@ -29,6 +29,7 @@ module.exports = {
 		game: true,
 		me: true,
 		io: true,
-		rwc: true
+		rwc: true,
+		store: true
 	}
 };
