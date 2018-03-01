@@ -81,6 +81,7 @@ const game = {
 		me.state.set(me.state.GAME_END, new game.Screens.Won());
 		me.state.set(me.state.MENU, new game.Screens.Start());
 		me.state.set(me.state.SCORE, new game.Screens.Highscores());
+		me.state.set(me.state.SETTINGS, new game.Screens.Settings());
 
 		// User defined states
 		me.state.HELP = me.state.USER;

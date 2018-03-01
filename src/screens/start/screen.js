@@ -100,7 +100,7 @@ game.Screens.Start = me.ScreenObject.extend({
 					me.state.change(me.state.HELP, true);
 					break;
 				case 3:
-					alert(`Option ${menuChoice.current} not implemented, yet.`);
+					me.state.change(me.state.SETTINGS, true);
 					break;
 				case 4:
 					me.state.change(me.state.CREDITS);
