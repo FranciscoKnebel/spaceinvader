@@ -27,7 +27,7 @@ module.exports = (grunt) => {
 					},
 					{
 						src: 'fonts.css',
-						dst: 'build/fonts.css'
+						dest: 'build/fonts.css'
 					},
 					{
 						src: 'main.js',

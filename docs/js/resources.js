@@ -40,6 +40,26 @@ game.resources = [
         "src": "data/img/ships2.png"
     },
     {
+        "name": "exit_hover",
+        "type": "image",
+        "src": "data/img/ui/settings/exit_hover.png"
+    },
+    {
+        "name": "exit",
+        "type": "image",
+        "src": "data/img/ui/settings/exit.png"
+    },
+    {
+        "name": "save_hover",
+        "type": "image",
+        "src": "data/img/ui/settings/save_hover.png"
+    },
+    {
+        "name": "save",
+        "type": "image",
+        "src": "data/img/ui/settings/save.png"
+    },
+    {
         "name": "sound",
         "type": "image",
         "src": "data/img/ui/sound.png"

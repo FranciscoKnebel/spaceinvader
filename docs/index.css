@@ -33,15 +33,21 @@ body {
   -ms-interpolation-mode: nearest-neighbor;
 }
 
-#screen div.wrapper {
+#screen div.wrapper, #screen .wrapper {
   position: absolute;
   z-index: 2;
+}
+
+/* INPUT */
+.ui.wrapper.input {
   width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .ui.input, .ui.input > input {
   font-size: 1em;
-  width: 40%;
+  width: 90%;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -141,4 +147,80 @@ body {
 /* Disabled */
 .ui.input[disabled], .ui.action.input > input[disabled] {
   background: #e0e1e2 none;
+}
+
+/**
+  SELECT DROPDOWN
+**/
+/* Reset */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #2c3e50;
+  background-image: none;
+}
+
+/* Custom Select */
+.select {
+  position: relative;
+  display: block;
+  width: 20em;
+  height: 3em;
+  line-height: 3;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+
+  margin: 0 auto;
+}
+
+select {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 0 0 .5em;
+  color: #fff;
+  cursor: pointer;
+  font-family: Quicksand;
+  font-size: 1em;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select option:not(:first-child) {
+  font-size: 1.2rem;
+}
+
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 1em;
+  background: #34495e;
+  pointer-events: none;
+}
+
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+
+.select::after {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+
+.select .active {
+  background: #f39c12;
 }

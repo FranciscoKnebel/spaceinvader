@@ -31,6 +31,7 @@ Then in the cloned directory, simply run:
     npm install
 
 Install the submodule dependencies too:
+
     npm run install-submodules
 
     Be sure to check if the module projects have any other setup on their respective README.md files.
