@@ -1,13 +1,25 @@
 game.Screens = game.Screens || {};
 game.Screens.Play = me.ScreenObject.extend({
 	onResetEvent(level, fromStartMenu) {
+		const { theme, stage, enemyConfig } = game.buildLevel(level, 'play');
+
+		me.audio.pauseTrack();
 		if (fromStartMenu) {
-			// me.audio.playTrack('tronicles');
+			// If starting game, play the track for the first theme.
+			me.audio.playTrack(game.themes[0].track);
+		} else if (enemyConfig.boss) {
+			// If on a boss fight, swap the track for the boss theme.
+			me.audio.stopTrack();
+			me.audio.playTrack(stage.track);
+		} else if (me.audio.getCurrentTrack() !== theme.track) {
+			// If the track currently playing is not the track for this theme,
+			// stop it and play the current theme track (switch of themes).
+			me.audio.stopTrack();
+			me.audio.playTrack(theme.track);
 		} else {
+			// Theme is correct, so keep playing the current track.
 			me.audio.resumeTrack();
 		}
-
-		const { enemyConfig } = game.buildLevel(level, 'play');
 
 		this.player = me.pool.pull('player');
 		me.game.world.addChild(this.player, 1);

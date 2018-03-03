@@ -1,29 +1,39 @@
 game.Entities = game.Entities || {};
 game.Entities.EnemyManager = me.Container.extend({
 	init(config) {
-		this.COLS = Math.floor((me.game.viewport.width - 32) / 96);
-		this.ROWS = (game.data.level + 1) % 10 === 0 ? 2 : 4;
+		this.enemyConfig = config;
 
-		this._super(me.Container, 'init', [0, 32, this.COLS * 64 - 32, this.ROWS * 64 - 32]);
+		if (me.device.isMobile) {
+			this.baseAmountOfMoves = 20;
+		} else {
+			this.baseAmountOfMoves = 32;
+		}
+
+		this.COLS = Math.floor((me.game.viewport.width - 32) / 96);
+		this.ROWS = 4;
+
+		const pixelsTillOutOfBounds = me.game.viewport.width - (this.COLS * 96) + 32;
+		this.baseSpeed = {
+			x: pixelsTillOutOfBounds / this.baseAmountOfMoves,
+			y: 15
+		};
+
+		this._super(me.Container, 'init', [0, 32, this.COLS * 96 - 32, this.ROWS * 76 - 32]);
 		this.anchorPoint.set(0, 0);
 		this.alwaysUpdate = true;
 
-		this.baseSpeed = {
-			x: 4,
-			y: 10
-		};
-
 		if ((game.data.level + 1) % 10 === 0) {
 			// multiple of 10
-			this.baseSpeed.x = 4.5;
+			this.baseSpeed.x *= 1.1;
+			this.baseSpeed.y *= 0.5;
 		} else if ((game.data.level + 1) % 5 === 0) {
 			// multiple of 5
-			this.baseSpeed.x = 4.25;
+			this.baseSpeed.x *= 1.05;
 		}
 
 		this.vel = this.baseSpeed.x;
 
-		this.createEnemies(config);
+		this.createEnemies();
 	},
 
 	update(time) {
@@ -65,11 +75,16 @@ game.Entities.EnemyManager = me.Container.extend({
 	},
 
 	removeChildNow(child) {
+		const previousWidth = this.childBounds.width;
 		this._super(me.Container, 'removeChildNow', [child]);
 		this.updateChildBounds();
+
+		if (previousWidth > this.childBounds.width) {
+			this.vel *= 1.05;
+		}
 	},
 
-	createEnemies(config) {
+	createEnemies() {
 		let i;
 		let j;
 
@@ -77,22 +92,22 @@ game.Entities.EnemyManager = me.Container.extend({
 
 		// Build table for random weighted choice
 		const table = [];
-		let { probability } = config;
+		let { probability } = this.enemyConfig;
 		if (!probability) {
 			// If not defined, set random probability for all enemies.
 			probability = [];
-			for (i = 0; i < config.enemies.length; i += 1) {
+			for (i = 0; i < this.enemyConfig.enemies.length; i += 1) {
 				probability.push(~~(Math.random() * 4));
 			}
 		}
 
 		for (i = 0; i < probability.length; i += 1) {
-			table.push({ weight: probability[i], id: config.enemies[i] });
+			table.push({ weight: probability[i], id: this.enemyConfig.enemies[i] });
 		}
 
 		for (i = 0; i < this.COLS; i += 1) {
 			for (j = 0; j < this.ROWS; j += 1) {
-				this.addChild(me.pool.pull('enemy', i * 96, j * 96, config.enemies[rwc(table)]));
+				this.addChild(me.pool.pull('enemy', i * 96, j * 76, rwc(table)));
 				amountOfEnemiesCreated += 1;
 			}
 		}

@@ -28,7 +28,6 @@ game.Entities.Enemy = me.Entity.extend({
 
 	buildShip(index) {
 		this.type = game.Entities.EnemyList[index];
-
 		this.renderable.addAnimation('idle', [this.type.frame], 1);
 		this.renderable.setCurrentAnimation('idle');
 

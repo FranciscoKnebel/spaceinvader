@@ -1,5 +1,6 @@
-const themes = [
+game.themes = [
 	{
+		track: 'tronicles',
 		enemies: [0, 1, 2, 3],
 		levels: [
 			{
@@ -75,6 +76,7 @@ const themes = [
 				lost: '#66D8E8'
 			},
 			{
+				track: 'deathmatch',
 				boss: [0],
 				probability: [
 					2, 1, 2, 1
@@ -84,6 +86,20 @@ const themes = [
 				lost: '#66D8E8'
 			}
 		]
+	},
+	{
+		track: 'rain_of_lasers',
+		enemies: [2, 3],
+		levels: [
+			{
+				probability: [
+					1, 3
+				],
+				play: '#0B4FE1',
+				won: '#BE166C',
+				lost: '#E1B65D'
+			}
+		]
 	}
 ];
 
@@ -91,22 +107,16 @@ function findTheme(level) {
 	let levelCounter = 0;
 	let obj;
 
-
-	for (let i = 0; i < themes.length; i += 1) {
-		if (level > themes[i].levels.length) {
-			// Skip theme if level is not inside it.
-			levelCounter += themes[i].levels.length;
-		} else {
-			for (let j = 0; j < themes[i].levels.length; j += 1) {
-				if (level === levelCounter) {
-					obj = {
-						theme: themes[i],
-						stage: themes[i].levels[j]
-					};
-					return obj;
-				}
-				levelCounter += 1;
+	for (let i = 0; i < game.themes.length; i += 1) {
+		for (let j = 0; j < game.themes[i].levels.length; j += 1) {
+			if (level === levelCounter) {
+				obj = {
+					theme: game.themes[i],
+					stage: game.themes[i].levels[j]
+				};
+				return obj;
 			}
+			levelCounter += 1;
 		}
 	}
 
@@ -117,6 +127,7 @@ function findTheme(level) {
 
 	return {
 		theme: {
+			track: 'cold_stone',
 			enemies
 		},
 		stage: {
