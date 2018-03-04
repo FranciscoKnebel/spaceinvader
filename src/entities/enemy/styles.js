@@ -11,7 +11,7 @@ game.Entities.EnemyList = [
 			points: 450,
 			fire: {
 				rate: 1000,
-				damage: 50
+				weapons: [0, 1]
 			}
 		}
 	},

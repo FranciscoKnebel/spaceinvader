@@ -38,10 +38,15 @@ game.Entities.Boss = me.Entity.extend({
 			points: this.type.points
 		};
 
+		this.weapons = this.type.fire.weapons.map(i => game.data.enemyWeapons[i]);
 		this.fireInterval = setInterval(() => {
-			me.audio.play('fire');
-			me.game.world.addChild(me.pool.pull('laser', this._absPos.x + this.width / 3, this._absPos.y + this.height, 's', this.type.fire.damage, true));
-			me.game.world.addChild(me.pool.pull('laser', this._absPos.x + this.width / 1.5, this._absPos.y + this.height, 's', this.type.fire.damage, true));
+			const { name } = this.weapons[Math.floor(Math.random() * this.weapons.length)];
+
+			me.game.world.addChild(me.pool.pull(
+				name,
+				this._absPos.x + this.width / 2,
+				this._absPos.y + this.height
+			));
 		}, this.type.fire.rate);
 	},
 

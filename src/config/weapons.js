@@ -26,3 +26,11 @@ game.data.weapons = [{
 	reloadAmount: 5,
 	reloadCost: 15
 }];
+
+game.data.enemyWeapons = [{
+	name: 'single',
+	damage: 50
+}, {
+	name: 'dual',
+	damage: 50
+}];

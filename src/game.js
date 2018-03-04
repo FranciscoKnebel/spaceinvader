@@ -77,6 +77,9 @@ const game = {
 		me.pool.register('trident-bomb', game.Entities.Weapons.Trident, true);
 		me.pool.register('shotgun', game.Entities.Weapons.Shotgun, true);
 
+		me.pool.register('single', game.Entities.Weapons.Enemy.Single, true);
+		me.pool.register('dual', game.Entities.Weapons.Enemy.Dual, true);
+
 		this.playing = new game.Screens.Play();
 		me.state.set(me.state.PLAY, this.playing);
 		me.state.set(me.state.GAMEOVER, new game.Screens.Lost());

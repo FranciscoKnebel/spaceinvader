@@ -1,6 +1,3 @@
-// TODO: bomb should explode after __ seconds.
-// TODO: Time should be customizable (defined on init)
-
 game.Entities = game.Entities || {};
 game.Entities.Weapons = game.Entities.Weapons || {};
 

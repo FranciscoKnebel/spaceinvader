@@ -109,7 +109,6 @@ game.Entities.EnemyManager = me.Container.extend({
 			x: Math.round(this.COLS / 2) - 1
 		};
 
-		boss = [0];
 		let bossCreated = !boss;
 		for (y = 0; y < this.ROWS; y += 1) {
 			for (x = 0; x < this.COLS; x += 1) {
