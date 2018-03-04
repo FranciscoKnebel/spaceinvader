@@ -8,7 +8,11 @@ game.Entities.EnemyList = [
 			health: 5000,
 			armor: 3,
 			frame: 0,
-			points: 450
+			points: 450,
+			fire: {
+				rate: 1000,
+				damage: 50
+			}
 		}
 	},
 	{

@@ -69,6 +69,8 @@ const game = {
 	loaded() {
 		me.pool.register('player', game.Entities.Player);
 		me.pool.register('enemy', game.Entities.Enemy, true);
+		me.pool.register('boss', game.Entities.Boss, true);
+
 		me.pool.register('laser', game.Entities.Laser, true);
 		me.pool.register('bomb', game.Entities.Weapons.Bomb, true);
 		me.pool.register('trident', game.Entities.Weapons.Trident, true);

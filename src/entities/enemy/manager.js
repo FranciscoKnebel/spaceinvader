@@ -85,29 +85,48 @@ game.Entities.EnemyManager = me.Container.extend({
 	},
 
 	createEnemies() {
-		let i;
-		let j;
+		let x;
+		let y;
 
 		let amountOfEnemiesCreated = 0;
 
 		// Build table for random weighted choice
 		const table = [];
-		let { probability } = this.enemyConfig;
+		let { probability, boss } = this.enemyConfig;
 		if (!probability) {
 			// If not defined, set random probability for all enemies.
 			probability = [];
-			for (i = 0; i < this.enemyConfig.enemies.length; i += 1) {
+			for (x = 0; x < this.enemyConfig.enemies.length; x += 1) {
 				probability.push(~~(Math.random() * 4));
 			}
 		}
 
-		for (i = 0; i < probability.length; i += 1) {
-			table.push({ weight: probability[i], id: this.enemyConfig.enemies[i] });
+		for (x = 0; x < probability.length; x += 1) {
+			table.push({ weight: probability[x], id: this.enemyConfig.enemies[x] });
 		}
 
-		for (i = 0; i < this.COLS; i += 1) {
-			for (j = 0; j < this.ROWS; j += 1) {
-				this.addChild(me.pool.pull('enemy', i * 96, j * 76, rwc(table)));
+		const middle = {
+			x: Math.round(this.COLS / 2) - 1
+		};
+
+		boss = [0];
+		let bossCreated = !boss;
+		for (y = 0; y < this.ROWS; y += 1) {
+			for (x = 0; x < this.COLS; x += 1) {
+				if (!bossCreated && x === middle.x) {
+					bossCreated = true;
+					this.addChild(me.pool.pull('boss', x * 96 + 24, 0, { type: boss[0], grid: { x, y } }));
+
+					x += 2;
+					while (x < this.COLS) {
+						this.addChild(me.pool.pull('enemy', x * 96, y * 76, { type: rwc(table), grid: { x, y } }));
+						x += 1;
+						amountOfEnemiesCreated += 1;
+					}
+				} else if (!boss || (boss &&
+					((x !== middle.x && x !== middle.x + 1)) || (y >= this.ROWS - 2))) {
+					this.addChild(me.pool.pull('enemy', x * 96, y * 76, { type: rwc(table), grid: { x, y } }));
+				}
 				amountOfEnemiesCreated += 1;
 			}
 		}

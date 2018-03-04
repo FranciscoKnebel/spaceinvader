@@ -1,19 +1,28 @@
 game.Entities = game.Entities || {};
-game.Entities.Player = me.Sprite.extend({
+game.Entities.Player = me.Entity.extend({
 	init() {
 		const image = me.loader.getImage('player');
 
-		this._super(me.Sprite, 'init', [
+		this._super(me.Entity, 'init', [
 			me.game.viewport.width / 2 - image.width / 2,
-			me.game.viewport.height - image.height,
-			{ image }
+			me.game.viewport.height - image.height - game.data.player.positionOffset,
+			{
+				image,
+				width: 64,
+				height: 64
+			}
 		]);
+		this.body.collisionType = me.collision.types.PLAYER_OBJECT;
+
+		this.stats = {
+			health: game.data.player.startingHealth
+		};
 
 		this.maxX = me.game.viewport.width - this.width;
 	},
 
 	update(time) {
-		this._super(me.Sprite, 'update', [time]);
+		this._super(me.Entity, 'update', [time]);
 
 		this.movementControls(time);
 		this.shootingControls();
@@ -86,8 +95,12 @@ game.Entities.Player = me.Sprite.extend({
 	shoot(equiped) {
 		const { name, extraArg } = game.data.weapons[equiped];
 
-		me.game.world.addChild(me.pool.pull(name, this.pos.x -
-		(game.Entities.Weapons.Shotgun.width / 2), this.pos.y - this.height / 2, extraArg));
+		me.game.world.addChild(me.pool.pull(
+			name,
+			this.pos.x + this.width / 2 - 2,
+			this.pos.y - game.data.player.positionOffset / 3 - 2,
+			extraArg
+		));
 	},
 	volumeControls() {
 		if (me.input.isKeyPressed('volume-plus')) {

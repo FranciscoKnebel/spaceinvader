@@ -1,9 +1,10 @@
 game.Entities = game.Entities || {};
 game.Entities.Laser = me.Entity.extend({
-	init(x, y, direction = 'n', damage = 50) {
+	init(x, y, direction = 'n', damage = 50, firedByEnemy) {
 		this._super(me.Entity, 'init', [x, y, { width: game.Entities.Laser.width, height: game.Entities.Laser.height }]);
 		this.z = 5;
 		this.damage = damage;
+		this.firedByEnemy = firedByEnemy;
 		this.alwaysUpdate = true;
 
 		this.renderable = new (me.Renderable.extend({
@@ -14,8 +15,16 @@ game.Entities.Laser = me.Entity.extend({
 			draw(renderer) {
 				const color = renderer.getColor();
 
-				renderer.setColor('#5EFF7E');
-				renderer.fillRect(0, 0, this.width, this.height);
+				if (firedByEnemy) {
+					renderer.setColor('#5EFF7E');
+					renderer.fillRect(0, 0, this.width, this.height);
+
+					renderer.setColor('#822929');
+					renderer.fillRect(1, 1, this.width - 2, this.height - 2);
+				} else {
+					renderer.setColor('#5EFF7E');
+					renderer.fillRect(0, 0, this.width, this.height);
+				}
 				renderer.setColor(color);
 			}
 		}))();
@@ -99,7 +108,27 @@ game.Entities.Laser = me.Entity.extend({
 	},
 
 	onCollision(res, other) {
-		if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
+		if (res.a.firedByEnemy) {
+			// Shot was fired by an enemy entity
+			if (other.body.collisionType === me.collision.types.PLAYER_OBJECT) {
+				me.game.world.removeChild(this);
+
+				other.stats.health -= this.damage;
+				other.renderable.flicker(500);
+
+				if (other.stats.health <= 0) {
+					me.audio.pauseTrack();
+					game.data.endPlayTime = new Date() - game.data.startPlayTime;
+
+					me.state.change(me.state.GAMEOVER);
+				}
+				me.audio.play('hit');
+				return true;
+			}
+
+			return false;
+		} else if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
+			// Shot fired by the player collided with an enemy entity
 			me.game.world.removeChild(this);
 
 			other.stats.health -= this.damage;
@@ -122,12 +151,12 @@ game.Entities.Laser = me.Entity.extend({
 			return true;
 		}
 
-		if (other.body.collisionType === me.collision.types.PROJECTILE_OBJECT) {
-			// do nothing
-			return false;
-		}
+		// if (other.body.collisionType === me.collision.types.PROJECTILE_OBJECT) {
+		// do nothing
+		return false;
+		// }
 	}
 });
 
-game.Entities.Laser.width = 3;
+game.Entities.Laser.width = 4;
 game.Entities.Laser.height = 20;
