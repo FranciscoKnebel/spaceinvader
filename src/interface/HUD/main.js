@@ -108,15 +108,31 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 			score: {
 				value: 0,
 				font: new me.Font('Arial', 64, '#FFFF5C', 'center')
-			}
-			// movementTime: {
-			// 	value: 0,
-			// 	font: new me.Font('Serif', 24, '#285428', 'right')
-			// }
+			},
+			health: {
+				value: 0,
+				font: new me.Font('Serif', 24, '#C91D03', 'center')
+			},
+			line: new (me.Renderable.extend({
+				init() {
+					this._super(me.Renderable, 'init', [0, game.playing.player.pos.y, me.game.viewport.width, 2]);
+					this.anchorPoint.set(0, 0);
+					console.log('init');
+				},
+				draw(renderer) {
+					renderer.setColor('#CBA');
+					console.log(this.width);
+					renderer.fillRect(this.pos.x, this.pos.y, this.width, this.height);
+				},
+				update() {
+					return false;
+				}
+			}))()
 		};
 
 		me.game.world.addChild(this.data.currentWeapon.sprite, 3);
 		me.game.world.addChild(this.data.sound, 4);
+		me.game.world.addChild(this.data.line, 1);
 	},
 
 	update() {
@@ -137,10 +153,10 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 			updated = true;
 		}
 
-		// if (this.data.movementTime.value !== game.data.movementTime) {
-		// 	this.data.movementTime.value = game.data.movementTime;
-		// 	updated = true;
-		// }
+		if (this.data.health.value !== game.playing.player.stats.health) {
+			this.data.health.value = game.playing.player.stats.health;
+			updated = true;
+		}
 
 		if (this.data.score.value !== game.data.score) {
 			this.data.score.value = game.data.score;
@@ -155,12 +171,9 @@ game.GUI.HUD.ScoreItem = me.Renderable.extend({
 		this.data.damage.font.draw(context, `${this.data.damage.value}`, 25, 25);
 		this.data.reloadCost.font.draw(context, `${this.data.reloadCost.value}`, 25, 70);
 		this.data.score.font.draw(context, this.data.score.value, me.game.viewport.width / 2, 5);
-
-		// this.data.movementTime.font.draw(
-		// 	context,
-		// 	`${this.data.movementTime.value.toFixed(1)}ms`,
-		// 	me.game.viewport.width - 5,
-		// 	5
-		// );
+		this.data.health.font.draw(
+			context, this.data.health.value,
+			game.playing.player.pos.x + game.playing.player.width / 2 + 5, me.game.viewport.height - 20
+		);
 	}
 });

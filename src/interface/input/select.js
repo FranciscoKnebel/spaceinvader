@@ -19,7 +19,7 @@ game.GUI.SelectInput = me.Renderable.extend({
 
 		for (let i = 0; i < options.length; i += 1) {
 			const item = options[i];
-			this.$selectBox.append($(`<option value="${textInValue ? item.text : item.value}" ${item.active ? 'class="active"' : ''}>${item.text}</option>`));
+			this.$selectBox.append($(`<option value="${textInValue ? item.text : item.value}" ${me.device.isMobile && item.active ? 'selected' : ''} ${item.active ? 'class="active"' : ''}>${item.text}</option>`));
 		}
 
 		this.$select.append(this.$selectBox);
