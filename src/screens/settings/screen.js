@@ -47,8 +47,19 @@ game.Screens.Settings = me.ScreenObject.extend({
 				const options = this.updateOptions();
 				game.storage.saveOptions(options);
 
-				alert('Refreshing page to apply changes.');
-				document.location.reload();
+				iziToast.info({
+					id: 'settings',
+					title: 'Changes saved!',
+					message: 'Reloading to apply changes.',
+					position: 'topCenter',
+					toastOnce: 'settings',
+					close: false,
+					animateInside: false,
+					timeout: 2000,
+					onClosing: () => {
+						document.location.reload();
+					}
+				});
 			}
 
 			if (action === 'exit_clear') {
@@ -64,7 +75,7 @@ game.Screens.Settings = me.ScreenObject.extend({
 			savedOptions = game.storage.saveOptions(game.game_options);
 		}
 
-		let height = 250;
+		let height = 150;
 
 		for (const params of game.settingsOptions) {
 			const obj = this.setActiveOptions(params);

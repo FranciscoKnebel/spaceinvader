@@ -89,7 +89,7 @@ game.Screens.Play = me.ScreenObject.extend({
 	},
 
 	checkIfLoss(y) {
-		if (y >= this.player.pos.y - this.player.height) {
+		if (y >= this.player.pos.y) {
 			me.audio.pauseTrack();
 			game.data.endPlayTime = new Date() - game.data.startPlayTime;
 

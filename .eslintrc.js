@@ -23,13 +23,15 @@ module.exports = {
 		'comma-dangle': ['error', { functions: 'ignore' }],
 		'new-cap': 0,
 		'no-restricted-syntax': 0,
-		'no-unused-expressions': ['error', { allowTernary: true }]
+		'no-unused-expressions': ['error', { allowTernary: true }],
+		'prefer-const': ['error', {'destructuring': 'all'}]
 	},
 	globals: {
 		game: true,
 		me: true,
 		io: true,
 		rwc: true,
-		store: true
+		store: true,
+		iziToast: true
 	}
 };
