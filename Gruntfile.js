@@ -129,7 +129,7 @@ module.exports = (grunt) => {
 		},
 
 		'download-electron': {
-			version: '1.7.12',
+			version: '1.8.4',
 			outputDir: 'bin',
 			rebuild: false,
 			token: process.env.GITHUB_API_TOKEN || process.env.GHTOKEN
