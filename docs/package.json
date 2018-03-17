@@ -1,6 +1,6 @@
 {
   "name": "spaceinvader",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "main": "main.js",
   "scripts": {
     "build": "grunt dist && npm run build-linux && npm run build-win32 && npm run build-darwin",
@@ -8,7 +8,7 @@
     "build-darwin": "node deployment/build --platform darwin",
     "build-linux": "node deployment/build --platform linux",
     "build-win32": "node deployment/build --platform win32",
-    "build-docs": "grunt dist && ncp build docs",
+    "build-docs": "grunt dist && node deployment/docs",
     "dev": "concurrently \"grunt dev\" \"cd modules/highscores && npm run dev\"",
     "deploy-appveyor": "node deployment/build --platform win32 --arch all && node deployment/deploy-appveyor apps",
     "deploy-travis": "node deployment/build --platform linux --arch all && node deployment/deploy-travis 'apps'",
@@ -45,6 +45,7 @@
     "husky": "^0.14.3",
     "minimist": "^1.2.0",
     "ncp": "^2.0.0",
+    "rmfr": "^2.0.0",
     "tar.gz": "^1.0.5",
     "zip-folder": "^1.0.0"
   },

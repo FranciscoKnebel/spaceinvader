@@ -47,5 +47,14 @@ game.settingsOptions = [
 			{ value: 'true', text: 'Enabled' },
 			{ value: 'false', text: 'Disabled' }
 		]
+	},
+	{
+		title: 'SOUND QUALITY',
+		id: 'sound',
+		options: [
+			{ value: 'low', text: 'Low' },
+			{ value: 'mid', text: 'Mid' },
+			{ value: 'high', text: 'High' }
+		]
 	}
 ];

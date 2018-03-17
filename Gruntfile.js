@@ -148,7 +148,7 @@ module.exports = (grunt) => {
 			dist: {
 				files: [
 					{
-						src: ['data/bgm/**/*', '!data/bgm/high_res/*', '!data/bgm/mid_res/*', '!data/bgm/unused/*'],
+						src: ['data/bgm/**/*', '!data/bgm/high_res/*', '!data/bgm/mid_res/*', '!data/bgm/unused/**/*'],
 						type: 'audio',
 						bgm: true
 					},

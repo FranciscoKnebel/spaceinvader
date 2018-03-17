@@ -4,4 +4,3 @@ build
 node_modules/
 SpaceInvader-*
 apps/
-package-lock.json

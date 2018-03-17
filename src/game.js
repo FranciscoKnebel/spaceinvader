@@ -53,9 +53,20 @@ const game = {
 		me.loader.preload(game.resources);
 
 		// Load the music resources.
-		// TODO: Check on user settings for music quality option (game.options.sound.quality)
-		// TODO: Load music resources according to quality option
-		// TODO: Default to low quality music, for fast loading
+		let appendString;
+		switch (game.options.sound.quality) {
+		case 'high':
+			appendString = 'high_res/';
+			break;
+		case 'mid':
+			appendString = 'mid_res/';
+			break;
+		default:
+			appendString = '';
+		}
+		for (let i = 0; i < game.music_resources.length; i += 1) {
+			game.music_resources[i].src += appendString;
+		}
 		me.loader.preload(game.music_resources);
 
 		// Initialize melonJS and display a loading screen.

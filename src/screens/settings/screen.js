@@ -108,6 +108,11 @@ game.Screens.Settings = me.ScreenObject.extend({
 				params.options[i].active = params.options[i].value === game.options.rendering[params.id];
 			}
 			break;
+		case 'sound':
+			for (i = 0; i < params.options.length; i += 1) {
+				params.options[i].active = params.options[i].value === game.options.sound.quality;
+			}
+			break;
 		default:
 		}
 
@@ -138,6 +143,13 @@ game.Screens.Settings = me.ScreenObject.extend({
 
 				if (value) {
 					game.options.rendering[id] = value;
+				}
+				break;
+			case 'sound':
+				value = $(`#${id}`).val();
+
+				if (value) {
+					game.options.sound.quality = value;
 				}
 				break;
 			default:
