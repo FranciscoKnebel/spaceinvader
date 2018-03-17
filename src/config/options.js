@@ -1,6 +1,6 @@
 game.default_options = {
 	sound: {
-		quality: 'low',
+		quality: game.onApp ? 'high' : 'low',
 		volume: 0.7,
 		muted: false,
 		changeRatio: {
